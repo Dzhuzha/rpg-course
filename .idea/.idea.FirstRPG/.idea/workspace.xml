@@ -13,6 +13,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/PatrolPath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/PersistentObjectsSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicControlRemover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/AIController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/Portal.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,6 +44,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/PersistentObjectsSpawner.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/Fader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/Portal.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Saving/SavingSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" />
       </list>
     </option>
   </component>
@@ -83,10 +86,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31096">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="31096" />
+      <option name="pid" />
       <option name="selectedOptions">
         <set />
       </option>
@@ -107,7 +110,7 @@
       <workItem from="1685716663574" duration="870000" />
       <workItem from="1686037350993" duration="32818000" />
       <workItem from="1686299194108" duration="8945000" />
-      <workItem from="1687162501343" duration="14698000" />
+      <workItem from="1687162501343" duration="16325000" />
     </task>
     <servers />
   </component>
