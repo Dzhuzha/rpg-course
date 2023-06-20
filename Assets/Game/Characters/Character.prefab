@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2516790000157086044}
   - component: {fileID: 6011471322046631701}
   - component: {fileID: 3871736999637922484}
+  - component: {fileID: 5643659386455622357}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427d1acf6dd94d05803940fbc9a3e2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDisabled: 0
 --- !u!114 &6011471322046631701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f26d7195d595749969b87381f2bfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDisabled: 0
   _agent: {fileID: 6011471322046631702}
   _animator: {fileID: 6011471322046631707}
   _scheduler: {fileID: 2516790000157086044}
@@ -158,12 +161,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e57f716ccc4cb4ae5a2365c857433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDisabled: 0
   _mover: {fileID: 6011471322046631701}
   _weaponRange: 2
   _scheduler: {fileID: 2516790000157086044}
   _animator: {fileID: 6011471322046631707}
   _meleeDamage: 5
   _timeBetweenAttacks: 1
+--- !u!114 &5643659386455622357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011471322909005254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &6011471322681841416
 PrefabInstance:
   m_ObjectHideFlags: 0

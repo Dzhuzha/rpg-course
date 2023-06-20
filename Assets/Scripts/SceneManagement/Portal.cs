@@ -17,9 +17,12 @@ namespace RPG.SceneManagement
         public Fader Fader { get; private set; }
         public DestinationIdentifier Destination => _destination;
 
+        private SavingWrapper _savingWrapper;
+
         private void Awake()
         {
             Fader = FindObjectOfType<Fader>();
+            _savingWrapper = FindObjectOfType<SavingWrapper>();
         }
         
         private void OnTriggerEnter(Collider other)
@@ -41,10 +44,18 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad(gameObject);
 
             yield return Fader.FadeOut(_fadeOutTime);
+
+            UpdatePlayer(this);
+            _savingWrapper.Save();
+            
             yield return SceneManager.LoadSceneAsync(_sceneToLoadIndex);
             
             Portal exitPortal = GetOtherPortals();
+            
+            _savingWrapper.Load();
             UpdatePlayer(exitPortal);
+            _savingWrapper.Save();
+            
             yield return exitPortal.Fader.FadeIn(_fadeInTime);
 
             Destroy(gameObject);

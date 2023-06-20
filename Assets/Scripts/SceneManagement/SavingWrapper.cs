@@ -1,3 +1,4 @@
+using System.Collections;
 using RPG.Saving;
 using UnityEngine;
 
@@ -5,31 +6,52 @@ namespace RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
-        private const string DEFAULT_SAVE_FILE_NAME = "data";
+        [SerializeField] private float _fadeInTime = 2f;
         
+        private const string DEFAULT_SAVE_FILE_NAME = "data";
+        private SavingSystem _savingSystem;
+        private Fader _fader;
+
+        private IEnumerator Start()
+        {
+            if (_savingSystem == null)
+            {
+                _savingSystem = GetComponent<SavingSystem>();
+            }
+            
+            if (_fader == null)
+            {
+                _fader = FindObjectOfType<Fader>();
+            }
+
+            _fader.FadeOutImmediate();
+            yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE_NAME);
+            yield return _fader.FadeIn(_fadeInTime);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.L))
             {
                 Load();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Save();
             }
         }
 
-        private void Save()
+        public void Save()
         {
             // call saving system to save
-            GetComponent<SavingSystem>().Save(DEFAULT_SAVE_FILE_NAME);
+            _savingSystem.Save(DEFAULT_SAVE_FILE_NAME);
         }
 
-        private void Load()
+        public void Load()
         {
             // call saving system to load
-            GetComponent<SavingSystem>().Load(DEFAULT_SAVE_FILE_NAME);
+            _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
         }
     }
 }

@@ -10,6 +10,11 @@ namespace RPG.SceneManagement
         private const byte NO_OPACITY = 1;
         private const byte FULL_OPACITY = 0;
 
+        public void FadeOutImmediate()
+        {
+            _canvasGroup.alpha = 1;
+        }
+        
         public IEnumerator FadeOut(float time)
         {
             while (_canvasGroup.alpha < NO_OPACITY)
