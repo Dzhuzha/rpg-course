@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueIdentifier: a5bbceb7-5ce2-4535-8e2a-c1a19e6241b0
+  uniqueIdentifier: b4fc4d51-7e5a-4c66-94b6-be63ee6a82be
 --- !u!1 &976552009
 GameObject:
   m_ObjectHideFlags: 3
@@ -2669,7 +2669,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307539556}
-  m_LocalRotation: {x: 0.24002434, y: -0.578781, z: 0.18340136, w: 0.75747263}
+  m_LocalRotation: {x: 0.24002433, y: -0.578781, z: 0.18340136, w: 0.75747263}
   m_LocalPosition: {x: -24.141094, y: -10.674379, z: -37.1495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4115,6 +4115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 67.445465
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068894084500726650, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: _uniqueIdentifier
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 8102883938065298070, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}

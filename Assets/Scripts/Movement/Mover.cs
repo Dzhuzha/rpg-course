@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using RPG.Core;
 using UnityEngine;
 using UnityEngine.AI;
@@ -54,6 +53,11 @@ namespace RPG.Movement
         public void CancelAction()
         {
             StopMoving();
+        }
+
+        public void StartAction()
+        {
+            throw new NotImplementedException();
         }
 
         public void SetSpeed(float speed)

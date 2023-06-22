@@ -1,4 +1,5 @@
-﻿using RPG.Core;
+﻿using System;
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 
@@ -12,10 +13,21 @@ namespace RPG.Combat
         [SerializeField] private Animator _animator;
         [SerializeField] private float _meleeDamage;
         [SerializeField] private float _timeBetweenAttacks = 1f;
+        [SerializeField] private GameObject _weaponPrefab = null;
+        [SerializeField] private Transform _handTransform = null;
         
         private Health _targetHealth;
         private Transform _targetPosition;
         private float _timeSinceLastAttack = 0f;
+
+
+        private void Start()
+        {
+            if (_weaponPrefab != null && _handTransform != null)
+            {
+                Instantiate(_weaponPrefab, _handTransform);
+            }
+        }
 
         private void Update()
         {

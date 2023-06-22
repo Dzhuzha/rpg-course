@@ -19,12 +19,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
+      propertyPath: _weaponPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: _handTransform
+      value: 
+      objectReference: {fileID: 195349642695832905}
+    - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
       propertyPath: _timeBetweenAttacks
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5643659386455622357, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: uniqueIdentifier
+      value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5643659386455622357, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: _uniqueIdentifier
       value: player
       objectReference: {fileID: 0}
     - target: {fileID: 6011471322046631702, guid: 4edd1fc0a32aa074e8508804620dfe69,
@@ -64,18 +79,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011471322909005258, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 14.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 6011471322909005258, guid: 4edd1fc0a32aa074e8508804620dfe69,
-        type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.424042
-      objectReference: {fileID: 0}
-    - target: {fileID: 6011471322909005258, guid: 4edd1fc0a32aa074e8508804620dfe69,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 20.17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6011471322909005258, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
@@ -114,6 +119,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4edd1fc0a32aa074e8508804620dfe69, type: 3}
+--- !u!4 &195349642695832905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6011471322681515660, guid: 4edd1fc0a32aa074e8508804620dfe69,
+    type: 3}
+  m_PrefabInstance: {fileID: 5898321495763151813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &195349643527405059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6011471322909005254, guid: 4edd1fc0a32aa074e8508804620dfe69,

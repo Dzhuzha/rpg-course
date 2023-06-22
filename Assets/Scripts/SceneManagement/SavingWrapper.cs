@@ -22,9 +22,9 @@ namespace RPG.SceneManagement
             if (_fader == null)
             {
                 _fader = FindObjectOfType<Fader>();
+                _fader.FadeOutImmediate();
             }
-
-            _fader.FadeOutImmediate();
+            
             yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE_NAME);
             yield return _fader.FadeIn(_fadeInTime);
         }
@@ -44,13 +44,11 @@ namespace RPG.SceneManagement
 
         public void Save()
         {
-            // call saving system to save
             _savingSystem.Save(DEFAULT_SAVE_FILE_NAME);
         }
 
         public void Load()
         {
-            // call saving system to load
             _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
         }
     }
