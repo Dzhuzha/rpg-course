@@ -171,6 +171,7 @@ MonoBehaviour:
   _timeBetweenAttacks: 1
   _weaponPrefab: {fileID: 0}
   _handTransform: {fileID: 0}
+  _weaponOverride: {fileID: 22100000, guid: cbcc54a3a1850fa4eae9748a7819c6ba, type: 2}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0

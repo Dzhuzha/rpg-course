@@ -35,7 +35,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Health.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/CombatTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Control/PatrolPath.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Control/AIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Control/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/ActionScheduler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/PersistentObjectsSpawner.cs" />
@@ -43,13 +42,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicTrigger.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/Portal.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/Fader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Core/Health.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Saving/SerializableVector3.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IAction.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicControlRemover.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Movement/Mover.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Saving/SaveableEntity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Core/Health.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Control/AIController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs" />
       </list>
     </option>
@@ -118,7 +118,7 @@
       <workItem from="1687162501343" duration="16325000" />
       <workItem from="1687244964662" duration="15493000" />
       <workItem from="1687336597870" duration="2712000" />
-      <workItem from="1687435727182" duration="7788000" />
+      <workItem from="1687435727182" duration="9522000" />
     </task>
     <servers />
   </component>

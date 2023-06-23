@@ -1,4 +1,4 @@
-﻿using System;
+﻿using RPG.Control;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
@@ -15,6 +15,7 @@ namespace RPG.Combat
         [SerializeField] private float _timeBetweenAttacks = 1f;
         [SerializeField] private GameObject _weaponPrefab = null;
         [SerializeField] private Transform _handTransform = null;
+        [SerializeField] private AnimatorOverrideController _weaponOverride = null;
         
         private Health _targetHealth;
         private Transform _targetPosition;
@@ -44,10 +45,10 @@ namespace RPG.Combat
 
         private void SpawnWeapon()
         {
-            if (_weaponPrefab != null && _handTransform != null)
-            {
-                Instantiate(_weaponPrefab, _handTransform);
-            }
+            if (_weaponPrefab == null || _handTransform == null) return;
+            
+            Instantiate(_weaponPrefab, _handTransform);
+            _animator.runtimeAnimatorController = _weaponOverride;
         }
 
         private void ReduceAttackTime()

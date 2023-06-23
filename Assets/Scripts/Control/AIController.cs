@@ -107,7 +107,6 @@ namespace RPG.Control
             return distanceToWaypoint < _waypointTolerance;
         }
 
-
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.blue;
