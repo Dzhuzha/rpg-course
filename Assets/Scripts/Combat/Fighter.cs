@@ -23,10 +23,7 @@ namespace RPG.Combat
 
         private void Start()
         {
-            if (_weaponPrefab != null && _handTransform != null)
-            {
-                Instantiate(_weaponPrefab, _handTransform);
-            }
+            SpawnWeapon();
         }
 
         private void Update()
@@ -42,6 +39,14 @@ namespace RPG.Combat
             {
                 _mover.CancelAction();
                 AttackBehaviour();
+            }
+        }
+
+        private void SpawnWeapon()
+        {
+            if (_weaponPrefab != null && _handTransform != null)
+            {
+                Instantiate(_weaponPrefab, _handTransform);
             }
         }
 

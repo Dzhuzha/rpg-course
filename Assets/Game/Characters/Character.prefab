@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6011471322046631701}
   - component: {fileID: 3871736999637922484}
   - component: {fileID: 5643659386455622357}
+  - component: {fileID: 5461407821146473095}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -168,6 +169,8 @@ MonoBehaviour:
   _animator: {fileID: 6011471322046631707}
   _meleeDamage: 5
   _timeBetweenAttacks: 1
+  _weaponPrefab: {fileID: 0}
+  _handTransform: {fileID: 0}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +184,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 
+--- !u!114 &5461407821146473095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011471322909005254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3a9d6d5b47411299ede944938cf75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6011471322046631707}
+  _health: 50
 --- !u!1001 &6011471322681841416
 PrefabInstance:
   m_ObjectHideFlags: 0
