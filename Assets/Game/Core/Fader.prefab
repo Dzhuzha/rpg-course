@@ -167,4 +167,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5926056711474915830}
-  _fadeSpeed: 0.05

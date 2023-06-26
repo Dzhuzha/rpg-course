@@ -52,10 +52,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/Health.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Control/AIController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/WeaponPickUp.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/Weapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/WeaponConfig.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/WeaponPickUp.cs" />
       </list>
     </option>
   </component>

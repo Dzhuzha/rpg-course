@@ -1,5 +1,4 @@
-﻿using RPG.Control;
-using RPG.Core;
+﻿using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 
@@ -10,7 +9,8 @@ namespace RPG.Combat
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _scheduler;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Transform _handTransform = null;
+        [SerializeField] private Transform _rightHandTransform = null;
+        [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _unarmedWeapon = null;
 
         private WeaponConfig _currentWeapon;
@@ -62,7 +62,8 @@ namespace RPG.Combat
 
             if (weaponToSpawn.Prefab != null)
             {
-                Instantiate(weaponToSpawn.Prefab, _handTransform);
+                Transform handTransform = weaponToSpawn.IsRightHanded ? _rightHandTransform : _leftHandTransform;
+                Instantiate(weaponToSpawn.Prefab, handTransform);
                 _currentWeapon = weaponToSpawn;
             }
 
@@ -122,6 +123,11 @@ namespace RPG.Combat
         {
             _animator.ResetTrigger("Attack");
             _animator.SetTrigger("StopAttack");
+        }
+
+        private void Shoot()
+        {
+            
         }
 
         private void Hit()

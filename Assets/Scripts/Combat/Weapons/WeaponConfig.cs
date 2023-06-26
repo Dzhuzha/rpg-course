@@ -10,11 +10,13 @@ namespace RPG.Combat
     [SerializeField] private float _weaponRange = 2f;
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _timeBetweenAttacks = 0.8f;
+    [SerializeField] private bool _isRightHanded = true;
 
     public GameObject Prefab => _weaponPrefab;
     public AnimatorOverrideController AnimatorOverride => _animatorOverride;
     public float TimeBetweenAttacks => _timeBetweenAttacks;
     public float Damage => _damage;
     public float WeaponRange => _weaponRange;
+    public bool IsRightHanded => _isRightHanded;
   }
 }
