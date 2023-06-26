@@ -8,31 +8,29 @@ namespace RPG.Combat
     public class Fighter : ActionScheduler, IAction
     {
         [SerializeField] private Mover _mover;
-        [SerializeField] private float _weaponRange = 2f;
         [SerializeField] private ActionScheduler _scheduler;
         [SerializeField] private Animator _animator;
-        [SerializeField] private float _meleeDamage;
-        [SerializeField] private float _timeBetweenAttacks = 1f;
-        [SerializeField] private GameObject _weaponPrefab = null;
         [SerializeField] private Transform _handTransform = null;
-        [SerializeField] private AnimatorOverrideController _weaponOverride = null;
+        [SerializeField] private WeaponConfig _unarmedWeapon = null;
+
+        private WeaponConfig _currentWeapon;
         
         private Health _targetHealth;
         private Transform _targetPosition;
         private float _timeSinceLastAttack = 0f;
 
-
         private void Start()
         {
-            SpawnWeapon();
+            EquipWeapon(_unarmedWeapon);
         }
 
         private void Update()
         {
             ReduceAttackTime();
+            
             if (_targetPosition == null) return;
 
-            if (Vector3.Distance(transform.position, _targetPosition.position) > _weaponRange)
+            if (Vector3.Distance(transform.position, _targetPosition.position) > _currentWeapon.WeaponRange)
             {
                 _mover.MoveTo(_targetPosition.position);
             }
@@ -43,12 +41,35 @@ namespace RPG.Combat
             }
         }
 
-        private void SpawnWeapon()
+        public void EquipWeapon(WeaponConfig weaponConfig)
         {
-            if (_weaponPrefab == null || _handTransform == null) return;
-            
-            Instantiate(_weaponPrefab, _handTransform);
-            _animator.runtimeAnimatorController = _weaponOverride;
+            SpawnWeapon(weaponConfig);
+            _currentWeapon = weaponConfig;
+        }
+
+        private void UseDefaultWeapon()
+        {
+            _currentWeapon = _unarmedWeapon;
+        }
+
+        private void SpawnWeapon(WeaponConfig weaponToSpawn)
+        {
+            if (weaponToSpawn == null)
+            {
+                UseDefaultWeapon();
+                return;
+            }
+
+            if (weaponToSpawn.Prefab != null)
+            {
+                Instantiate(weaponToSpawn.Prefab, _handTransform);
+                _currentWeapon = weaponToSpawn;
+            }
+
+            if (weaponToSpawn.AnimatorOverride != null)
+            {
+                _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride;
+            }
         }
 
         private void ReduceAttackTime()
@@ -62,7 +83,7 @@ namespace RPG.Combat
             
             if (_timeSinceLastAttack <= 0f)
             {
-                _timeSinceLastAttack = _timeBetweenAttacks;
+                _timeSinceLastAttack = _currentWeapon.TimeBetweenAttacks;
                 TriggerAttack();
             }
             
@@ -107,7 +128,7 @@ namespace RPG.Combat
         {
             if (_targetHealth == null) { return; }
             
-            _targetHealth.TakeDamage(_meleeDamage);
+            _targetHealth.TakeDamage(_currentWeapon.Damage);
         }
     }
 }
