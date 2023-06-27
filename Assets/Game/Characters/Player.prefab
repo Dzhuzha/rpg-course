@@ -9,6 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
+      propertyPath: _arrowPrefab
+      value: 
+      objectReference: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+        type: 3}
+    - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
       propertyPath: _meleeDamage
       value: 20
       objectReference: {fileID: 0}

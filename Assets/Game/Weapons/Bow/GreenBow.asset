@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
-  m_Name: Bow
+  m_Name: GreenBow
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 5429025222856916424, guid: edeeafb3e15adac419bb19fbb94e434e,
+  _weaponPrefab: {fileID: 7278455944186248030, guid: 86c4f97595089a6489b3406e2d07d047,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: d6247f0e3e3f79d4882decd62d780fe0, type: 2}
   _weaponRange: 10
-  _damage: 7
-  _timeBetweenAttacks: 1.5
+  _damage: 3
+  _timeBetweenAttacks: 1
   _isRightHanded: 0
-  _projectTile: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+  _projectTile: {fileID: 7237223587962010924, guid: 5243f828cf4f29b438634110a98bc130,
     type: 3}

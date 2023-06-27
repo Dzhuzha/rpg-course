@@ -11,6 +11,7 @@ namespace RPG.Combat
     [SerializeField] private float _damage = 5f;
     [SerializeField] private float _timeBetweenAttacks = 0.8f;
     [SerializeField] private bool _isRightHanded = true;
+    [SerializeField] private ProjectTile _projectTile = null;
 
     public GameObject Prefab => _weaponPrefab;
     public AnimatorOverrideController AnimatorOverride => _animatorOverride;
@@ -18,5 +19,6 @@ namespace RPG.Combat
     public float Damage => _damage;
     public float WeaponRange => _weaponRange;
     public bool IsRightHanded => _isRightHanded;
+    public ProjectTile ProjectTile => _projectTile;
   }
 }

@@ -11,7 +11,8 @@ namespace RPG.Combat
         [SerializeField] private Animator _animator;
         [SerializeField] private Transform _rightHandTransform = null;
         [SerializeField] private Transform _leftHandTransform = null;
-        [SerializeField] private WeaponConfig _unarmedWeapon = null;
+        [SerializeField] private WeaponConfig _defaultWeapon = null;
+     //   [SerializeField] private ProjectTile _arrowPrefab;
 
         private WeaponConfig _currentWeapon;
         
@@ -21,7 +22,7 @@ namespace RPG.Combat
 
         private void Start()
         {
-            EquipWeapon(_unarmedWeapon);
+            EquipWeapon(_defaultWeapon);
         }
 
         private void Update()
@@ -49,7 +50,7 @@ namespace RPG.Combat
 
         private void UseDefaultWeapon()
         {
-            _currentWeapon = _unarmedWeapon;
+            _currentWeapon = _defaultWeapon;
         }
 
         private void SpawnWeapon(WeaponConfig weaponToSpawn)
@@ -62,6 +63,18 @@ namespace RPG.Combat
 
             if (weaponToSpawn.Prefab != null)
             {
+                if (_currentWeapon != null)
+                {
+                    if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
+                    {
+                        Destroy(_leftHandTransform.GetComponentInChildren<Weapon>().gameObject);
+                    }
+                    if (_rightHandTransform.GetComponentInChildren<Weapon>() != null)
+                    {
+                        Destroy(_rightHandTransform.GetComponentInChildren<Weapon>().gameObject);
+                    }
+                }
+                
                 Transform handTransform = weaponToSpawn.IsRightHanded ? _rightHandTransform : _leftHandTransform;
                 Instantiate(weaponToSpawn.Prefab, handTransform);
                 _currentWeapon = weaponToSpawn;
@@ -106,6 +119,11 @@ namespace RPG.Combat
             return _targetHealth.IsDead == false;
         }
 
+        public float GetAttackDistance()
+        {
+            return _defaultWeapon.WeaponRange;
+        }
+
         public void CancelAction()
         {
             StopAttack();
@@ -125,12 +143,16 @@ namespace RPG.Combat
             _animator.SetTrigger("StopAttack");
         }
 
-        private void Shoot()
+        private void Shoot() //Animation event
         {
-            
+            if (_currentWeapon.ProjectTile == null) return;
+
+            ProjectTile arrow = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
+            arrow.transform.SetParent(transform.root);
+            arrow.InitArrow(_targetHealth, _currentWeapon.Damage);
         }
 
-        private void Hit()
+        private void Hit() //Animation event
         {
             if (_targetHealth == null) { return; }
             

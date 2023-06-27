@@ -55,11 +55,6 @@ namespace RPG.Movement
             StopMoving();
         }
 
-        public void StartAction()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetSpeed(float speed)
         {
             _agent.speed = speed;
