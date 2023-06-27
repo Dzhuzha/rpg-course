@@ -1,34 +1,46 @@
 using RPG.Core;
-using RPG.Combat;
 using UnityEngine;
 
 public class ProjectTile : MonoBehaviour
 {
-    [SerializeField] private BoxCollider _collider;
     [SerializeField] private float _speed;
+    [SerializeField] private bool IsHoming;
+    [SerializeField] private GameObject _hitEffect;
     
     private Health _target;
+    private Vector3 _targetPosition;
     private float _damage;
+
+    private void Start()
+    {
+        if (_target == null) return;
+
+        transform.LookAt(GetAimLocation());
+    }
 
     private void Update()
     {
         if (_target == null) return;
 
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position + Vector3.up,
-            _speed * Time.deltaTime);
-        transform.LookAt(_target.transform);
+        Fly();
     }
 
-    private Vector3 GetAimMeshLocation()
+    private void Fly()
     {
-        Vector3 center = _target.GetComponent<MeshFilter>().mesh.bounds.size / 2;
-        return _target.transform.position + center;
+        transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+
+        if (IsHoming == false || _target.IsDead) return;
+        transform.LookAt(GetAimLocation());
     }
 
     private Vector3 GetAimLocation()
     {
-        CapsuleCollider center = _target.GetComponent<CapsuleCollider>();
-        return _target.transform.position + Vector3.up * center.height / 2;
+        if (_target.TryGetComponent(out CapsuleCollider collider))
+        {
+            return _target.transform.position + Vector3.up * collider.height / 2;
+        }
+
+        return _target.transform.position;
     }
 
     public void InitArrow(Health target, float damage)
@@ -39,9 +51,19 @@ public class ProjectTile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Health targetHealth) && targetHealth == _target)
+        if (other.TryGetComponent(out Health targetHealth) && targetHealth == _target && targetHealth.IsDead == false)
         {
             targetHealth.TakeDamage(_damage);
+           
+            if (_hitEffect != null)
+            {
+                Instantiate(_hitEffect, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.Log($"No hit effect for {gameObject.name}");
+            }
+
             Destroy(gameObject);
         }
     }

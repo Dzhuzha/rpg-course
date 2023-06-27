@@ -147,14 +147,25 @@ namespace RPG.Combat
         {
             if (_currentWeapon.ProjectTile == null) return;
 
-            ProjectTile arrow = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
-            arrow.transform.SetParent(transform.root);
-            arrow.InitArrow(_targetHealth, _currentWeapon.Damage);
+            CreateProjectTile();
+        }
+
+        private void CreateProjectTile()
+        {
+            ProjectTile projectTile = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
+            projectTile.transform.SetParent(transform.root);
+            projectTile.InitArrow(_targetHealth, _currentWeapon.Damage);
         }
 
         private void Hit() //Animation event
         {
             if (_targetHealth == null) { return; }
+
+            if (_currentWeapon.ProjectTile != null)
+            {
+                CreateProjectTile();
+                return;
+            }
             
             _targetHealth.TakeDamage(_currentWeapon.Damage);
         }

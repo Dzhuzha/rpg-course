@@ -15,9 +15,9 @@ MonoBehaviour:
   _weaponPrefab: {fileID: 5429025222856916424, guid: edeeafb3e15adac419bb19fbb94e434e,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: d6247f0e3e3f79d4882decd62d780fe0, type: 2}
-  _weaponRange: 10
+  _weaponRange: 20
   _damage: 7
-  _timeBetweenAttacks: 1.5
+  _timeBetweenAttacks: 1.2
   _isRightHanded: 0
-  _projectTile: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+  _projectTile: {fileID: 3657778018760380859, guid: 8d9f24ed7f76af543aa9f88467520ab1,
     type: 3}
