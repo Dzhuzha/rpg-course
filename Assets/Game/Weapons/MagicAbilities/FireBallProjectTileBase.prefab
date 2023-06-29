@@ -350,6 +350,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db,
         type: 3}
+    - target: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+        type: 3}
+      propertyPath: _objectsToDestroy.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+        type: 3}
+      propertyPath: _objectsToDestroy.Array.data[0]
+      value: 
+      objectReference: {fileID: 825589968788722400}
     - target: {fileID: 4463204364169219495, guid: 55a8e351f80f43c45ae8779f623b18d2,
         type: 3}
       propertyPath: m_IsActive
@@ -437,6 +447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55a8e351f80f43c45ae8779f623b18d2, type: 3}
+--- !u!1 &825589968788722400 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6902178054671645346, guid: 55a8e351f80f43c45ae8779f623b18d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6105865063408871490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4373035120736247956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7497446271498488022, guid: 55a8e351f80f43c45ae8779f623b18d2,

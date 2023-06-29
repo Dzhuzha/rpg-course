@@ -14,21 +14,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/986BC431-530C-4E10-A9A6-6DB75CCF7A92/ed/e9281646/RaycastHit.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/PatrolPath.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/PersistentObjectsSpawner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicControlRemover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicTrigger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/ProjectTile.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/EffectDestroyer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/WeaponConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/Weapons/WeaponPickUp.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Saving/SerializableVector3.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CameraFollower.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Combat/ProjectTile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/AIController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F1212AD1-DEC4-4CE7-B714-7976B91869C3/66/304d4ffc/SetupCoroutine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/Portal.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Control/PatrolPath.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/CameraFollower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Core/PersistentObjectsSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Saving/SerializableVector3.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/Fader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/Portal.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -160,7 +159,7 @@
       <workItem from="1687857302231" duration="260000" />
       <workItem from="1687857581696" duration="679000" />
       <workItem from="1687860129664" duration="85000" />
-      <workItem from="1687860232264" duration="11679000" />
+      <workItem from="1687860232264" duration="17224000" />
     </task>
     <servers />
   </component>
@@ -171,5 +170,76 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs</url>
+          <line>24</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Combat\Fighter.cs" initialLine="24" containingFunctionPresentation="Method 'Start'">
+            <startOffsets>
+              <option value="862" />
+            </startOffsets>
+            <endOffsets>
+              <option value="863" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs</url>
+          <line>47</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Combat\Fighter.cs" initialLine="47" containingFunctionPresentation="Method 'EquipWeapon'">
+            <startOffsets>
+              <option value="1520" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1521" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs</url>
+          <line>53</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Combat\Fighter.cs" initialLine="53" containingFunctionPresentation="Method 'UseDefaultWeapon'">
+            <startOffsets>
+              <option value="1663" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1664" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs</url>
+          <line>59</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Combat\Fighter.cs" initialLine="59" containingFunctionPresentation="Method 'SpawnWeapon'">
+            <startOffsets>
+              <option value="1804" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1830" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Combat/Fighter.cs</url>
+          <line>65</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Combat\Fighter.cs" initialLine="65" containingFunctionPresentation="Method 'SpawnWeapon'">
+            <startOffsets>
+              <option value="1932" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1966" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

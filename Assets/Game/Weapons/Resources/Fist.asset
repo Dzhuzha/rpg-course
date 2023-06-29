@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
   m_Name: Fist
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 0}
+  _weaponPrefab: {fileID: 8533250899501660390, guid: 85cfb3f6a06012549998d8362967906f,
+    type: 3}
   _animatorOverride: {fileID: 22100000, guid: af0eca75df08d424ea35b6d1b98b1ca2, type: 2}
   _weaponRange: 1
   _damage: 5
   _timeBetweenAttacks: 0.8
+  _isRightHanded: 1
+  _projectTile: {fileID: 0}

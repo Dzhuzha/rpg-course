@@ -1,70 +1,84 @@
 using RPG.Core;
 using UnityEngine;
 
-public class ProjectTile : MonoBehaviour
+namespace RPG.Combat
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private bool IsHoming;
-    [SerializeField] private GameObject _hitEffect;
-    
-    private Health _target;
-    private Vector3 _targetPosition;
-    private float _damage;
-
-    private void Start()
+    public class ProjectTile : MonoBehaviour
     {
-        if (_target == null) return;
+        [SerializeField] private float _speed;
+        [SerializeField] private bool IsHoming;
+        [SerializeField] private GameObject _hitEffect;
+        [SerializeField] private float _lifeAfterImpact = 2f;
+        [SerializeField] private float _maxLifeTime = 10f;
+        [SerializeField] private GameObject[] _objectsToDestroy;
 
-        transform.LookAt(GetAimLocation());
-    }
+        private Health _target;
+        private Vector3 _targetPosition;
+        private float _damage;
 
-    private void Update()
-    {
-        if (_target == null) return;
-
-        Fly();
-    }
-
-    private void Fly()
-    {
-        transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
-
-        if (IsHoming == false || _target.IsDead) return;
-        transform.LookAt(GetAimLocation());
-    }
-
-    private Vector3 GetAimLocation()
-    {
-        if (_target.TryGetComponent(out CapsuleCollider collider))
+        private void Start()
         {
-            return _target.transform.position + Vector3.up * collider.height / 2;
+            if (_target == null) return;
+
+            transform.LookAt(GetAimLocation());
         }
 
-        return _target.transform.position;
-    }
-
-    public void InitArrow(Health target, float damage)
-    {
-        _target = target;
-        _damage = damage;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Health targetHealth) && targetHealth == _target && targetHealth.IsDead == false)
+        private void Update()
         {
-            targetHealth.TakeDamage(_damage);
-           
-            if (_hitEffect != null)
+            if (_target == null) return;
+
+            Fly();
+        }
+
+        private void Fly()
+        {
+            transform.Translate(Vector3.forward * (_speed * Time.deltaTime));
+
+            if (IsHoming == false || _target.IsDead) return;
+            transform.LookAt(GetAimLocation());
+        }
+
+        private Vector3 GetAimLocation()
+        {
+            if (_target.TryGetComponent(out CapsuleCollider collider))
             {
-                Instantiate(_hitEffect, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Debug.Log($"No hit effect for {gameObject.name}");
+                return _target.transform.position + Vector3.up * collider.height / 2;
             }
 
-            Destroy(gameObject);
+            return _target.transform.position;
+        }
+
+        public void InitArrow(Health target, float damage)
+        {
+            _target = target;
+            _damage = damage;
+
+            Destroy(gameObject, _maxLifeTime);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Health targetHealth) && targetHealth == _target &&
+                targetHealth.IsDead == false)
+            {
+                targetHealth.TakeDamage(_damage);
+
+                if (_hitEffect != null)
+                {
+                    Instantiate(_hitEffect, transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.Log($"No hit effect for {gameObject.name}");
+                }
+
+                foreach (var obj in _objectsToDestroy)
+                {
+                    Destroy(obj);
+                }
+
+                Destroy(gameObject, _lifeAfterImpact);
+            }
         }
     }
 }

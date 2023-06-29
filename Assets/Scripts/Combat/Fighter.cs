@@ -12,17 +12,20 @@ namespace RPG.Combat
         [SerializeField] private Transform _rightHandTransform = null;
         [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _defaultWeapon = null;
-     //   [SerializeField] private ProjectTile _arrowPrefab;
-
-        private WeaponConfig _currentWeapon;
+        [SerializeField] private string _defaultWeaponName = "Unarmed";
         
+         //   [SerializeField] private ProjectTile _arrowPrefab;
+        private WeaponConfig _currentWeapon;
+        private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
         private Transform _targetPosition;
         private float _timeSinceLastAttack = 0f;
 
         private void Start()
         {
-            EquipWeapon(_defaultWeapon);
+            _defaultAnimatorController = _animator.runtimeAnimatorController;
+            WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(_defaultWeaponName);
+            EquipWeapon(weaponConfig);
         }
 
         private void Update()
@@ -63,7 +66,7 @@ namespace RPG.Combat
 
             if (weaponToSpawn.Prefab != null)
             {
-                if (_currentWeapon != null)
+                if (_currentWeapon != null && _currentWeapon.Prefab != null)
                 {
                     if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
                     {
@@ -83,6 +86,10 @@ namespace RPG.Combat
             if (weaponToSpawn.AnimatorOverride != null)
             {
                 _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride;
+            }
+            else
+            {
+                _animator.runtimeAnimatorController = _defaultAnimatorController;
             }
         }
 
