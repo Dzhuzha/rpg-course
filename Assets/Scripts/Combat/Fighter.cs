@@ -1,10 +1,11 @@
 ﻿using RPG.Core;
 using RPG.Movement;
+using RPG.Saving;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : ActionScheduler, IAction
+    public class Fighter : ActionScheduler, IAction, ISaveable
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _scheduler;
@@ -12,9 +13,8 @@ namespace RPG.Combat
         [SerializeField] private Transform _rightHandTransform = null;
         [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _defaultWeapon = null;
-        [SerializeField] private string _defaultWeaponName = "Unarmed";
-        
-         //   [SerializeField] private ProjectTile _arrowPrefab;
+
+        //   [SerializeField] private ProjectTile _arrowPrefab;
         private WeaponConfig _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
@@ -23,9 +23,11 @@ namespace RPG.Combat
 
         private void Start()
         {
-            _defaultAnimatorController = _animator.runtimeAnimatorController;
-            WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(_defaultWeaponName);
-            EquipWeapon(weaponConfig);
+            if (_currentWeapon == null)
+            {
+                _defaultAnimatorController = _animator.runtimeAnimatorController;
+                EquipWeapon(_defaultWeapon);
+            }
         }
 
         private void Update()
@@ -64,20 +66,17 @@ namespace RPG.Combat
                 return;
             }
 
+            if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
+            {
+                Destroy(_leftHandTransform.GetComponentInChildren<Weapon>().gameObject);
+            }
+            if (_rightHandTransform.GetComponentInChildren<Weapon>() != null)
+            {
+                Destroy(_rightHandTransform.GetComponentInChildren<Weapon>().gameObject);
+            }
+            
             if (weaponToSpawn.Prefab != null)
             {
-                if (_currentWeapon != null && _currentWeapon.Prefab != null)
-                {
-                    if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
-                    {
-                        Destroy(_leftHandTransform.GetComponentInChildren<Weapon>().gameObject);
-                    }
-                    if (_rightHandTransform.GetComponentInChildren<Weapon>() != null)
-                    {
-                        Destroy(_rightHandTransform.GetComponentInChildren<Weapon>().gameObject);
-                    }
-                }
-                
                 Transform handTransform = weaponToSpawn.IsRightHanded ? _rightHandTransform : _leftHandTransform;
                 Instantiate(weaponToSpawn.Prefab, handTransform);
                 _currentWeapon = weaponToSpawn;
@@ -175,6 +174,18 @@ namespace RPG.Combat
             }
             
             _targetHealth.TakeDamage(_currentWeapon.Damage);
+        }
+
+        public object CaptureState()
+        {
+            return _currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string) state;
+            WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(weaponName);
+            EquipWeapon(weaponConfig);
         }
     }
 }
