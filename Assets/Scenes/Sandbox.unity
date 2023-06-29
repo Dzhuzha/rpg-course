@@ -1819,6 +1819,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 743687fd570301c419b669d87db6d7ad,
         type: 2}
+    - target: {fileID: 5922040377580213955, guid: 0bcb28d499d74c442bb273bfc19cf900,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3197183461440759536, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
@@ -2266,6 +2271,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7c3a7f66e3cc8fc449e907aff74db157,
         type: 2}
+    - target: {fileID: 8283766123544662696, guid: d8a9c53f121757547ae6f931e8b377fb,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: GreenBow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a9c53f121757547ae6f931e8b377fb, type: 3}
 --- !u!1001 &1065356663
@@ -2461,6 +2471,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 490e555e408d95f459323b4eda843cf2,
         type: 2}
+    - target: {fileID: 5922040377580213955, guid: 0bcb28d499d74c442bb273bfc19cf900,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: Fist
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3197183461440759536, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
@@ -2552,6 +2567,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7c3a7f66e3cc8fc449e907aff74db157,
         type: 2}
+    - target: {fileID: 8283766123544662696, guid: d8a9c53f121757547ae6f931e8b377fb,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: GreenBow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a9c53f121757547ae6f931e8b377fb, type: 3}
 --- !u!1001 &1298847562
@@ -2689,6 +2709,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 490e555e408d95f459323b4eda843cf2,
         type: 2}
+    - target: {fileID: 5922040377580213955, guid: 0bcb28d499d74c442bb273bfc19cf900,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: Fist
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3197183461440759536, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
@@ -2832,7 +2857,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307539556}
-  m_LocalRotation: {x: 0.24002433, y: -0.578781, z: 0.18340136, w: 0.75747263}
+  m_LocalRotation: {x: 0.24002434, y: -0.578781, z: 0.18340139, w: 0.75747263}
   m_LocalPosition: {x: -24.141094, y: -10.674379, z: -37.1495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3726,6 +3751,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7c3a7f66e3cc8fc449e907aff74db157,
         type: 2}
+    - target: {fileID: 8283766123544662696, guid: d8a9c53f121757547ae6f931e8b377fb,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: GreenBow
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a9c53f121757547ae6f931e8b377fb, type: 3}
 --- !u!1001 &1813077427
@@ -4039,6 +4069,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 490e555e408d95f459323b4eda843cf2,
         type: 2}
+    - target: {fileID: 5922040377580213955, guid: 0bcb28d499d74c442bb273bfc19cf900,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3197183461440759536, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
@@ -4571,6 +4606,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 490e555e408d95f459323b4eda843cf2,
         type: 2}
+    - target: {fileID: 1446528962534675227, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: _defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 2638361905098207275, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_LocalPosition.x
