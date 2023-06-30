@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3871736999637922484}
   - component: {fileID: 5643659386455622357}
   - component: {fileID: 5461407821146473095}
+  - component: {fileID: 7592258656992457516}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -164,14 +165,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDisabled: 0
   _mover: {fileID: 6011471322046631701}
-  _weaponRange: 2
   _scheduler: {fileID: 2516790000157086044}
   _animator: {fileID: 6011471322046631707}
-  _meleeDamage: 5
-  _timeBetweenAttacks: 1
-  _weaponPrefab: {fileID: 0}
-  _handTransform: {fileID: 0}
-  _weaponOverride: {fileID: 22100000, guid: cbcc54a3a1850fa4eae9748a7819c6ba, type: 2}
+  _rightHandTransform: {fileID: 0}
+  _leftHandTransform: {fileID: 0}
+  _defaultWeapon: {fileID: 0}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +197,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 6011471322046631707}
   _health: 50
+--- !u!114 &7592258656992457516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6011471322909005254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55195a82dc7753498204c563f536dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingLevel: 1
+  _characterClass: 1
+  _progression: {fileID: 11400000, guid: 7be88c3b5b1e2a747b1718fb1bf65b91, type: 2}
 --- !u!1001 &6011471322681841416
 PrefabInstance:
   m_ObjectHideFlags: 0

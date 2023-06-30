@@ -1,4 +1,4 @@
-using RPG.Core;
+using RPG.Atributes;
 using RPG.Combat;
 using RPG.Movement;
 using UnityEngine;
@@ -10,7 +10,8 @@ namespace RPG.Control
         [SerializeField] private Camera _camera;
         [SerializeField] private Mover _mover;
         [SerializeField] private Fighter _fighter;
-
+        [SerializeField] private EnemyHealthDisplay _enemyHealthDisplay;
+        
         private Health _attackerHealth;
 
         private void Start()
@@ -38,11 +39,13 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0) && _fighter.CanAttack(target.gameObject))
                 {
                     _fighter.Attack(target.gameObject);
+                    _enemyHealthDisplay.InitTarget(target.GetComponent<Health>());
                 }
 
                 return true;
             }
 
+            _enemyHealthDisplay.ResetTarget();
             return false;
         }
 

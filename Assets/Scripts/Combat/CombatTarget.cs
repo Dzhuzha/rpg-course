@@ -2,7 +2,7 @@
 
 namespace RPG.Combat
 {
-    [RequireComponent(typeof(Core.Health))]
+    [RequireComponent(typeof(Atributes.Health))]
     public class CombatTarget : MonoBehaviour
     {
         
