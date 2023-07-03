@@ -13,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] private GameObject[] _objectsToDestroy;
 
         private Health _target;
+        private GameObject _instigator;
         private Vector3 _targetPosition;
         private float _damage;
 
@@ -48,10 +49,11 @@ namespace RPG.Combat
             return _target.transform.position;
         }
 
-        public void InitArrow(Health target, float damage)
+        public void InitArrow(Health target, GameObject instigator, float damage)
         {
             _target = target;
             _damage = damage;
+            _instigator = instigator;
 
             Destroy(gameObject, _maxLifeTime);
         }
@@ -61,7 +63,7 @@ namespace RPG.Combat
             if (other.TryGetComponent(out Health targetHealth) && targetHealth == _target &&
                 targetHealth.IsDead == false)
             {
-                targetHealth.TakeDamage(_damage);
+                targetHealth.TakeDamage(_instigator, _damage);
 
                 if (_hitEffect != null)
                 {

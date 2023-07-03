@@ -14,22 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterClasses:
   - _className: 1
-    _healthPerLevel:
-    - 80
-    - 90
-    - 100
     _damagePerLevel:
     - 5
     - 10
     - 15
     _characterLevel: 0
+    _stats:
+    - _stat: 0
+      _levels:
+      - 20
+      - 30
+      - 50
+    - _stat: 1
+      _levels:
+      - 10
+      - 15
+      - 20
   - _className: 0
-    _healthPerLevel:
-    - 100
-    - 150
-    - 200
-    - 250
-    - 300
     _damagePerLevel:
     - 10
     - 15
@@ -37,13 +38,15 @@ MonoBehaviour:
     - 25
     - 30
     _characterLevel: 0
+    _stats:
+    - _stat: 0
+      _levels:
+      - 100
+      - 150
+      - 300
+      - 500
+      - 1000
   - _className: 3
-    _healthPerLevel:
-    - 20
-    - 25
-    - 30
-    - 35
-    - 50
     _damagePerLevel:
     - 3
     - 5
@@ -51,3 +54,16 @@ MonoBehaviour:
     - 10
     - 15
     _characterLevel: 0
+    _stats:
+    - _stat: 0
+      _levels:
+      - 15
+      - 30
+      - 50
+      - 75
+    - _stat: 1
+      _levels:
+      - 20
+      - 40
+      - 60
+      - 80

@@ -44,8 +44,7 @@ namespace RPG.Control
 
                 return true;
             }
-
-            _enemyHealthDisplay.ResetTarget();
+            
             return false;
         }
 
@@ -56,6 +55,7 @@ namespace RPG.Control
                 if (Input.GetMouseButton(0))
                 {
                     _mover.StartMoveAction(hit.point);
+                    _enemyHealthDisplay.ResetTarget();
                 }
 
                 return true;

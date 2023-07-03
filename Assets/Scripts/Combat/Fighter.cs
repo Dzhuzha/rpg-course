@@ -161,7 +161,7 @@ namespace RPG.Combat
         {
             ProjectTile projectTile = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
             projectTile.transform.SetParent(transform.root);
-            projectTile.InitArrow(_targetHealth, _currentWeapon.Damage);
+            projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
         }
 
         private void Hit() //Animation event
@@ -174,7 +174,7 @@ namespace RPG.Combat
                 return;
             }
             
-            _targetHealth.TakeDamage(_currentWeapon.Damage);
+            _targetHealth.TakeDamage(gameObject, _currentWeapon.Damage);
         }
 
         public object CaptureState()

@@ -1,4 +1,5 @@
 ﻿using System;
+using RPG.Attributes;
 using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
@@ -23,22 +24,43 @@ namespace RPG.Atributes
             _animator = GetComponent<Animator>();
             _actionScheduler = GetComponent<ActionScheduler>();
             _baseStats = GetComponent<BaseStats>();
-            _health = _baseStats.GetHealth();
+            _health = _baseStats.GetStat(Stat.Health);
         }
 
-        public void TakeDamage(float damage)
+        private void Start()
+        {
+           // _health = _baseStats.GetStat(Stat.Health);
+        }
+
+        public void TakeDamage(GameObject instigator, float damage)
         {
             _health -= damage;
             CheckDeathState();
             UpdateHealthPercentage();
+
+            if (IsDead)
+            {
+               AwardExperience(instigator); 
+            }
         }
 
         public void UpdateHealthPercentage()
         {
             if (_baseStats == null) return;
 
-            float healthPercentage = _health / _baseStats.GetHealth() * 100;
+            float fullHealthAmount = _baseStats.GetStat(Stat.Health);
+            float healthPercentage = _health / fullHealthAmount * 100;
             HealthChanged?.Invoke(healthPercentage);
+        }
+
+        private void AwardExperience(GameObject instigator)
+        {
+            float experienceReward = _baseStats.GetStat(Stat.ExperienceReward);
+           
+            if (instigator.TryGetComponent(out Experience experience))
+            {
+                experience.GainExperience(experienceReward);
+            }
         }
 
         private void CheckDeathState()
