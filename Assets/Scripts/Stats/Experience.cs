@@ -2,11 +2,13 @@ using System;
 using RPG.Saving;
 using UnityEngine;
 
-namespace RPG.Attributes
+namespace RPG.Stats
 {
     public class Experience : MonoBehaviour, ISaveable
     {
         [SerializeField] private float _experiencePoints = 0f;
+        
+        public float ExperiencePoints => _experiencePoints;
         
         public event Action<float> ExperienceChanged;
         

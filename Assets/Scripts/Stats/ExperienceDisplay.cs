@@ -1,4 +1,4 @@
-using RPG.Attributes;
+using RPG.Stats;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class ExperienceDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _experienceValue;
     [SerializeField] private Experience _experience;
     
-    private void Start()
+    public void Start()
     {
         Subscribe();
     }

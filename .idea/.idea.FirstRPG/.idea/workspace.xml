@@ -14,7 +14,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attributes/Experience.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attributes/Health.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Attributes/HealthDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Cinematics/CinematicControlRemover.cs" root0="FORCE_HIGHLIGHTING" />
@@ -33,7 +32,9 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneManagement/SavingWrapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/CharacterClass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/LevelDisplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/Progression.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stats/Stats.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -165,7 +166,7 @@
       <workItem from="1687857302231" duration="260000" />
       <workItem from="1687857581696" duration="679000" />
       <workItem from="1687860129664" duration="85000" />
-      <workItem from="1687860232264" duration="44416000" />
+      <workItem from="1687860232264" duration="68991000" />
     </task>
     <servers />
   </component>
@@ -182,16 +183,55 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Attributes/Health.cs</url>
-          <line>36</line>
+          <line>40</line>
           <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Attributes\Health.cs" initialLine="36" containingFunctionPresentation="Method 'TakeDamage'">
             <startOffsets>
-              <option value="969" />
+              <option value="1063" />
             </startOffsets>
             <endOffsets>
-              <option value="970" />
+              <option value="1064" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
+          <line>53</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="58" containingFunctionPresentation="Method 'CheckLevelChange'">
+            <startOffsets>
+              <option value="1616" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1645" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
+          <line>52</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="57" containingFunctionPresentation="Method 'CheckLevelChange'">
+            <startOffsets>
+              <option value="1602" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1603" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
+          <line>29</line>
+          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="29" containingFunctionPresentation="Method 'GetLevel'">
+            <startOffsets>
+              <option value="772" />
+            </startOffsets>
+            <endOffsets>
+              <option value="773" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
