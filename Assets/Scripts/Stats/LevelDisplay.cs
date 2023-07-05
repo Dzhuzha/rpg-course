@@ -10,6 +10,7 @@ public class LevelDisplay : MonoBehaviour
     private void Start()
     {
         Subscribe();
+        UpdateLevelValue(_baseStats.CurrentLevel);
     }
     
     private void OnDestroy()

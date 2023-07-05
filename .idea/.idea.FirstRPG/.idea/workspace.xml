@@ -129,10 +129,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15992">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="40516">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="15992" />
+      <option name="pid" value="40516" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -166,7 +166,7 @@
       <workItem from="1687857302231" duration="260000" />
       <workItem from="1687857581696" duration="679000" />
       <workItem from="1687860129664" duration="85000" />
-      <workItem from="1687860232264" duration="68991000" />
+      <workItem from="1687860232264" duration="80401000" />
     </task>
     <servers />
   </component>
@@ -183,55 +183,16 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Attributes/Health.cs</url>
-          <line>40</line>
+          <line>62</line>
           <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Attributes\Health.cs" initialLine="36" containingFunctionPresentation="Method 'TakeDamage'">
             <startOffsets>
-              <option value="1063" />
+              <option value="1550" />
             </startOffsets>
             <endOffsets>
-              <option value="1064" />
+              <option value="1551" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
-          <line>53</line>
-          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="58" containingFunctionPresentation="Method 'CheckLevelChange'">
-            <startOffsets>
-              <option value="1616" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1645" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
-          <line>52</line>
-          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="57" containingFunctionPresentation="Method 'CheckLevelChange'">
-            <startOffsets>
-              <option value="1602" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1603" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Stats/BaseStats.cs</url>
-          <line>29</line>
-          <properties documentPath="E:\MyProjects\FirstRPG\Assets\Scripts\Stats\BaseStats.cs" initialLine="29" containingFunctionPresentation="Method 'GetLevel'">
-            <startOffsets>
-              <option value="772" />
-            </startOffsets>
-            <endOffsets>
-              <option value="773" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

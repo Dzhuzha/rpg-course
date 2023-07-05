@@ -24,6 +24,28 @@ namespace RPG.Atributes
             _actionScheduler = GetComponent<ActionScheduler>();
             _baseStats = GetComponent<BaseStats>();
             _health = _baseStats.GetStat(Stat.Health);
+            Subscribe();
+        }
+
+        private void OnDestroy()
+        {
+            UnSubscribe();
+        }
+
+        private void Subscribe()
+        {
+            _baseStats.LevelChanged += UpdateHealth;
+        }
+        
+        private void UnSubscribe()
+        {
+            _baseStats.LevelChanged -= UpdateHealth;
+        }
+
+        private void UpdateHealth(int obj)
+        {
+            _health = _baseStats.GetStat(Stat.Health);
+            UpdateHealthPercentage();
         }
 
         private void Start()

@@ -11,7 +11,7 @@ namespace RPG.Cinematics
         private PlayerController _playerController;
         private ActionScheduler _playerActionScheduler;
 
-        private void Start()
+        private void Awake()
         {
             _playableDirector = GetComponent<PlayableDirector>();
             _playerController = FindObjectOfType<PlayerController>();

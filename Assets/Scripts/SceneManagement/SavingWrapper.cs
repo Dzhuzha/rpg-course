@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RPG.Saving;
 using UnityEngine;
@@ -12,7 +13,12 @@ namespace RPG.SceneManagement
         private SavingSystem _savingSystem;
         private Fader _fader;
 
-        private IEnumerator Start()
+        private void Awake()
+        {
+            StartCoroutine(LoadLastScene());
+        }
+
+        private IEnumerator LoadLastScene()
         {
             if (_savingSystem == null)
             {
@@ -40,6 +46,11 @@ namespace RPG.SceneManagement
             {
                 Save();
             }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                Delete();
+            }
         }
 
         public void Save()
@@ -50,6 +61,11 @@ namespace RPG.SceneManagement
         public void Load()
         {
             _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
+        }
+
+        public void Delete()
+        {
+            _savingSystem.Delete(DEFAULT_SAVE_FILE_NAME);
         }
     }
 }

@@ -46,6 +46,7 @@ MonoBehaviour:
       - 300
       - 500
       - 1000
+      - 2000
     - _stat: 2
       _levels:
       - 10

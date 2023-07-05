@@ -10,14 +10,14 @@ namespace RPG.Stats
         [SerializeField] private Progression _progression;
         [SerializeField] private Experience _experience;
 
-        private int _currentLevel;
+        public int CurrentLevel { get; private set; }
 
         public event Action<int> LevelChanged;
 
         private void Start()
         {
             Subscribe();
-            _currentLevel = GetLevel();
+            CurrentLevel = CalculateLevel();
         }
 
         private void OnDestroy()
@@ -39,22 +39,21 @@ namespace RPG.Stats
 
         private void UpdateLevel(float experience)
         {
-            int newLevel = GetLevel();
+            int newLevel = CalculateLevel();
             
-            if (newLevel > _currentLevel)
+            if (newLevel > CurrentLevel)
             {
-                _currentLevel = newLevel;
+                CurrentLevel = newLevel;
+                LevelChanged?.Invoke(newLevel);
             }
-            
-            LevelChanged?.Invoke(newLevel);
         }
 
         public float GetStat(Stat stat)
         {
-            return _progression.GetStat(stat, _characterClass, GetLevel());
+            return _progression.GetStat(stat, _characterClass, CalculateLevel());
         }
 
-        private int GetLevel() 
+        private int CalculateLevel() 
         {
             if (_experience == null)
             {
