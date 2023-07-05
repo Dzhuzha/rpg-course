@@ -42,15 +42,10 @@ namespace RPG.Atributes
             _baseStats.LevelChanged -= UpdateHealth;
         }
 
-        private void UpdateHealth(int obj)
+        private void UpdateHealth(int level)
         {
             _health = _baseStats.GetStat(Stat.Health);
             UpdateHealthPercentage();
-        }
-
-        private void Start()
-        {
-           // _health = _baseStats.GetStat(Stat.Health);
         }
 
         public void TakeDamage(GameObject instigator, float damage)

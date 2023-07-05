@@ -9,6 +9,7 @@ namespace RPG.Stats
         [SerializeField] private CharacterClass _characterClass;
         [SerializeField] private Progression _progression;
         [SerializeField] private Experience _experience;
+        [SerializeField] private GameObject _levelUpEffect;
 
         public int CurrentLevel { get; private set; }
 
@@ -44,8 +45,15 @@ namespace RPG.Stats
             if (newLevel > CurrentLevel)
             {
                 CurrentLevel = newLevel;
+                CallLevelUpEffect();
                 LevelChanged?.Invoke(newLevel);
             }
+        }
+
+        private void CallLevelUpEffect()
+        {
+            if (_levelUpEffect == null) return;
+            Instantiate(_levelUpEffect, transform);
         }
 
         public float GetStat(Stat stat)
