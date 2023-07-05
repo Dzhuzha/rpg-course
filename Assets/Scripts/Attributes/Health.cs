@@ -16,7 +16,7 @@ namespace RPG.Atributes
 
         public bool IsDead => _health <= 0;
         
-        public event Action<float> HealthChanged;
+        public event Action<float, float> HealthChanged;
 
         private void Awake()
         {
@@ -50,6 +50,7 @@ namespace RPG.Atributes
 
         public void TakeDamage(GameObject instigator, float damage)
         {
+            Debug.Log($"{gameObject.name} took {damage} damage from {instigator.name}.");
             _health -= damage;
             CheckDeathState();
             UpdateHealthPercentage();
@@ -65,8 +66,9 @@ namespace RPG.Atributes
             if (_baseStats == null) return;
 
             float fullHealthAmount = _baseStats.GetStat(Stat.Health);
-            float healthPercentage = _health / fullHealthAmount * 100;
-            HealthChanged?.Invoke(healthPercentage);
+           // float healthPercentage = _health / fullHealthAmount * 100;
+          //  HealthChanged?.Invoke(healthPercentage);
+          HealthChanged?.Invoke(_health, fullHealthAmount);
         }
 
         private void AwardExperience(GameObject instigator)

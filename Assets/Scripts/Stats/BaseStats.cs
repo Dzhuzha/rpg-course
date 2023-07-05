@@ -10,7 +10,8 @@ namespace RPG.Stats
         [SerializeField] private Progression _progression;
         [SerializeField] private Experience _experience;
         [SerializeField] private GameObject _levelUpEffect;
-
+        [SerializeField] private bool _shouldUseModifiers = false;
+        
         public int CurrentLevel { get; private set; }
 
         public event Action<int> LevelChanged;
@@ -58,7 +59,48 @@ namespace RPG.Stats
 
         public float GetStat(Stat stat)
         {
-            return _progression.GetStat(stat, _characterClass, CalculateLevel());
+            return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * GetPercentageModifier(stat);
+        }
+
+        private float GetBaseStat(Stat stat)
+        {
+           return _progression.GetStat(stat, _characterClass, CalculateLevel());
+        }
+
+        private float GetPercentageModifier(Stat stat)
+        {
+            if (_shouldUseModifiers == false) return 1;
+            
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            float percentModifier = 0f;
+            
+            foreach (IModifierProvider provider in providers)
+            {
+                foreach (float modifier in provider.GetPercentageModifiers(stat))
+                {
+                    percentModifier += modifier;
+                }
+            }
+            
+            return 1 + percentModifier / 100;
+        }
+
+        private float GetAdditiveModifier(Stat stat)
+        {
+            if (_shouldUseModifiers == false) return 0;
+            
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            float total = 0f;
+            
+            foreach (IModifierProvider provider in providers)
+            {
+                foreach (float modifier in provider.GetAdditiveModifiers(stat))
+                {
+                    total += modifier;
+                }
+            }
+            
+            return total;
         }
 
         private int CalculateLevel() 

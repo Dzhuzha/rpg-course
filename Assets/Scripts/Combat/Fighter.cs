@@ -1,12 +1,14 @@
-﻿using RPG.Core;
+﻿using System.Collections.Generic;
+using RPG.Core;
 using RPG.Atributes;
 using RPG.Movement;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : ActionScheduler, IAction, ISaveable
+    public class Fighter : ActionScheduler, IAction, ISaveable, IModifierProvider
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _scheduler;
@@ -14,7 +16,8 @@ namespace RPG.Combat
         [SerializeField] private Transform _rightHandTransform = null;
         [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _defaultWeapon = null;
-
+        [SerializeField] private BaseStats _baseStats;
+        
         //   [SerializeField] private ProjectTile _arrowPrefab;
         private WeaponConfig _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
@@ -149,6 +152,22 @@ namespace RPG.Combat
             _animator.ResetTrigger("Attack");
             _animator.SetTrigger("StopAttack");
         }
+        
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+              yield return _currentWeapon.Damage;
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return _currentWeapon.BonusPercent;
+            }
+        }
 
         private void Shoot() //Animation event
         {
@@ -161,7 +180,8 @@ namespace RPG.Combat
         {
             ProjectTile projectTile = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
             projectTile.transform.SetParent(transform.root);
-            projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
+          //  projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
+            projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage());
         }
 
         private void Hit() //Animation event
@@ -174,7 +194,13 @@ namespace RPG.Combat
                 return;
             }
             
-            _targetHealth.TakeDamage(gameObject, _currentWeapon.Damage);
+         //   _targetHealth.TakeDamage(gameObject, _currentWeapon.Damage);
+            _targetHealth.TakeDamage(gameObject, CalculateDamage());
+        }
+
+        private float CalculateDamage()
+        {
+            return _baseStats.GetStat(Stat.Damage);
         }
 
         public object CaptureState()

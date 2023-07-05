@@ -30,6 +30,11 @@ MonoBehaviour:
       - 10
       - 15
       - 20
+    - _stat: 3
+      _levels:
+      - 3
+      - 5
+      - 10
   - _className: 0
     _damagePerLevel:
     - 10
@@ -54,6 +59,13 @@ MonoBehaviour:
       - 40
       - 70
       - 100
+    - _stat: 3
+      _levels:
+      - 3
+      - 5
+      - 7
+      - 10
+      - 15
   - _className: 3
     _damagePerLevel:
     - 3
@@ -75,3 +87,9 @@ MonoBehaviour:
       - 40
       - 60
       - 80
+    - _stat: 3
+      _levels:
+      - 2
+      - 4
+      - 6
+      - 8

@@ -28,9 +28,9 @@ namespace RPG.Atributes
             _health.HealthChanged -= UpdateHealthValue;
         }
 
-        private void UpdateHealthValue(float newHealthValue)
+        private void UpdateHealthValue(float newHealthValue, float fullHealthValue)
         {
-            _healthValue.text = string.Concat(newHealthValue.ToString("N0"), "%");
+            _healthValue.text = string.Concat(newHealthValue.ToString("N0"), "/", fullHealthValue.ToString("N0"));
         }
     }
 }

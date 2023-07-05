@@ -122,6 +122,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _mover: {fileID: 6011471322046631701}
   _fighter: {fileID: 3871736999637922484}
+  _enemyHealthDisplay: {fileID: 0}
 --- !u!114 &2516790000157086044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   _rightHandTransform: {fileID: 0}
   _leftHandTransform: {fileID: 0}
   _defaultWeapon: {fileID: 0}
+  _baseStats: {fileID: 7592258656992457516}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,8 @@ MonoBehaviour:
   _startingLevel: 1
   _characterClass: 1
   _progression: {fileID: 11400000, guid: 7be88c3b5b1e2a747b1718fb1bf65b91, type: 2}
+  _experience: {fileID: 0}
+  _levelUpEffect: {fileID: 0}
 --- !u!1001 &6011471322681841416
 PrefabInstance:
   m_ObjectHideFlags: 0

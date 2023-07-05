@@ -172,6 +172,11 @@ PrefabInstance:
       propertyPath: _characterClass
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7592258656992457516, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: _shouldUseModifiers
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4edd1fc0a32aa074e8508804620dfe69, type: 3}
 --- !u!4 &195349642695832905 stripped
