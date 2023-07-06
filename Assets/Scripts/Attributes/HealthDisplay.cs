@@ -7,13 +7,13 @@ namespace RPG.Atributes
     {
         [SerializeField] private TMP_Text _healthValue;
         [SerializeField] private Health _health;
-        
-        private void Start()
+
+        private void OnEnable()
         {
             Subscribe();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             Unsubscribe();
         }

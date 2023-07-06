@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RPG.Saving;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace RPG.SceneManagement
     public class SavingWrapper : MonoBehaviour
     {
         [SerializeField] private float _fadeInTime = 2f;
-        
+
         private const string DEFAULT_SAVE_FILE_NAME = "data";
         private SavingSystem _savingSystem;
         private Fader _fader;
@@ -20,18 +19,10 @@ namespace RPG.SceneManagement
 
         private IEnumerator LoadLastScene()
         {
-            if (_savingSystem == null)
-            {
-                _savingSystem = GetComponent<SavingSystem>();
-            }
-            
-            if (_fader == null)
-            {
-                _fader = FindObjectOfType<Fader>();
-                _fader.FadeOutImmediate();
-            }
-            
+            _savingSystem = _savingSystem == null ? GetComponent<SavingSystem>() : _savingSystem;
             yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE_NAME);
+            _fader = _fader == null ? FindObjectOfType<Fader>() : _fader;
+            _fader.FadeOutImmediate();
             yield return _fader.FadeIn(_fadeInTime);
         }
 
@@ -63,9 +54,10 @@ namespace RPG.SceneManagement
             _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
         }
 
-        public void Delete()
+        private void Delete()
         {
             _savingSystem.Delete(DEFAULT_SAVE_FILE_NAME);
+            Debug.Log("Save file Deleted!");
         }
     }
 }

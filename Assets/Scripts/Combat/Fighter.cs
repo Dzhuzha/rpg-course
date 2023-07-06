@@ -18,18 +18,22 @@ namespace RPG.Combat
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
         
-        //   [SerializeField] private ProjectTile _arrowPrefab;
+        //[SerializeField] private ProjectTile _arrowPrefab;
         private WeaponConfig _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
         private Transform _targetPosition;
         private float _timeSinceLastAttack = 0f;
+        
+        private void Awake()
+        {
+            _defaultAnimatorController = _animator.runtimeAnimatorController;
+        }
 
         private void Start()
         {
             if (_currentWeapon == null)
             {
-                _defaultAnimatorController = _animator.runtimeAnimatorController;
                 EquipWeapon(_defaultWeapon);
             }
         }
@@ -194,7 +198,6 @@ namespace RPG.Combat
                 return;
             }
             
-         //   _targetHealth.TakeDamage(gameObject, _currentWeapon.Damage);
             _targetHealth.TakeDamage(gameObject, CalculateDamage());
         }
 
@@ -205,6 +208,10 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
+            if (_currentWeapon == null)
+            {
+                UseDefaultWeapon();
+            }
             return _currentWeapon.name;
         }
 

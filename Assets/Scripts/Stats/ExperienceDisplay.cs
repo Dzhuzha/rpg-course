@@ -7,13 +7,17 @@ public class ExperienceDisplay : MonoBehaviour
     [SerializeField] private TMP_Text _experienceValue;
     [SerializeField] private Experience _experience;
     
-    public void Awake()
+    public void Start()
     {
-        Subscribe();
         UpdateExperienceValue(_experience.ExperiencePoints);
     }
 
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        Subscribe();
+    }
+
+    private void OnDisable()
     {
         Unsubscribe();
     }

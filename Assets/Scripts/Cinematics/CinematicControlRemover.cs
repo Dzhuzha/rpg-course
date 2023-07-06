@@ -16,11 +16,14 @@ namespace RPG.Cinematics
             _playableDirector = GetComponent<PlayableDirector>();
             _playerController = FindObjectOfType<PlayerController>();
             _playerActionScheduler = _playerController.GetComponent<ActionScheduler>();
-            
+        }
+
+        private void OnEnable()
+        {
             Subscribe();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             Unsubscribe();
         }

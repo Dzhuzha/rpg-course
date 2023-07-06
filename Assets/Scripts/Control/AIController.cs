@@ -26,6 +26,10 @@ namespace RPG.Control
             _player = FindObjectOfType<PlayerController>();
             _attackerHealth = GetComponent<Health>();
             _mover = GetComponent<Mover>();
+        }
+
+        private void Start()
+        {
             _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
 
             _startPosition = transform.position;

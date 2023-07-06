@@ -23,11 +23,19 @@ namespace RPG.Atributes
             _animator = GetComponent<Animator>();
             _actionScheduler = GetComponent<ActionScheduler>();
             _baseStats = GetComponent<BaseStats>();
+        }
+
+        private void Start()
+        {
             _health = _baseStats.GetStat(Stat.Health);
+        }
+
+        private void OnEnable()
+        {
             Subscribe();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             UnSubscribe();
         }
@@ -66,9 +74,9 @@ namespace RPG.Atributes
             if (_baseStats == null) return;
 
             float fullHealthAmount = _baseStats.GetStat(Stat.Health);
-           // float healthPercentage = _health / fullHealthAmount * 100;
-          //  HealthChanged?.Invoke(healthPercentage);
-          HealthChanged?.Invoke(_health, fullHealthAmount);
+            // float healthPercentage = _health / fullHealthAmount * 100;
+            // HealthChanged?.Invoke(healthPercentage);
+            HealthChanged?.Invoke(_health, fullHealthAmount);
         }
 
         private void AwardExperience(GameObject instigator)

@@ -18,11 +18,15 @@ namespace RPG.Stats
 
         private void Start()
         {
-            Subscribe();
             CurrentLevel = CalculateLevel();
         }
 
-        private void OnDestroy()
+        private void OnEnable()
+        {
+            Subscribe();
+        }
+
+        private void OnDisable()
         {
             Unsubscribe();
         }

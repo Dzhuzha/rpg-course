@@ -16,9 +16,13 @@ namespace RPG.Movement
         private Health _health;
         public float MovementSpeed { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             _health = GetComponent<Health>();
+        }
+
+        private void Start()
+        {
             MovementSpeed = _agent.speed;
         }
 

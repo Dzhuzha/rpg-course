@@ -9,11 +9,15 @@ public class LevelDisplay : MonoBehaviour
     
     private void Start()
     {
-        Subscribe();
         UpdateLevelValue(_baseStats.CurrentLevel);
     }
-    
-    private void OnDestroy()
+
+    private void OnEnable()
+    {
+        Subscribe();
+    }
+
+    private void OnDisable()
     {
         Unsubscribe();
     }

@@ -10,7 +10,7 @@ namespace RPG.Cinematics
         private PlayableDirector _playableDirector;
         private bool _isAlreadyPlayed;
 
-        private void Start()
+        private void Awake()
         {
             _playableDirector = GetComponent<PlayableDirector>();
         }

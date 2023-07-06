@@ -9,6 +9,7 @@ namespace RPG.SceneManagement
 
         private const byte NO_OPACITY = 1;
         private const byte FULL_OPACITY = 0;
+        public bool IsFading { get; private set; } = false;
 
         public void FadeOutImmediate()
         {
@@ -20,8 +21,11 @@ namespace RPG.SceneManagement
             while (_canvasGroup.alpha < NO_OPACITY)
             {
                 _canvasGroup.alpha += Time.deltaTime / time;
+                IsFading = true;
                 yield return null;
             }
+            
+            IsFading = false;
         }
 
         public IEnumerator FadeIn(float time)
@@ -31,9 +35,11 @@ namespace RPG.SceneManagement
             while (_canvasGroup.alpha > float.Epsilon)
             {
                 _canvasGroup.alpha -= Time.deltaTime / time;
+                IsFading = true;
                 yield return null;
             }
 
+            IsFading = false;
             _canvasGroup.alpha = FULL_OPACITY;
         }
     }

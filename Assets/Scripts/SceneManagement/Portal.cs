@@ -42,22 +42,18 @@ namespace RPG.SceneManagement
         private IEnumerator Transition()
         {
             DontDestroyOnLoad(gameObject);
+            while (Fader.IsFading) yield return null; // Fix of fader race condition bug
 
             yield return Fader.FadeOut(_fadeOutTime);
-
             UpdatePlayer(this);
             _savingWrapper.Save();
-            
             yield return SceneManager.LoadSceneAsync(_sceneToLoadIndex);
             
             Portal exitPortal = GetOtherPortals();
-            
             _savingWrapper.Load();
             UpdatePlayer(exitPortal);
             _savingWrapper.Save();
-            
             yield return exitPortal.Fader.FadeIn(_fadeInTime);
-
             Destroy(gameObject);
         }
 
