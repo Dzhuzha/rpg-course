@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fader
       objectReference: {fileID: 0}
+    - target: {fileID: 5926056711474915831, guid: 298920672c235154fa2c6b363f95d925,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 298920672c235154fa2c6b363f95d925, type: 3}
 --- !u!224 &5222028902485507500 stripped
