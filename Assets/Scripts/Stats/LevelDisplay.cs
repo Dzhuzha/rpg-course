@@ -9,7 +9,7 @@ public class LevelDisplay : MonoBehaviour
     
     private void Start()
     {
-        UpdateLevelValue(_baseStats.CurrentLevel);
+        UpdateLevelValue(_baseStats.CurrentLevel.value);
     }
 
     private void OnEnable()

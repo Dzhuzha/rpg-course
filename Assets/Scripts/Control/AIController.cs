@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using RPG.Atributes;
 using RPG.Combat;
 using RPG.Movement;
@@ -15,7 +16,7 @@ namespace RPG.Control
         private Mover _mover;
         private PlayerController _player;
         private Health _attackerHealth;
-        private Vector3 _startPosition;
+        private LazyValue<Vector3> _startPosition;
         private float _timeAfterTargetLost = 0;
         private float _waypointTolerance = 1f;
         private int _currentWaypointIndex;
@@ -26,13 +27,13 @@ namespace RPG.Control
             _player = FindObjectOfType<PlayerController>();
             _attackerHealth = GetComponent<Health>();
             _mover = GetComponent<Mover>();
+            _startPosition = new LazyValue<Vector3>(GetStartPosition);
+            _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
         }
 
-        private void Start()
+        private Vector3 GetStartPosition()
         {
-            _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
-
-            _startPosition = transform.position;
+            return transform.position;
         }
 
         private void Update()
@@ -79,7 +80,7 @@ namespace RPG.Control
 
         private void PatrolBehaviour()
         {
-            Vector3 nextPosition = _startPosition;
+            Vector3 nextPosition = _startPosition.value;
             _mover.SetSpeed(_mover.MovementSpeed / 2);
 
             if (_patrolPath != null)

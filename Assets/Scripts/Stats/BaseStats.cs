@@ -1,4 +1,5 @@
 using System;
+using GameDevTV.Utils;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -12,13 +13,13 @@ namespace RPG.Stats
         [SerializeField] private GameObject _levelUpEffect;
         [SerializeField] private bool _shouldUseModifiers = false;
         
-        public int CurrentLevel { get; private set; }
+        public LazyValue<int> CurrentLevel { get; private set; }
 
         public event Action<int> LevelChanged;
 
-        private void Start()
+        private void Awake()
         {
-            CurrentLevel = CalculateLevel();
+            CurrentLevel = new LazyValue<int>(CalculateLevel);
         }
 
         private void OnEnable()
@@ -47,9 +48,9 @@ namespace RPG.Stats
         {
             int newLevel = CalculateLevel();
             
-            if (newLevel > CurrentLevel)
+            if (newLevel > CurrentLevel.value)
             {
-                CurrentLevel = newLevel;
+                CurrentLevel.value = newLevel;
                 CallLevelUpEffect();
                 LevelChanged?.Invoke(newLevel);
             }
