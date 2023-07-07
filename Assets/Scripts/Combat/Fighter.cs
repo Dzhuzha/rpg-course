@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Atributes;
 using RPG.Movement;
@@ -17,34 +18,32 @@ namespace RPG.Combat
         [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
-        
+
         //[SerializeField] private ProjectTile _arrowPrefab;
-        private WeaponConfig _currentWeapon;
+        private LazyValue<WeaponConfig> _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
         private Transform _targetPosition;
         private float _timeSinceLastAttack = 0f;
-        
+
         private void Awake()
         {
             _defaultAnimatorController = _animator.runtimeAnimatorController;
+            _currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
         }
 
         private void Start()
         {
-            if (_currentWeapon == null)
-            {
-                EquipWeapon(_defaultWeapon);
-            }
+            _currentWeapon.ForceInit();
         }
 
         private void Update()
         {
             ReduceAttackTime();
-            
+
             if (_targetPosition == null) return;
 
-            if (Vector3.Distance(transform.position, _targetPosition.position) > _currentWeapon.WeaponRange)
+            if (Vector3.Distance(transform.position, _targetPosition.position) > _currentWeapon.value.WeaponRange)
             {
                 _mover.MoveTo(_targetPosition.position);
             }
@@ -55,22 +54,23 @@ namespace RPG.Combat
             }
         }
 
+        private WeaponConfig SetupDefaultWeapon()
+        {
+            SpawnWeapon(_defaultWeapon);
+            return _defaultWeapon;
+        }
+
         public void EquipWeapon(WeaponConfig weaponConfig)
         {
             SpawnWeapon(weaponConfig);
-            _currentWeapon = weaponConfig;
-        }
-
-        private void UseDefaultWeapon()
-        {
-            _currentWeapon = _defaultWeapon;
+            _currentWeapon.value = weaponConfig;
         }
 
         private void SpawnWeapon(WeaponConfig weaponToSpawn)
         {
             if (weaponToSpawn == null)
             {
-                UseDefaultWeapon();
+                _currentWeapon.value = _defaultWeapon;
                 return;
             }
 
@@ -78,16 +78,17 @@ namespace RPG.Combat
             {
                 Destroy(_leftHandTransform.GetComponentInChildren<Weapon>().gameObject);
             }
+
             if (_rightHandTransform.GetComponentInChildren<Weapon>() != null)
             {
                 Destroy(_rightHandTransform.GetComponentInChildren<Weapon>().gameObject);
             }
-            
+
             if (weaponToSpawn.Prefab != null)
             {
                 Transform handTransform = weaponToSpawn.IsRightHanded ? _rightHandTransform : _leftHandTransform;
                 Instantiate(weaponToSpawn.Prefab, handTransform);
-                _currentWeapon = weaponToSpawn;
+                _currentWeapon.value = weaponToSpawn;
             }
 
             if (weaponToSpawn.AnimatorOverride != null)
@@ -108,13 +109,13 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(_targetPosition);
-            
+
             if (_timeSinceLastAttack <= 0f)
             {
-                _timeSinceLastAttack = _currentWeapon.TimeBetweenAttacks;
+                _timeSinceLastAttack = _currentWeapon.value.TimeBetweenAttacks;
                 TriggerAttack();
             }
-            
+
             if (_targetHealth.IsDead)
             {
                 CancelAction();
@@ -156,12 +157,12 @@ namespace RPG.Combat
             _animator.ResetTrigger("Attack");
             _animator.SetTrigger("StopAttack");
         }
-        
+
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)
         {
             if (stat == Stat.Damage)
             {
-              yield return _currentWeapon.Damage;
+                yield return _currentWeapon.value.Damage;
             }
         }
 
@@ -169,35 +170,37 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return _currentWeapon.BonusPercent;
+                yield return _currentWeapon.value.BonusPercent;
             }
         }
 
         private void Shoot() //Animation event
         {
-            if (_currentWeapon.ProjectTile == null) return;
-
+            if (_currentWeapon.value.ProjectTile == null) return;
             CreateProjectTile();
         }
 
         private void CreateProjectTile()
         {
-            ProjectTile projectTile = Instantiate(_currentWeapon.ProjectTile, _leftHandTransform);
+            ProjectTile projectTile = Instantiate(_currentWeapon.value.ProjectTile, _leftHandTransform);
             projectTile.transform.SetParent(transform.root);
-          //  projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
+            // projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
             projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage());
         }
 
         private void Hit() //Animation event
         {
-            if (_targetHealth == null) { return; }
+            if (_targetHealth == null)
+            {
+                return;
+            }
 
-            if (_currentWeapon.ProjectTile != null)
+            if (_currentWeapon.value.ProjectTile != null)
             {
                 CreateProjectTile();
                 return;
             }
-            
+
             _targetHealth.TakeDamage(gameObject, CalculateDamage());
         }
 
@@ -208,16 +211,12 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
-            if (_currentWeapon == null)
-            {
-                UseDefaultWeapon();
-            }
-            return _currentWeapon.name;
+            return _currentWeapon.value.name;
         }
 
         public void RestoreState(object state)
         {
-            string weaponName = (string) state;
+            string weaponName = (string)state;
             WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weaponConfig);
         }
