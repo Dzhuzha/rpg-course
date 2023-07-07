@@ -20,6 +20,8 @@ namespace RPG.Combat
         [SerializeField] private BaseStats _baseStats;
 
         //[SerializeField] private ProjectTile _arrowPrefab;
+        private const string ATTACK_TRIGGER = "Attack";
+        private const string STOP_ATTACKING = "StopAttack";
         private LazyValue<WeaponConfig> _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
@@ -91,14 +93,7 @@ namespace RPG.Combat
                 _currentWeapon.value = weaponToSpawn;
             }
 
-            if (weaponToSpawn.AnimatorOverride != null)
-            {
-                _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride;
-            }
-            else
-            {
-                _animator.runtimeAnimatorController = _defaultAnimatorController;
-            }
+            _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride == null ? _defaultAnimatorController : weaponToSpawn.AnimatorOverride;
         }
 
         private void ReduceAttackTime()
@@ -148,14 +143,14 @@ namespace RPG.Combat
 
         private void TriggerAttack()
         {
-            _animator.ResetTrigger("StopAttack");
-            _animator.SetTrigger("Attack");
+            _animator.ResetTrigger(STOP_ATTACKING);
+            _animator.SetTrigger(ATTACK_TRIGGER);
         }
 
         private void StopAttack()
         {
-            _animator.ResetTrigger("Attack");
-            _animator.SetTrigger("StopAttack");
+            _animator.ResetTrigger(ATTACK_TRIGGER);
+            _animator.SetTrigger(STOP_ATTACKING);
         }
 
         public IEnumerable<float> GetAdditiveModifiers(Stat stat)

@@ -30,6 +30,7 @@ namespace RPG.Atributes
         private void Start()
         {
             _health.ForceInit();
+            HealthChanged?.Invoke(_health.value, _baseStats.GetStat(Stat.Health));
         }
 
         private float GetInitialHealth()
