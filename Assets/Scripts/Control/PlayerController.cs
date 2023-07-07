@@ -1,3 +1,4 @@
+using System;
 using RPG.Atributes;
 using RPG.Combat;
 using RPG.Movement;
@@ -11,9 +12,18 @@ namespace RPG.Control
         [SerializeField] private Mover _mover;
         [SerializeField] private Fighter _fighter;
         [SerializeField] private EnemyHealthDisplay _enemyHealthDisplay;
+        [NonReorderable, SerializeField] private CursorMapping[] _cursorMappings;
         
         private Health _attackerHealth;
 
+        [Serializable]
+        struct CursorMapping
+        {
+            public CursorType Type;
+            public Vector2 Hotspot;
+            public Texture2D Texture;
+        }
+        
         private void Awake()
         {
             _attackerHealth = GetComponent<Health>();
@@ -24,8 +34,8 @@ namespace RPG.Control
             if (_attackerHealth.IsDead) return;
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
-
-            Debug.Log("Cannot to move or attack!");
+            
+            SetCursor(CursorType.None);
         }
 
         private bool InteractWithCombat()
@@ -42,6 +52,7 @@ namespace RPG.Control
                     _enemyHealthDisplay.InitTarget(target.GetComponent<Health>());
                 }
 
+                SetCursor(CursorType.Combat);
                 return true;
             }
             
@@ -58,15 +69,43 @@ namespace RPG.Control
                     _enemyHealthDisplay.ResetTarget();
                 }
 
+                SetCursor(CursorType.Movement);
                 return true;
             }
 
             return false;
         }
+        
+        private CursorMapping GetCursorMapping(CursorType cursorType)
+        {
+            foreach (var mapping in _cursorMappings)
+            {
+                if (mapping.Type == cursorType)
+                {
+                    return mapping;
+                }
+            }
+
+            return _cursorMappings[0];
+        }
+
+        private void SetCursor(CursorType cursorType)
+        {
+            CursorMapping mapping = GetCursorMapping(cursorType);
+            Cursor.SetCursor(mapping.Texture, mapping.Hotspot, CursorMode.Auto);
+        }
 
         private Ray GetMouseRay()
         {
             return _camera.ScreenPointToRay(Input.mousePosition);
+        }
+        
+        private enum CursorType
+        {
+            None,
+            Combat,
+            Movement,
+            UI
         }
     }
 }
