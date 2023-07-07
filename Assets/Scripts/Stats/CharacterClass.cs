@@ -6,6 +6,8 @@ namespace RPG.Stats
         Grunt,
         Mage,
         Archer,
-        Swordsman
+        Swordsman,
+        Minion,
+        Boss
     }
 }

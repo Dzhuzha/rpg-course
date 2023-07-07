@@ -49,11 +49,8 @@ namespace RPG.Stats
         class ProgressionCharacterClass
         {
             [SerializeField] private CharacterClass _className;
-
-            [NonReorderable, SerializeField] private float[] _damagePerLevel;
             [SerializeField] private int _characterLevel;
-
-
+            
             [NonReorderable, SerializeField] private ProgressionStat[] _stats;
             public CharacterClass ClassName => _className;
             public ProgressionStat[] Stats => _stats;
