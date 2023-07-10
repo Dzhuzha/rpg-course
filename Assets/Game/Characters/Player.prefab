@@ -83,6 +83,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5795299573918177679, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
+      propertyPath: _maxNavMeshPathLength
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5795299573918177679, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
       propertyPath: _cursorMappings.Array.size
       value: 5
       objectReference: {fileID: 0}
