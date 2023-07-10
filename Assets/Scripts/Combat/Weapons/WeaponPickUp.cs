@@ -1,8 +1,9 @@
 using System.Collections;
 using RPG.Combat;
+using RPG.Control;
 using UnityEngine;
 
-public class WeaponPickUp : MonoBehaviour
+public class WeaponPickUp : MonoBehaviour, IRaycastable
 {
     [SerializeField] private WeaponConfig _config;
     [SerializeField] private float _respawnTime = 5f;
@@ -11,9 +12,14 @@ public class WeaponPickUp : MonoBehaviour
     {
         if (other.TryGetComponent(out RPG.Control.PlayerController player))
         {
-            player.GetComponent<Fighter>().EquipWeapon(_config);
-            StartCoroutine(HideForSeconds(_respawnTime));
+            PickUp(player.GetComponent<Fighter>());
         }
+    }
+
+    private void PickUp(Fighter owner)
+    {
+        owner.EquipWeapon(_config);
+        StartCoroutine(HideForSeconds(_respawnTime));
     }
 
     private IEnumerator HideForSeconds(float seconds)
@@ -26,10 +32,25 @@ public class WeaponPickUp : MonoBehaviour
     private void ShowPickUp(bool show)
     {
         GetComponent<Collider>().enabled = show;
-        
+
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(show);
         }
+    }
+
+    public bool HandleRaycast(PlayerController callingController)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            PickUp(callingController.GetComponent<Fighter>());
+        }
+
+        return true;
+    }
+
+    public CursorType GetCursorType()
+    {
+        return CursorType.Pickup;
     }
 }

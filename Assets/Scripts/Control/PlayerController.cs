@@ -39,11 +39,31 @@ namespace RPG.Control
                 SetCursor(CursorType.None);
                 return;
             }
-            
-            if (InteractWithCombat()) return;
+
+            if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
             
             SetCursor(CursorType.None);
+        }
+
+        private bool InteractWithComponent()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+
+            foreach (RaycastHit hit in hits)
+            {
+                IRaycastable[] raycastableList = hit.transform.GetComponents<IRaycastable>();
+                foreach (IRaycastable raycastable in raycastableList)
+                {
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetCursor(raycastable.GetCursorType());
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private bool InteractWithUI()
@@ -54,25 +74,9 @@ namespace RPG.Control
             return true;
         }
 
-        private bool InteractWithCombat()
+        public void StartTrackingTargetHealth(Health targetHealth)
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
-
-            foreach (var hit in hits)
-            {
-                if (!hit.transform.TryGetComponent(out CombatTarget target)) continue;
-
-                if (Input.GetMouseButton(0) && _fighter.CanAttack(target.gameObject))
-                {
-                    _fighter.Attack(target.gameObject);
-                    _enemyHealthDisplay.InitTarget(target.GetComponent<Health>());
-                }
-
-                SetCursor(CursorType.Combat);
-                return true;
-            }
-            
-            return false;
+            _enemyHealthDisplay.InitTarget(targetHealth);
         }
 
         private bool InteractWithMovement()
@@ -114,14 +118,6 @@ namespace RPG.Control
         private Ray GetMouseRay()
         {
             return _camera.ScreenPointToRay(Input.mousePosition);
-        }
-        
-        private enum CursorType
-        {
-            None,
-            Combat,
-            Movement,
-            UI
         }
     }
 }
