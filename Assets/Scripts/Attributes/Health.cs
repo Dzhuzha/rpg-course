@@ -4,13 +4,15 @@ using RPG.Stats;
 using RPG.Saving;
 using UnityEngine;
 using RPG.Core;
+using RPG.UI.DamageText;
 
 namespace RPG.Atributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] private Animator _animator;
-
+        [SerializeField] private DamageTextSpawner _damageTextSpawner;
+        
         private LazyValue<float> _health;
         private ActionScheduler _actionScheduler;
         private BaseStats _baseStats;
@@ -67,6 +69,7 @@ namespace RPG.Atributes
         public void TakeDamage(GameObject instigator, float damage)
         {
             Debug.Log($"{gameObject.name} took {damage} damage from {instigator.name}.");
+            _damageTextSpawner.Spawn(damage);
             _health.value -= damage;
             CheckDeathState();
             UpdateHealthPercentage();
