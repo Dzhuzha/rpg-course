@@ -68,7 +68,7 @@ namespace RPG.Atributes
 
         public void TakeDamage(GameObject instigator, float damage)
         {
-            Debug.Log($"{gameObject.name} took {damage} damage from {instigator.name}.");
+           // Debug.Log($"{gameObject.name} took {damage} damage from {instigator.name}.");
             _damageTextSpawner.Spawn(damage);
             _health.value -= damage;
             CheckDeathState();
@@ -85,8 +85,6 @@ namespace RPG.Atributes
             if (_baseStats == null) return;
 
             float fullHealthAmount = _baseStats.GetStat(Stat.Health);
-            // float healthPercentage = _health / fullHealthAmount * 100;
-            // HealthChanged?.Invoke(healthPercentage);
             HealthChanged?.Invoke(_health.value, fullHealthAmount);
         }
 
