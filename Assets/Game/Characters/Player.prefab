@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: _cursorMappings.Array.data[4].Texture
       value: 
       objectReference: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
+    - target: {fileID: 6011471322046631701, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: _maxNavMeshPathLength
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6011471322046631702, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: m_Speed

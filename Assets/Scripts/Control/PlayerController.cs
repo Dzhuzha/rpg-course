@@ -14,7 +14,6 @@ namespace RPG.Control
         [SerializeField] private Mover _mover;
         [SerializeField] private Fighter _fighter;
         [SerializeField] private float _maxNavMeshProjectionDistance = 1f;
-        [SerializeField] private float _maxNavMeshPathLength = 5f;
         [SerializeField] private EnemyHealthDisplay _enemyHealthDisplay;
         [NonReorderable, SerializeField] private CursorMapping[] _cursorMappings;
         
@@ -99,7 +98,8 @@ namespace RPG.Control
         private bool InteractWithMovement()
         {
             if (!IsMovable(out Vector3 targetPosition)) return false;
-            
+            if (!_mover.CanMoveTo(targetPosition)) return false;
+
             if (Input.GetMouseButton(0))
             {
                 _mover.StartMoveAction(targetPosition);
@@ -122,26 +122,8 @@ namespace RPG.Control
             {
                 targetPosition = navMeshHit.position;
             }
-            
-            NavMeshPath path = new NavMeshPath();
-            bool hasPath = NavMesh.CalculatePath(transform.position, targetPosition, NavMesh.AllAreas, path);
-            if (!hasPath || path.status != NavMeshPathStatus.PathComplete) return false;
-            if (GetPathLength(path) > _maxNavMeshPathLength) return false;
 
             return hasCastToNavMesh;
-        }
-
-        private float GetPathLength(NavMeshPath path)
-        {
-            float totalDistance = 0f;
-            if (path.corners.Length < 2) return totalDistance;
-
-            for (int i = 1; i < path.corners.Length; i++)
-            {
-                totalDistance += Vector3.Distance(path.corners[i-1], path.corners[i]);
-            }
-            
-            return totalDistance;
         }
 
         private CursorMapping GetCursorMapping(CursorType cursorType)
