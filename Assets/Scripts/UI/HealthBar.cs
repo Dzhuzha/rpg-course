@@ -5,6 +5,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private RectTransform _foreground;
     [SerializeField] private Health _health;
+    [SerializeField] private Canvas _rootCanvas;
     
     private void Awake()
     {
@@ -23,14 +24,13 @@ public class HealthBar : MonoBehaviour
 
     private void SetSize(float newHealth, float fullHealth)
     {
-        if (newHealth == fullHealth || newHealth <= 0f)
+        if (newHealth >= fullHealth || newHealth <= 0f)
         {
-            GetComponentInChildren<Canvas>().enabled = false;
-            return;
+            _rootCanvas.enabled = false;
         }
         else
         {
-            GetComponentInChildren<Canvas>().enabled = true;
+            _rootCanvas.enabled = true;
             var fraction = newHealth / fullHealth;
             _foreground.localScale = new Vector3(fraction, 1f, 1f);
         }
