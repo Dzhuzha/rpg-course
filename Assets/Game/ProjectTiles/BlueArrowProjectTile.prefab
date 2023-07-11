@@ -25,6 +25,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
         type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 2382992397867811329}
+    - target: {fileID: 3081993660099929103, guid: 55a8e351f80f43c45ae8779f623b18d2,
+        type: 3}
       propertyPath: _objectsToDestroy.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -130,6 +135,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55a8e351f80f43c45ae8779f623b18d2, type: 3}
+--- !u!82 &2382992397867811329 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8050376267684420386, guid: 55a8e351f80f43c45ae8779f623b18d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5668545828668479779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2785194675406901749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7497446271498488022, guid: 55a8e351f80f43c45ae8779f623b18d2,

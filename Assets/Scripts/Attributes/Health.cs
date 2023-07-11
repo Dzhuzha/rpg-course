@@ -20,6 +20,7 @@ namespace RPG.Atributes
         public bool IsDead => _health.value <= 0;
 
         public event Action<float, float> HealthChanged;
+        public event Action Dead;
 
         private void Awake()
         {
@@ -108,6 +109,7 @@ namespace RPG.Atributes
 
         private void Die()
         {
+            Dead?.Invoke();
             _actionScheduler.CancelCurrentAction();
             _animator.SetTrigger("Death");
         }

@@ -1,9 +1,19 @@
-using RPG.Combat;
+using System;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace RPG.Combat
 {
-    [SerializeField] private WeaponConfig _equipedWeapon;
-    
-    public WeaponConfig EquipedWeapon => _equipedWeapon;
+    public class Weapon : MonoBehaviour
+    {
+        [SerializeField] private WeaponConfig _equippedWeapon;
+
+        public WeaponConfig EquippedWeapon => _equippedWeapon;
+
+        public event Action HitDealed;
+
+        public void TriggerHit()
+        {
+            Debug.Log("!!!!!!!Hit!!!!!!" + gameObject.name);
+        }
+    }
 }

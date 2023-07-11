@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Atributes;
@@ -19,10 +20,13 @@ namespace RPG.Combat
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
 
+        public event Action HitDealed; 
+
         //[SerializeField] private ProjectTile _arrowPrefab;
         private const string ATTACK_TRIGGER = "Attack";
         private const string STOP_ATTACKING = "StopAttack";
-        private LazyValue<WeaponConfig> _currentWeapon;
+        private WeaponConfig _currentWeaponConfig;
+        private LazyValue<Weapon> _currentWeapon;
         private RuntimeAnimatorController _defaultAnimatorController;
         private Health _targetHealth;
         private Transform _targetPosition;
@@ -31,7 +35,8 @@ namespace RPG.Combat
         private void Awake()
         {
             _defaultAnimatorController = _animator.runtimeAnimatorController;
-            _currentWeapon = new LazyValue<WeaponConfig>(SetupDefaultWeapon);
+            _currentWeaponConfig = _defaultWeapon;
+            _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
         private void Start()
@@ -45,7 +50,7 @@ namespace RPG.Combat
 
             if (_targetPosition == null) return;
 
-            if (Vector3.Distance(transform.position, _targetPosition.position) > _currentWeapon.value.WeaponRange)
+            if (Vector3.Distance(transform.position, _targetPosition.position) > _currentWeaponConfig.WeaponRange)
             {
                 _mover.MoveTo(_targetPosition.position);
             }
@@ -56,24 +61,25 @@ namespace RPG.Combat
             }
         }
 
-        private WeaponConfig SetupDefaultWeapon()
+        private Weapon SetupDefaultWeapon()
         {
-            SpawnWeapon(_defaultWeapon);
-            return _defaultWeapon;
+            return SpawnWeapon(_defaultWeapon);
         }
 
         public void EquipWeapon(WeaponConfig weaponConfig)
         {
-            SpawnWeapon(weaponConfig);
-            _currentWeapon.value = weaponConfig;
+             _currentWeapon.value = SpawnWeapon(weaponConfig);
+            _currentWeaponConfig = weaponConfig;
         }
 
-        private void SpawnWeapon(WeaponConfig weaponToSpawn)
+        private Weapon SpawnWeapon(WeaponConfig weaponToSpawn)
         {
+            Weapon spawnedWeapon = null;
+            
             if (weaponToSpawn == null)
             {
-                _currentWeapon.value = _defaultWeapon;
-                return;
+                _currentWeaponConfig = _defaultWeapon;
+             
             }
 
             if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
@@ -89,11 +95,12 @@ namespace RPG.Combat
             if (weaponToSpawn.Prefab != null)
             {
                 Transform handTransform = weaponToSpawn.IsRightHanded ? _rightHandTransform : _leftHandTransform;
-                Instantiate(weaponToSpawn.Prefab, handTransform);
-                _currentWeapon.value = weaponToSpawn;
+                spawnedWeapon = Instantiate(weaponToSpawn.Prefab, handTransform);
+                _currentWeaponConfig = weaponToSpawn;
             }
 
             _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride == null ? _defaultAnimatorController : weaponToSpawn.AnimatorOverride;
+            return spawnedWeapon;
         }
 
         private void ReduceAttackTime()
@@ -107,7 +114,7 @@ namespace RPG.Combat
 
             if (_timeSinceLastAttack <= 0f)
             {
-                _timeSinceLastAttack = _currentWeapon.value.TimeBetweenAttacks;
+                _timeSinceLastAttack = _currentWeaponConfig.TimeBetweenAttacks;
                 TriggerAttack();
             }
 
@@ -157,7 +164,7 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return _currentWeapon.value.Damage;
+                yield return _currentWeaponConfig.Damage;
             }
         }
 
@@ -165,22 +172,22 @@ namespace RPG.Combat
         {
             if (stat == Stat.Damage)
             {
-                yield return _currentWeapon.value.BonusPercent;
+                yield return _currentWeaponConfig.BonusPercent;
             }
         }
 
         private void Shoot() //Animation event
         {
-            if (_currentWeapon.value.ProjectTile == null) return;
+            if (_currentWeaponConfig.ProjectTile == null) return;
             CreateProjectTile();
         }
 
         private void CreateProjectTile()
         {
-            ProjectTile projectTile = Instantiate(_currentWeapon.value.ProjectTile, _leftHandTransform);
+            ProjectTile projectTile = Instantiate(_currentWeaponConfig.ProjectTile, _leftHandTransform);
             projectTile.transform.SetParent(transform.root);
             // projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
-            projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage());
+            projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage(), _currentWeaponConfig.CreationAudioClip, _currentWeaponConfig.UsageAudioClip);
         }
 
         private void Hit() //Animation event
@@ -190,12 +197,17 @@ namespace RPG.Combat
                 return;
             }
 
-            if (_currentWeapon.value.ProjectTile != null)
+            if (_currentWeapon.value != null)
+            {
+                _currentWeapon.value.TriggerHit();
+            }
+
+            if (_currentWeaponConfig.ProjectTile != null)
             {
                 CreateProjectTile();
                 return;
             }
-
+            
             _targetHealth.TakeDamage(gameObject, CalculateDamage());
         }
 
@@ -206,7 +218,7 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
-            return _currentWeapon.value.name;
+            return _currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
