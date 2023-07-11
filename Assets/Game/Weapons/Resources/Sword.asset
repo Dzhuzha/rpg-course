@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 4834596272328985960, guid: 30e544a062e7b274280f14accd4c8ff4,
+  _weaponPrefab: {fileID: 4215772271175687939, guid: 30e544a062e7b274280f14accd4c8ff4,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: cbcc54a3a1850fa4eae9748a7819c6ba, type: 2}
   _weaponRange: 2
@@ -21,3 +21,5 @@ MonoBehaviour:
   _timeBetweenAttacks: 1.5
   _isRightHanded: 1
   _projectTile: {fileID: 0}
+  _creationAudioClip: {fileID: 0}
+  _usageAudioClip: {fileID: 8300000, guid: 8c4a6d3173c94d04c9896a4afd752f69, type: 3}

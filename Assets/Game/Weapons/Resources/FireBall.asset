@@ -21,3 +21,5 @@ MonoBehaviour:
   _isRightHanded: 0
   _projectTile: {fileID: 9113336260414868557, guid: d43c0df18abe38d4db204a22ad360a37,
     type: 3}
+  _creationAudioClip: {fileID: 8300000, guid: 8c4a6d3173c94d04c9896a4afd752f69, type: 3}
+  _usageAudioClip: {fileID: 8300000, guid: da0093ebe4323b846a8f67e40229df09, type: 3}

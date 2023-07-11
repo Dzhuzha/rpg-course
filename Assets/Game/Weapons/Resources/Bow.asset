@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 5429025222856916424, guid: edeeafb3e15adac419bb19fbb94e434e,
+  _weaponPrefab: {fileID: 4990439316041379786, guid: edeeafb3e15adac419bb19fbb94e434e,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: d6247f0e3e3f79d4882decd62d780fe0, type: 2}
   _weaponRange: 20
@@ -22,3 +22,5 @@ MonoBehaviour:
   _isRightHanded: 0
   _projectTile: {fileID: 3657778018760380859, guid: 8d9f24ed7f76af543aa9f88467520ab1,
     type: 3}
+  _creationAudioClip: {fileID: 8300000, guid: 94fc62564eabf2e429355affe6bee585, type: 3}
+  _usageAudioClip: {fileID: 8300000, guid: 3ab4b9bb431abca44a50195dd6f36e6b, type: 3}

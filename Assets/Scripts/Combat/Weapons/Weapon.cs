@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -6,14 +5,13 @@ namespace RPG.Combat
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private WeaponConfig _equippedWeapon;
+        [SerializeField] private AudioSource _audioSource;
 
         public WeaponConfig EquippedWeapon => _equippedWeapon;
-
-        public event Action HitDealed;
-
+        
         public void TriggerHit()
         {
-            Debug.Log("!!!!!!!Hit!!!!!!" + gameObject.name);
+            _audioSource.Play();
         }
     }
 }
