@@ -6,19 +6,29 @@ using UnityEngine;
 public class WeaponPickUp : MonoBehaviour, IRaycastable
 {
     [SerializeField] private WeaponConfig _config;
+    [SerializeField] private float _healthToRestore = 0f;
     [SerializeField] private float _respawnTime = 5f;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out RPG.Control.PlayerController player))
         {
-            PickUp(player.GetComponent<Fighter>());
+            PickUp(player.gameObject);
         }
     }
 
-    private void PickUp(Fighter owner)
+    private void PickUp(GameObject owner)
     {
-        owner.EquipWeapon(_config);
+        if (_config != null) 
+        {
+            owner.GetComponent<Fighter>().EquipWeapon(_config);
+        }
+
+        if (_healthToRestore > 0)
+        {
+            owner.GetComponent<RPG.Atributes.Health>().Heal(_healthToRestore);
+        }
+
         StartCoroutine(HideForSeconds(_respawnTime));
     }
 
@@ -43,7 +53,7 @@ public class WeaponPickUp : MonoBehaviour, IRaycastable
     {
         if (Input.GetMouseButtonDown(0))
         {
-            PickUp(callingController.GetComponent<Fighter>());
+            PickUp(callingController.gameObject);
         }
 
         return true;

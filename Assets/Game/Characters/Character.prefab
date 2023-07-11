@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2120855346002286311}
   - component: {fileID: 6100246396736532596}
   m_Layer: 0
-  m_Name: DamageSound
+  m_Name: HealthSoundPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,7 +334,6 @@ MonoBehaviour:
   _leftHandTransform: {fileID: 0}
   _defaultWeapon: {fileID: 0}
   _baseStats: {fileID: 7592258656992457516}
-  _audioSource: {fileID: 0}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0

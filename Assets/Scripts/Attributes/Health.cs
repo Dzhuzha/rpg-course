@@ -132,5 +132,11 @@ namespace RPG.Atributes
             if (!IsDead) return;
             ForceDead();
         }
+
+        public void Heal(float healthToRestore)
+        {
+           _health.value = Mathf.Min(_health.value + healthToRestore, _baseStats.GetStat(Stat.Health));
+           UpdateHealthPercentage();
+        }
     }
 }
