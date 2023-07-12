@@ -1,3 +1,4 @@
+using System;
 using GameDevTV.Utils;
 using RPG.Atributes;
 using RPG.Combat;
@@ -11,24 +12,36 @@ namespace RPG.Control
         [SerializeField] private float _chaseDistance = 5f;
         [SerializeField] private float _suspiciousTimer = 3f;
         [SerializeField] private PatrolPath _patrolPath;
+        [SerializeField] private float _aggrevationTime = 5f;
 
         private Fighter _fighter;
         private Mover _mover;
         private PlayerController _player;
-        private Health _attackerHealth;
+        private Health _health;
         private LazyValue<Vector3> _startPosition;
         private float _timeAfterTargetLost = 0;
         private float _waypointTolerance = 1f;
         private int _currentWaypointIndex;
+        private float _timeAfterAggrevated = 0;
 
         private void Awake()
         {
             _fighter = GetComponent<Fighter>();
             _player = FindObjectOfType<PlayerController>();
-            _attackerHealth = GetComponent<Health>();
+            _health = GetComponent<Health>();
             _mover = GetComponent<Mover>();
             _startPosition = new LazyValue<Vector3>(GetStartPosition);
-            _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
+       //     _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
+        }
+
+        private void OnEnable()
+        {
+            _health.Attacked += Aggrevate;
+        }
+
+        private void OnDisable()
+        {
+            _health.Attacked -= Aggrevate;
         }
 
         private Vector3 GetStartPosition()
@@ -36,22 +49,29 @@ namespace RPG.Control
             return transform.position;
         }
 
-        private void Update()
+        private void Aggrevate()
         {
-            if (_attackerHealth.IsDead) return;
-
-            ExecuteAttackLogic();
+            _timeAfterAggrevated = _aggrevationTime;
         }
 
-        private bool CheckChasingDistance()
+        private void Update()
         {
-            bool isInAttackRange = Vector3.Distance(transform.position, _player.transform.position) < _chaseDistance;
-            return isInAttackRange;
+            if (_health.IsDead) return;
+
+            ExecuteAttackLogic();
+            UpdateTimer();
+        }
+
+        private bool IsAggrevated()
+        {   
+            float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+
+            return distanceToPlayer < _chaseDistance || _timeAfterAggrevated <= 0;
         }
 
         private void ExecuteAttackLogic()
         {
-            if (CheckChasingDistance() && _fighter.CanAttack(_player.gameObject))
+            if (IsAggrevated() && _fighter.CanAttack(_player.gameObject))
             {
                 AttackBehaviour();
             }
@@ -63,6 +83,13 @@ namespace RPG.Control
             {
                 PatrolBehaviour();
             }
+        }
+
+        private void UpdateTimer()
+        {
+          //  if (_timeAfterAggrevated < 0) return;
+            
+            _timeAfterAggrevated -= Time.deltaTime;
         }
 
         private void AttackBehaviour()

@@ -21,6 +21,7 @@ namespace RPG.Atributes
 
         public event Action<float, float> HealthChanged;
         public event Action Dead;
+        public event Action Attacked; 
 
         private void Awake()
         {
@@ -74,7 +75,8 @@ namespace RPG.Atributes
             _health.value -= damage;
             CheckDeathState();
             UpdateHealthPercentage();
-
+            Attacked?.Invoke();
+            
             if (IsDead)
             {
                 AwardExperience(instigator);
