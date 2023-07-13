@@ -42,6 +42,7 @@ namespace RPG.UI
         public IEnumerator SavingBeforeQuit()
         {
             Save();
+            Time.timeScale = 1f;
             yield return new WaitForSeconds(1f);
             Application.Quit();
         }

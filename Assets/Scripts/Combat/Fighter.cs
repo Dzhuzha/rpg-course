@@ -20,8 +20,6 @@ namespace RPG.Combat
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
 
-        public event Action HitDealed; 
-
         //[SerializeField] private ProjectTile _arrowPrefab;
         private const string ATTACK_TRIGGER = "Attack";
         private const string STOP_ATTACKING = "StopAttack";

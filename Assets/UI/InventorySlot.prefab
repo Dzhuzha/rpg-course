@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5426526567297516230}
   - component: {fileID: 7219693542115654398}
   - component: {fileID: 3301663451772671570}
+  - component: {fileID: 2437152338481369211}
+  - component: {fileID: 8161528780687305640}
   m_Layer: 0
   m_Name: InventoryItem
   m_TagString: Untagged
@@ -89,6 +91,30 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2437152338481369211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284089456294644087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6188c1f582cafd84793fab1be44dc582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8161528780687305640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284089456294644087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa74932af8ce7b44dae075296a73de88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2492702182538626822
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +126,7 @@ GameObject:
   - component: {fileID: 8481848729709644879}
   - component: {fileID: 1607781447036873284}
   - component: {fileID: 7258106783664965455}
+  - component: {fileID: 5986907831361290828}
   m_Layer: 0
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -166,3 +193,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5986907831361290828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2492702182538626822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8265d53edc93e0408677d48dccb189e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 8161528780687305640}
