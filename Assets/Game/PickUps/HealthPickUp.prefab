@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 3966709996247068324, guid: f43827a711695af41b78facc24f0b6c5,
+        type: 3}
+      propertyPath: _healthToRestore
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f43827a711695af41b78facc24f0b6c5, type: 3}
 --- !u!4 &8384275349253720706 stripped
