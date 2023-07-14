@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 1497100341303293271}
   - component: {fileID: 1497100341303293269}
   - component: {fileID: 1497100341303293270}
+  - component: {fileID: 2253545951228906430}
   m_Layer: 0
   m_Name: TabArea
   m_TagString: Untagged
@@ -412,6 +413,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
+--- !u!114 &2253545951228906430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497100341303293264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1747512a7321c814faf7480657e67163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _content: {fileID: 4559047066126224951}
+  _rectTransform: {fileID: 1497100341303293271}
+  _minColumns: 1
+  _maxColumns: 6
+  _floatExpandValue: 106
+  _rowsCount: 4
+  _minHeight: 220
+  _maxHeight: 730
 --- !u!1 &1497100342085814384
 GameObject:
   m_ObjectHideFlags: 0
