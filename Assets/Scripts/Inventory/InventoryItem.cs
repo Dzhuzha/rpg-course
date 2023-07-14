@@ -21,6 +21,8 @@ namespace RPG.Inventory
         [SerializeField, TextArea] private string _description = String.Empty;
         [Tooltip("The UI icon to represent this item in the inventory.")] 
         [SerializeField] private Sprite _icon = null;
+        [Tooltip("The prefab that should be spawned when this item is dropped.")]
+        [SerializeField] private Pickup _pickup = null;
         [Tooltip("If true, multiple items of this type can be stacked in the same inventory slot.")] 
         [SerializeField] private bool _stackable = false;
         
@@ -57,6 +59,18 @@ namespace RPG.Inventory
             return _itemLookupCache[itemID];
         }
         
+        /// <summary>
+        /// Spawn the pickup game object into the scene.
+        /// </summary>
+        /// <param name="position">Where to spawn the pickup.</param>
+        /// <returns>Reference to pickup object spawned.</returns>
+        public Pickup SpawnPickup(Vector3 position)
+        {
+            Pickup pickup = Instantiate(_pickup, position, Quaternion.identity);
+            pickup.Setup(this);
+            return pickup;
+        }
+        
         void ISerializationCallbackReceiver.OnBeforeSerialize()
         {
             // Generate and save a new UUID if this is blank.
@@ -65,13 +79,13 @@ namespace RPG.Inventory
                 _itemID = Guid.NewGuid().ToString();
             }
             
-            // Test for multiple objects with the same UUID
-            var items = Resources.LoadAll<InventoryItem>(""). //continues below
-                Where(p => p.ItemID == _itemID).ToList();
-            if (items.Count > 1)
-            {
-                _itemID = Guid.NewGuid().ToString();
-            }
+            // // Test for multiple objects with the same UUID
+            // var items = Resources.LoadAll<InventoryItem>(""). //continues below
+            //     Where(p => p.ItemID == _itemID).ToList();
+            // if (items.Count > 1)
+            // {
+            //     _itemID = Guid.NewGuid().ToString();
+            // }
         }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()

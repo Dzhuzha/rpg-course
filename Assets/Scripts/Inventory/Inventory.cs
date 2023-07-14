@@ -53,7 +53,7 @@ namespace RPG.Inventory
             return _slots.Length;
         }
 
-        private bool AddToFirstEmptySlot(InventoryItem item)
+        public bool AddToFirstEmptySlot(InventoryItem item)
         {
             int i = FindSlot(item);
 
@@ -139,8 +139,6 @@ namespace RPG.Inventory
         private void Awake()
         {
             _slots = new InventoryItem[_inventorySize];
-            _slots[0] = InventoryItem.GetFromID("91057185-d1d3-4ad7-92fa-cec8715634e5");
-            _slots[1] = InventoryItem.GetFromID("090bd94a-6554-480f-9329-828ec6074e6e");
         }
 
         /// <summary>
