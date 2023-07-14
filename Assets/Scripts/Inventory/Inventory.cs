@@ -189,7 +189,7 @@ namespace RPG.Inventory
             var slotsStrings = (string[])state;
             for (int i = 0; i < _inventorySize; i++)
             {
-                if (i >= slotsStrings.Length)
+                if (i >= _inventorySize)
                 {
                     Debug.LogWarning("Saved inventory state does not match inventory size.");
                     break;

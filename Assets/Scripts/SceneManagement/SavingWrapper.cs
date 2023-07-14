@@ -54,7 +54,7 @@ namespace RPG.SceneManagement
             _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
         }
 
-        private void Delete()
+        public void Delete()
         {
             _savingSystem.Delete(DEFAULT_SAVE_FILE_NAME);
             Debug.Log("Save file Deleted!");

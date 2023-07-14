@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using RPG.SceneManagement;
 using UnityEngine;
@@ -34,9 +33,19 @@ namespace RPG.UI
             _savingWrapper.Save();
         }
 
-        public void Quit()
+        public void QuitAndSave()
         {
             StartCoroutine(SavingBeforeQuit());
+        }
+
+        public void DeleteSave()
+        {
+            _savingWrapper.Delete();
+        }
+
+        public void QuitWithoutSave()
+        {
+            Application.Quit();  
         }
 
         public IEnumerator SavingBeforeQuit()
