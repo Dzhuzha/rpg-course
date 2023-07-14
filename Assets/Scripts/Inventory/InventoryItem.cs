@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG.Inventory
@@ -60,6 +61,14 @@ namespace RPG.Inventory
         {
             // Generate and save a new UUID if this is blank.
             if (string.IsNullOrWhiteSpace(_itemID))
+            {
+                _itemID = Guid.NewGuid().ToString();
+            }
+            
+            // Test for multiple objects with the same UUID
+            var items = Resources.LoadAll<InventoryItem>(""). //continues below
+                Where(p => p.ItemID == _itemID).ToList();
+            if (items.Count > 1)
             {
                 _itemID = Guid.NewGuid().ToString();
             }

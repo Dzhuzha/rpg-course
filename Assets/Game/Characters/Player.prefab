@@ -156,6 +156,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6011471322681756640, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6011471322909005253, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: m_Height

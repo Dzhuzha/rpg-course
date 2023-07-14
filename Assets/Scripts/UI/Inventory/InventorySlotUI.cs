@@ -10,7 +10,6 @@ namespace RPG.UI.Inventory
 
         // STATE
         private RPG.Inventory.Inventory _inventory;
-        private InventoryItem _item;
         private int _index;
 
         public void Setup(RPG.Inventory.Inventory inventory, int index)
