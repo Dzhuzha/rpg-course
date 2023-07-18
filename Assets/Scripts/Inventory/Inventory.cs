@@ -11,8 +11,7 @@ namespace RPG.Inventory
     public class Inventory : MonoBehaviour, ISaveable
     {
         // CONFIG DATA
-        [Tooltip("Allowed size"), SerializeField]
-        private int _inventorySize = 16;
+        [Tooltip("Allowed size"), SerializeField] private int _inventorySize = 16;
 
         // STATE
         private InventorySlot[] _slots;
@@ -77,7 +76,6 @@ namespace RPG.Inventory
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                //TODO
                 if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return true;
@@ -85,15 +83,6 @@ namespace RPG.Inventory
             }
 
             return false;
-            // foreach (var slot in _slots)
-            // {
-            //     if (slot == item)
-            //     {
-            //         return true;
-            //     }
-            // }
-            //
-            // return false;
         }
 
         /// <summary>
@@ -138,16 +127,23 @@ namespace RPG.Inventory
         /// If there is already a stack of this type in the slot,
         /// it will add to that stack. Otherwise, it will try to add to the first empty slot.
         /// </summary>
-        /// <param name="slot"></param>
-        /// <param name="item"></param>
+        /// <param name="slot">The slot to attempt to add to.</param>
+        /// <param name="item">The item type to add.</param>
+        /// <param name="count">The number of items to add.</param>
         /// <returns>True if the item was added anywhere in the inventory</returns>
         public bool AddItemToSlot(int slot, InventoryItem item, int count)
         {
             if (_slots[slot].Item != null)
             {
-                return AddToFirstEmptySlot(item, 1);
+                return AddToFirstEmptySlot(item, count);
             }
-            
+
+            int index = FindStack(item); 
+            if (index >= 0)
+            {
+                slot = index;
+            }
+
             _slots[slot].Item = item;
             _slots[slot].Quantity += count;
             InventoryUpdated?.Invoke();
@@ -168,7 +164,42 @@ namespace RPG.Inventory
         /// <returns></returns>
         private int FindSlot(InventoryItem item)
         {
-            return FindEmptySlot();
+            int index = FindStack(item);
+
+            if (index < 0)
+            {
+                index = FindEmptySlot();
+            }
+            
+            return index;
+        }
+
+        
+        /// <summary>
+        /// Searching for a stack of items with the same type and id.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>-1 if no stack exists or item is not stackable</returns>
+        private int FindStack(InventoryItem item)
+        {
+            if (!item.IsStackable) return -1;
+
+            for (int i = 0; i < _slots.Length; i++)
+            {
+                // if (_slots[i].Item == null) continue;
+                //
+                // if (_slots[i].Item.ItemID == item.ItemID)
+                // {
+                //     return i;
+                // }
+
+                if (ReferenceEquals(_slots[i].Item, item))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         /// <summary>
@@ -190,12 +221,13 @@ namespace RPG.Inventory
         
         object ISaveable.CaptureState()
         {
-            var slotsStrings = new string[_inventorySize];
+            InventorySlotRecord[] slotsStrings = new InventorySlotRecord[_inventorySize];
             for (int i = 0; i < _inventorySize; i++)
             {
                 if (_slots[i].Item != null)
                 {
-                    slotsStrings[i] = _slots[i].Item.ItemID;
+                    slotsStrings[i].ItemId = _slots[i].Item.ItemID;
+                    slotsStrings[i].Quantity = _slots[i].Quantity;
                 }
             }
 
@@ -204,7 +236,7 @@ namespace RPG.Inventory
 
         void ISaveable.RestoreState(object state)
         {
-            var slotsStrings = (string[])state;
+            InventorySlotRecord[] slotsStrings = (InventorySlotRecord[])state;
             for (int i = 0; i < _inventorySize; i++)
             {
                 if (i >= _inventorySize)
@@ -213,13 +245,21 @@ namespace RPG.Inventory
                     break;
                 }
                 
-                _slots[i].Item = InventoryItem.GetFromID(slotsStrings[i]);
+                _slots[i].Item = InventoryItem.GetFromID(slotsStrings[i].ItemId);
+                _slots[i].Quantity = slotsStrings[i].Quantity;
             }
 
             InventoryUpdated?.Invoke();
         }
 
-        public struct InventorySlot
+        [Serializable]
+        private struct InventorySlotRecord
+        {
+            public string ItemId;
+            public int Quantity;
+        }
+
+        private struct InventorySlot
         {
             public InventoryItem Item;
             public int Quantity;

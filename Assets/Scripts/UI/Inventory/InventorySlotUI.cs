@@ -30,7 +30,6 @@ namespace RPG.UI.Inventory
 
         public void AddItems(InventoryItem item, int number)
         {
-            //TODO
             _inventory.AddItemToSlot(_index, item, number);
         }
 
@@ -41,7 +40,7 @@ namespace RPG.UI.Inventory
 
         public int GetNumber()
         {
-            return 1;
+            return _inventory.GetItemCountInSlot(_index);
         }
 
         public void RemoveItems(int count)

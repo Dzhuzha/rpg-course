@@ -3,30 +3,24 @@ using UnityEngine;
 namespace RPG.Inventory
 {
     /// <summary>
-    /// To be placed at the toor of a Pickup prefab. Contains the data about the
+    /// To be placed at the root of a Pickup prefab. Contains the data about the
     /// pickup such as the type of item and the number.
     /// </summary>
     public class Pickup : MonoBehaviour
     {
-        // STATE
-        InventoryItem _item;
-        int _count = 1;
-        
+        private InventoryItem _item;
+        private Inventory _inventory;
+        private int _count = 1;
+
         public InventoryItem Item => _item;
-
-        // CACHED REFERENCE
-        Inventory _inventory;
-
-        // LIFECYCLE METHODS
+        public int Count => _count;
 
         private void Awake()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
             _inventory = player.GetComponent<Inventory>();
         }
-        
-        // PUBLIC
-        
+
         /// <summary>
         /// Set the vital data after creating the prefab
         /// </summary>

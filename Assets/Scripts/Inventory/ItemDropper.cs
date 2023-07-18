@@ -66,7 +66,7 @@ namespace RPG.Inventory
             {
                 droppedItemsList[i].ItemId = _droppedItems[i].Item.ItemID;
                 droppedItemsList[i].Position = new SerializableVector3(_droppedItems[i].transform.position);
-                //TODO
+                droppedItemsList[i].Count = _droppedItems[i].Count;
             }
 
             return droppedItemsList;
@@ -79,8 +79,8 @@ namespace RPG.Inventory
             {
                 var pickup = InventoryItem.GetFromID(item.ItemId);
                 Vector3 position = item.Position.ToVector();
-                //TODO
-                SpawnPickup(pickup, 1, position); 
+                int count = item.Count;
+                SpawnPickup(pickup, count, position); 
             }
         }
 
@@ -89,6 +89,7 @@ namespace RPG.Inventory
         {
             public string ItemId;
             public SerializableVector3 Position;
+            public int Count;
         }
     }
 }
