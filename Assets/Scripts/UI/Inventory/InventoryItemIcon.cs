@@ -1,4 +1,5 @@
 using RPG.Inventory;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,13 @@ namespace RPG.UI.Inventory
     [RequireComponent(typeof(Image))]
     public class InventoryItemIcon : MonoBehaviour
     {
-        public void SetItem(InventoryItem item)
+        [SerializeField] private GameObject _quantityTextContainer;
+        [SerializeField] private TMP_Text _quantity;
+
+        public void SetItem(InventoryItem item, int count)
         {
             var iconImage = GetComponent<Image>();
-           
+
             if (item == null)
             {
                 iconImage.enabled = false;
@@ -23,16 +27,17 @@ namespace RPG.UI.Inventory
             {
                 iconImage.sprite = item.Icon;
                 iconImage.enabled = true;
-            }
-        }
 
-        public Sprite GetItem()
-        {
-           var iconImage = GetComponent<Image>();
-           
-           if (iconImage.enabled == false) return null;
-           
-           return iconImage.sprite;
+                if (item.IsStackable)
+                {
+                    _quantityTextContainer.SetActive(true);
+                    _quantity.text = count.ToString();
+                }
+                else
+                {
+                    _quantityTextContainer.SetActive(false);
+                }
+            }
         }
     }
 }

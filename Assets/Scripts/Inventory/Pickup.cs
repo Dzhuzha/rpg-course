@@ -10,6 +10,7 @@ namespace RPG.Inventory
     {
         // STATE
         InventoryItem _item;
+        int _count = 1;
         
         public InventoryItem Item => _item;
 
@@ -30,14 +31,15 @@ namespace RPG.Inventory
         /// Set the vital data after creating the prefab
         /// </summary>
         /// <param name="item">The type of item this prefab represents.</param>
-        public void Setup(InventoryItem item)
+        public void Setup(InventoryItem item, int itemCount)
         {
             _item = item;
+            _count = itemCount;
         }
         
         public void PickupItem()
         {
-            bool foundSlot = _inventory.AddToFirstEmptySlot(_item);
+            bool foundSlot = _inventory.AddToFirstEmptySlot(_item, _count);
             if (foundSlot)
             {
                 Destroy(gameObject);

@@ -15,7 +15,7 @@ namespace RPG.Inventory
         private int _inventorySize = 16;
 
         // STATE
-        private InventoryItem[] _slots;
+        private InventorySlot[] _slots;
 
         // PUBLIC
 
@@ -53,7 +53,7 @@ namespace RPG.Inventory
             return _slots.Length;
         }
 
-        public bool AddToFirstEmptySlot(InventoryItem item)
+        public bool AddToFirstEmptySlot(InventoryItem item, int itemCount)
         {
             int i = FindSlot(item);
 
@@ -61,8 +61,9 @@ namespace RPG.Inventory
             {
                 return false;
             }
-
-            _slots[i] = item;
+            
+            _slots[i].Item = item;
+            _slots[i].Quantity += itemCount;
             InventoryUpdated?.Invoke();
             return true;
         }
@@ -76,7 +77,8 @@ namespace RPG.Inventory
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (ReferenceEquals(_slots[i], item))
+                //TODO
+                if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return true;
                 }
@@ -101,16 +103,33 @@ namespace RPG.Inventory
         /// <returns></returns>
         public InventoryItem GetItemInSlot(int slot)
         {
-            return _slots[slot];
+            return _slots[slot].Item;
+        }
+
+        /// <summary>
+        /// Get the number of items in given slot.
+        /// </summary>
+        /// <param name="slot"></param>
+        /// <returns></returns>
+        public int GetItemCountInSlot(int slot)
+        {
+            return _slots[slot].Quantity;
         }
 
         /// <summary>
         /// Remove the item from the given slot.
         /// </summary>
         /// <param name="slot"></param>
-        public void RemoveFromSlot(int slot)
+        public void RemoveFromSlot(int slot, int count)
         {
-            _slots[slot] = null;
+            _slots[slot].Quantity -= count;
+
+            if (_slots[slot].Quantity <= 0)
+            {
+                _slots[slot].Quantity = 0;
+                _slots[slot].Item = null;
+            }
+            
             InventoryUpdated?.Invoke();
         }
 
@@ -122,14 +141,15 @@ namespace RPG.Inventory
         /// <param name="slot"></param>
         /// <param name="item"></param>
         /// <returns>True if the item was added anywhere in the inventory</returns>
-        public bool AddItemToSlot(int slot, InventoryItem item)
+        public bool AddItemToSlot(int slot, InventoryItem item, int count)
         {
-            if (_slots[slot] != null)
+            if (_slots[slot].Item != null)
             {
-                return AddToFirstEmptySlot(item);
+                return AddToFirstEmptySlot(item, 1);
             }
-
-            _slots[slot] = item;
+            
+            _slots[slot].Item = item;
+            _slots[slot].Quantity += count;
             InventoryUpdated?.Invoke();
             return true;
         }
@@ -138,7 +158,7 @@ namespace RPG.Inventory
 
         private void Awake()
         {
-            _slots = new InventoryItem[_inventorySize];
+            _slots = new InventorySlot[_inventorySize];
         }
 
         /// <summary>
@@ -159,7 +179,7 @@ namespace RPG.Inventory
         {
             for (int i = 0; i < _slots.Length; i++)
             {
-                if (_slots[i] == null)
+                if (_slots[i].Item == null)
                 {
                     return i;
                 }
@@ -173,9 +193,9 @@ namespace RPG.Inventory
             var slotsStrings = new string[_inventorySize];
             for (int i = 0; i < _inventorySize; i++)
             {
-                if (_slots[i] != null)
+                if (_slots[i].Item != null)
                 {
-                    slotsStrings[i] = _slots[i].ItemID;
+                    slotsStrings[i] = _slots[i].Item.ItemID;
                 }
             }
 
@@ -193,10 +213,16 @@ namespace RPG.Inventory
                     break;
                 }
                 
-                _slots[i] = InventoryItem.GetFromID(slotsStrings[i]);
+                _slots[i].Item = InventoryItem.GetFromID(slotsStrings[i]);
             }
 
             InventoryUpdated?.Invoke();
+        }
+
+        public struct InventorySlot
+        {
+            public InventoryItem Item;
+            public int Quantity;
         }
     }
 }

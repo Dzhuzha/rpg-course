@@ -11,6 +11,7 @@ namespace RPG.Inventory
     {
         // CONFIG DATA
         [SerializeField] InventoryItem _item;
+        [SerializeField] private int _itemCount = 1;
 
         private void Awake()
         {
@@ -41,7 +42,7 @@ namespace RPG.Inventory
         // PRIVATE
         private void SpawnPickup()
         {
-            var spawnedPickup = _item.SpawnPickup(transform.position);
+            var spawnedPickup = _item.SpawnPickup(transform.position, _itemCount);
             spawnedPickup.transform.SetParent(transform);
         }
 

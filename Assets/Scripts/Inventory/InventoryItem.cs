@@ -64,10 +64,10 @@ namespace RPG.Inventory
         /// </summary>
         /// <param name="position">Where to spawn the pickup.</param>
         /// <returns>Reference to pickup object spawned.</returns>
-        public Pickup SpawnPickup(Vector3 position)
+        public Pickup SpawnPickup(Vector3 position, int count)
         {
             Pickup pickup = Instantiate(_pickup, position, Quaternion.identity);
-            pickup.Setup(this);
+            pickup.Setup(this, count);
             return pickup;
         }
         
