@@ -17,7 +17,7 @@ public class ExpandableScrollView : MonoBehaviour
     }
 
     /// <summary>
-    ///   This method is used to expand the scroll view based on the number of elements in the content.
+    /// This method is used to expand the scroll view based on the number of elements in the content.
     /// </summary>
     /// <param name="elementsCount"></param>
     private void ExpandScrollView()

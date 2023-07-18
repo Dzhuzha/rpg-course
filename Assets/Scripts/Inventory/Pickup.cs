@@ -10,6 +10,8 @@ namespace RPG.Inventory
     {
         // STATE
         InventoryItem _item;
+        
+        public InventoryItem Item => _item;
 
         // CACHED REFERENCE
         Inventory _inventory;
