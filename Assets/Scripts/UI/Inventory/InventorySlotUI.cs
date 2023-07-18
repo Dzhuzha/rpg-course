@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace RPG.UI.Inventory
 {
-    public class InventorySlotUI : MonoBehaviour, IDragContainer<InventoryItem>
+    public class InventorySlotUI : MonoBehaviour, IDragContainer<InventoryItem>, IItemHolder
     {
         [SerializeField] InventoryItemIcon _icon;
-
-        // STATE
+        
         private RPG.Inventory.Inventory _inventory;
         private int _index;
 
