@@ -4,8 +4,9 @@ namespace RPG.UI
 {
     public class ShowHideUI : MonoBehaviour
     {
-        [SerializeField] KeyCode _toggleKey = KeyCode.Escape;
-        [SerializeField] GameObject _uiContainer;
+        [SerializeField] private KeyCode _toggleKey = KeyCode.Escape;
+        [SerializeField] private GameObject _uiContainer;
+        [SerializeField] private GameObject _hudContainer;
 
         private void Start()
         {
@@ -17,6 +18,7 @@ namespace RPG.UI
             if (Input.GetKeyDown(_toggleKey))
             {
                 _uiContainer.SetActive(!_uiContainer.activeSelf);
+                _hudContainer.SetActive(!_uiContainer.activeSelf);
             }
         }
     }
