@@ -15,6 +15,12 @@ namespace RPG.UI.Inventory
         [SerializeField] private GameObject _quantityTextContainer;
         [SerializeField] private TMP_Text _quantity;
 
+        public void SetItem(InventoryItem item)
+        {
+            //TODO: Check why 0 is a value here
+            SetItem(item, 0);
+        }
+        
         public void SetItem(InventoryItem item, int count)
         {
             var iconImage = GetComponent<Image>();

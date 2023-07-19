@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ced31302d80704c90f980a092f1d21, type: 3}
+  m_Script: {fileID: 11500000, guid: 76d6628669116fd419fc2bf65c148146, type: 3}
   m_Name: Chest
   m_EditorClassIdentifier: 
   _itemID: 979af61b-69b4-4ef6-b540-ed09312c079d
@@ -18,3 +18,4 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
   _pickup: {fileID: 6832080362447836891, guid: 6f0869a347480624195c64c10a871dde, type: 3}
   _stackable: 1
+  _allowedEquipLocation: 1
