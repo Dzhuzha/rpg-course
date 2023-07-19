@@ -17,8 +17,7 @@ namespace RPG.UI.Inventory
 
         public void SetItem(InventoryItem item)
         {
-            //TODO: Check why 0 is a value here
-            SetItem(item, 0);
+            SetItem(item, 1);
         }
         
         public void SetItem(InventoryItem item, int count)
@@ -34,6 +33,7 @@ namespace RPG.UI.Inventory
                 iconImage.sprite = item.Icon;
                 iconImage.enabled = true;
 
+                if (_quantityTextContainer == null) return; 
                 if (item.IsStackable)
                 {
                     _quantityTextContainer.SetActive(true);

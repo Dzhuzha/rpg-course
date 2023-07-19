@@ -681,6 +681,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 310150898942024971, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 425848762062669737, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -904,8 +909,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: -158.99954
       objectReference: {fileID: 0}
     - target: {fileID: 1785414835889216637, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
@@ -1327,6 +1337,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4929928690779456755, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: _hudContainer
+      value: 
+      objectReference: {fileID: 8102883937375283127}
     - target: {fileID: 5430085968179170002, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1784,3 +1799,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905fe7ebf0b854146b668cfbe2dbae13, type: 3}
+--- !u!1 &8102883937375283127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 575738059479672644, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+    type: 3}
+  m_PrefabInstance: {fileID: 8102883937375283126}
+  m_PrefabAsset: {fileID: 0}

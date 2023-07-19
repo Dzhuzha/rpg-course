@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d6628669116fd419fc2bf65c148146, type: 3}
+  m_Name: Pants
+  m_EditorClassIdentifier: 
+  _itemID: 40b3582a-897d-414e-b632-d951c7397e1c
+  _displayName: Courage warrior wet pants
+  _description: Everyone can be afraid, but not everyone can get out of an embarrassing
+    situation with dignity
+  _icon: {fileID: 21300000, guid: 4e75d1909c6fd8844a31ebef4c5e3972, type: 3}
+  _pickup: {fileID: 6832080362447836891, guid: ec23663e89ab1504aa5ccef0edfc3580, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 3

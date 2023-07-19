@@ -19,17 +19,12 @@ namespace RPG.Inventory
         
         public EquipableItem GetItemInSlot(EquipLocation equipLocation)
         {
-            if (!_equippedItems.ContainsKey(equipLocation)) return null;
-            
-            return _equippedItems[equipLocation];
-
-           // return _equippedItems.ContainsKey(equipLocation) ? _equippedItems[equipLocation] : null;
+           return _equippedItems.ContainsKey(equipLocation) ? _equippedItems[equipLocation] : null;
         }
 
         public void AddItem(EquipLocation slot, EquipableItem item)
         {
-            Debug.Assert(item.AllowedEquipLocation == slot);
-
+            //Debug.Assert(item.AllowedEquipLocation == slot);
             _equippedItems[slot] = item;
             EquipmentUpdated?.Invoke();
         }

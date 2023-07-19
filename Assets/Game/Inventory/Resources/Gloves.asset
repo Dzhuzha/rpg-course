@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d6628669116fd419fc2bf65c148146, type: 3}
+  m_Name: Gloves
+  m_EditorClassIdentifier: 
+  _itemID: 4576704d-1dcf-4a22-b8ed-5c36bd74c5e5
+  _displayName: Sticky gloves
+  _description: '"I don''t know how your property appear in my hands..."'
+  _icon: {fileID: 21300000, guid: f8078c2bb5ee88d4a9472f76e501e0f3, type: 3}
+  _pickup: {fileID: 6832080362447836891, guid: ec23663e89ab1504aa5ccef0edfc3580, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 2
