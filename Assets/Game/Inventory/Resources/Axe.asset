@@ -16,6 +16,6 @@ MonoBehaviour:
   _displayName: Dwarf axe
   _description: Axe forged by one and half dwarf
   _icon: {fileID: 21300000, guid: 719c2201c2f5f6c4aafffaeb5abdf5f9, type: 3}
-  _pickup: {fileID: 6832080362447836891, guid: 6f0869a347480624195c64c10a871dde, type: 3}
+  _pickup: {fileID: 6832080362447836891, guid: ec23663e89ab1504aa5ccef0edfc3580, type: 3}
   _stackable: 0
   _allowedEquipLocation: 6

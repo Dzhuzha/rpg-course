@@ -123,6 +123,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2241506986824572708, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: _meleeDamage
