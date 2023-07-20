@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3134134464729705773}
   - component: {fileID: 1682114851434997023}
-  - component: {fileID: 2257238761938253700}
   - component: {fileID: 8461933005145001408}
+  - component: {fileID: 5821059267573653872}
+  - component: {fileID: 2737592038575342135}
   m_Layer: 0
   m_Name: BowPickup
   m_TagString: Untagged
@@ -48,19 +49,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0.75}
---- !u!114 &2257238761938253700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420363022546549787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6e345b87e845c4e8874b44e9f2bb77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 743687fd570301c419b669d87db6d7ad, type: 2}
 --- !u!54 &8461933005145001408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +65,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5821059267573653872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420363022546549787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58eeaea428147ac4c99dc53bd058db25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2737592038575342135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420363022546549787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03173965918d141aafe0cebc8a125b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3563515459043697954
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Atributes;
+using RPG.Inventory;
 using RPG.Movement;
 using RPG.Saving;
 using RPG.Stats;
@@ -18,7 +20,8 @@ namespace RPG.Combat
         [SerializeField] private Transform _leftHandTransform = null;
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
-
+        [SerializeField] private Equipment _equipment;
+        
         //[SerializeField] private ProjectTile _arrowPrefab;
         private const string ATTACK_TRIGGER = "Attack";
         private const string STOP_ATTACKING = "StopAttack";
@@ -36,9 +39,21 @@ namespace RPG.Combat
             _currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
         }
 
+        private void OnEnable()
+        {
+            if (_equipment == null) return;
+            _equipment.EquipmentUpdated += UpdateWeapon;
+        }
+
         private void Start()
         {
             _currentWeapon.ForceInit();
+        }
+
+        private void OnDisable()
+        {
+            if (_equipment == null) return;
+            _equipment.EquipmentUpdated -= UpdateWeapon;
         }
 
         private void Update()
@@ -56,6 +71,20 @@ namespace RPG.Combat
                 _mover.CancelAction();
                 AttackBehaviour();
             }
+        }
+
+        private void UpdateWeapon()
+        {
+            EquipableItem weaponToEquip = _equipment.GetItemInSlot(EquipLocation.MainHand); 
+            var weaponConfig = weaponToEquip as WeaponConfig;
+           
+            if (weaponConfig == null)
+            {
+                EquipWeapon(_defaultWeapon);
+                return;
+            }
+
+            EquipWeapon(weaponConfig);
         }
 
         private Weapon SetupDefaultWeapon()

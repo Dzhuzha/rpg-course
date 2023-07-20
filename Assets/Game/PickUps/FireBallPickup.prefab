@@ -109,20 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4fbd7b04d737147ab4f59e5329d925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipedWeapon: {fileID: 0}
---- !u!114 &290129259606005611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3006420161987283284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6e345b87e845c4e8874b44e9f2bb77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 1cadd2ff258c85a4b9e4ee8c6c3b7768, type: 2}
+  _equippedWeapon: {fileID: 11400000, guid: 1cadd2ff258c85a4b9e4ee8c6c3b7768, type: 2}
+  _audioSource: {fileID: 0}
 --- !u!1001 &3133912149320477866
 PrefabInstance:
   m_ObjectHideFlags: 0

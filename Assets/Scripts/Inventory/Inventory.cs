@@ -182,7 +182,7 @@ namespace RPG.Inventory
         /// <returns>-1 if no stack exists or item is not stackable</returns>
         private int FindStack(InventoryItem item)
         {
-            if (!item.IsStackable) return -1;
+            if (item == null || !item.IsStackable) return -1;
 
             for (int i = 0; i < _slots.Length; i++)
             {

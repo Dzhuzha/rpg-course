@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
+  _itemID: 6aff4717-677d-462d-b76d-10da27b2c949
+  _displayName: Elven bow
+  _description: My ears growth and become sharp
+  _icon: {fileID: 21300000, guid: 8f908a0041a1aee4c8b02d9449ebd224, type: 3}
+  _pickup: {fileID: 5821059267573653872, guid: 21f74554b41d2e042b4b819a782a829c, type: 3}
+  _stackable: 0
+  _allowedEquipLocation: 6
   _weaponPrefab: {fileID: 4990439316041379786, guid: edeeafb3e15adac419bb19fbb94e434e,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: d6247f0e3e3f79d4882decd62d780fe0, type: 2}

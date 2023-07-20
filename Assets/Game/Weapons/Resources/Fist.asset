@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603115a6199e9ca40ad22c4aab6b1ec7, type: 3}
   m_Name: Fist
   m_EditorClassIdentifier: 
+  _itemID: cc8047c8-b2d8-43b4-9ef5-84c9418fee12
+  _displayName: Fists
+  _description: Let's get ready to rumble!
+  _icon: {fileID: 21300000, guid: 88f4bdad502a13449abc596e59f840e1, type: 3}
+  _pickup: {fileID: 0}
+  _stackable: 0
+  _allowedEquipLocation: 6
   _weaponPrefab: {fileID: -8151949297705501325, guid: 85cfb3f6a06012549998d8362967906f,
     type: 3}
   _animatorOverride: {fileID: 22100000, guid: af0eca75df08d424ea35b6d1b98b1ca2, type: 2}

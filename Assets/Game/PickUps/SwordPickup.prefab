@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 225577699490116621}
   - component: {fileID: 4541833511080787007}
-  - component: {fileID: 3966709996247068324}
   - component: {fileID: 6715170734752928992}
+  - component: {fileID: 6909993354257472396}
+  - component: {fileID: 8250927812214232165}
   m_Layer: 0
   m_Name: SwordPickup
   m_TagString: Untagged
@@ -48,19 +49,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0.5, y: 0, z: -0.5}
---- !u!114 &3966709996247068324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3281623266330338619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed6e345b87e845c4e8874b44e9f2bb77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _config: {fileID: 11400000, guid: 415ef48d9d8d02645adc77c4c722b8c0, type: 2}
 --- !u!54 &6715170734752928992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +65,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6909993354257472396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281623266330338619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58eeaea428147ac4c99dc53bd058db25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8250927812214232165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281623266330338619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03173965918d141aafe0cebc8a125b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5669037958162493720
 PrefabInstance:
   m_ObjectHideFlags: 0
