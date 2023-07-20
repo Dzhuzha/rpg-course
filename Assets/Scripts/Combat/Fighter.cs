@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GameDevTV.Utils;
+﻿using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Atributes;
 using RPG.Inventory;
@@ -11,7 +9,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : ActionScheduler, IAction, ISaveable, IModifierProvider
+    public class Fighter : ActionScheduler, IAction, ISaveable
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _scheduler;
@@ -186,22 +184,6 @@ namespace RPG.Combat
         {
             _animator.ResetTrigger(ATTACK_TRIGGER);
             _animator.SetTrigger(STOP_ATTACKING);
-        }
-
-        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return _currentWeaponConfig.Damage;
-            }
-        }
-
-        public IEnumerable<float> GetPercentageModifiers(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return _currentWeaponConfig.BonusPercent;
-            }
         }
 
         private void Shoot() //Animation event

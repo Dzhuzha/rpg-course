@@ -4,6 +4,7 @@ using RPG.Stats;
 using RPG.Saving;
 using UnityEngine;
 using RPG.Core;
+using RPG.Inventory;
 using RPG.UI.DamageText;
 
 namespace RPG.Atributes
@@ -12,6 +13,7 @@ namespace RPG.Atributes
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private DamageTextSpawner _damageTextSpawner;
+        [SerializeField] private Equipment _equipment;
         
         private LazyValue<float> _health;
         private ActionScheduler _actionScheduler;
@@ -54,11 +56,17 @@ namespace RPG.Atributes
         private void Subscribe()
         {
             _baseStats.LevelChanged += UpdateHealth;
+
+            if (_equipment == null) return;
+            _equipment.EquipmentUpdated += UpdateHealthPercentage;
         }
 
         private void UnSubscribe()
         {
             _baseStats.LevelChanged -= UpdateHealth;
+            
+            if (_equipment == null) return;
+            _equipment.EquipmentUpdated += UpdateHealthPercentage;
         }
 
         private void UpdateHealth(int level)

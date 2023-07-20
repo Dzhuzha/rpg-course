@@ -34,6 +34,11 @@ namespace RPG.Inventory
             _equippedItems.Remove(slot);
             EquipmentUpdated?.Invoke();
         }
+        
+        public IEnumerable<EquipLocation> GetAllEquippedItems()
+        {
+            return _equippedItems.Keys;
+        }
 
         object ISaveable.CaptureState()
         {

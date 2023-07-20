@@ -13,7 +13,7 @@ namespace RPG.SoundManagement
         [SerializeField] private List<AudioClip> _healedAudioCLips;
 
         private float _previousHealthValue;
-        
+
         private void OnEnable()
         {
             _health.HealthChanged += PlayDamagedSFX;
@@ -29,17 +29,19 @@ namespace RPG.SoundManagement
         private void PlayDamagedSFX(float newHPValue, float fullHPValue)
         {
             if (_damagedAudioClips == null || _damagedAudioClips.Count == 0 || _audioSource.isPlaying) return;
-            if (newHPValue < fullHPValue && newHPValue > _previousHealthValue)
-            {
-                _audioSource.PlayOneShot(_healedAudioCLips[Random.Range(0, _healedAudioCLips.Count)]);
-            }
-            else
+
+            if (newHPValue < _previousHealthValue)
             {
                 _audioSource.PlayOneShot(_damagedAudioClips[Random.Range(0, _damagedAudioClips.Count)]);
             }
+            if (newHPValue > _previousHealthValue)
+            {
+                _audioSource.PlayOneShot(_healedAudioCLips[Random.Range(0, _healedAudioCLips.Count)]);
+            }
+
             _previousHealthValue = newHPValue;
         }
-        
+
         private void PlayDeadSFX()
         {
             if (_deadAudioClips == null || _deadAudioClips.Count == 0) return;
@@ -50,7 +52,6 @@ namespace RPG.SoundManagement
         private void PlayHealedSFX()
         {
             if (_healedAudioCLips == null || _healedAudioCLips.Count == 0) return;
-            
         }
     }
 }
