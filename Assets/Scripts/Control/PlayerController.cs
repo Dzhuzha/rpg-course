@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RPG.Atributes;
 using RPG.Combat;
 using RPG.Inventory;
@@ -17,8 +18,19 @@ namespace RPG.Control
         [SerializeField] private float _maxNavMeshProjectionDistance = 1f;
         [SerializeField] private EnemyHealthDisplay _enemyHealthDisplay;
         [NonReorderable, SerializeField] private CursorMapping[] _cursorMappings;
+        [SerializeField] private ActionStore _actionStore;
         
         private Health _attackerHealth;
+
+        private List<KeyCode> _specialAbilityKeys = new List<KeyCode>
+        {
+            KeyCode.Alpha1,
+            KeyCode.Alpha2,
+            KeyCode.Alpha3,
+            KeyCode.Alpha4,
+            KeyCode.Alpha5,
+            KeyCode.Alpha6
+        };
 
         [Serializable]
         struct CursorMapping
@@ -35,6 +47,8 @@ namespace RPG.Control
         
         private void Update()
         {
+            CheckSpecialAbilityKeys();
+
             if (InteractWithUI())return;
 
             if (_attackerHealth.IsDead)
@@ -47,6 +61,17 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
             
             SetCursor(CursorType.None);
+        }
+
+        private void CheckSpecialAbilityKeys()
+        {
+            foreach (var keyCode in _specialAbilityKeys)
+            {
+                if (Input.GetKeyDown(keyCode))
+                {
+                    _actionStore.Use(_specialAbilityKeys.IndexOf(keyCode), gameObject);
+                }
+            }
         }
 
         private bool InteractWithComponent()

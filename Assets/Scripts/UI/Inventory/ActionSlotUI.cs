@@ -32,11 +32,6 @@ namespace RPG.UI.Inventory
             return _actionStore.GetAction(_index);
         }
 
-        // InventoryItem IItemHolder.GetItem()
-        // {
-        //     return _actionStore.GetAction(_index);
-        // }
-
         public int GetNumber()
         {
            return _actionStore.GetNumber(_index);
@@ -56,10 +51,5 @@ namespace RPG.UI.Inventory
         {
             _actionStore.AddAction(item, _index, number);
         }
-
-        // InventoryItem IDragSource<InventoryItem>.GetItem()
-        // {
-        //     throw new NotImplementedException();
-        // }
     }
 }

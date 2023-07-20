@@ -9,8 +9,7 @@ namespace RPG.Inventory
     /// A scriptable object representing any item that can be put in inventory.
     /// In practice, likely to use a subclass such as `ActionItem` or EquipableItem.
     /// </summary>
-    [CreateAssetMenu(fileName = "InventoryItem", menuName = "Inventory/InventoryItem", order = 51)]
-    public class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
+    public abstract class InventoryItem : ScriptableObject, ISerializationCallbackReceiver
     {
         // CONFIG DATA
         [Tooltip("Unique ID for each item. Clear this field to generate a new ID.")] 

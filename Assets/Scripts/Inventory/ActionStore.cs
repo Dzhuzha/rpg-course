@@ -78,6 +78,23 @@ namespace RPG.Inventory
             StoreUpdated?.Invoke();
         }
 
+        public bool Use(int index, GameObject user)
+        {
+            if (_dockedItems.ContainsKey(index))
+            {
+                _dockedItems[index].Item.Use(user);
+                if (_dockedItems[index].Item.IsConsumable)
+                {
+                    RemoveActions(index, 1);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+        
+
         public int MaxAcceptable(InventoryItem item, int index)
         {
             var actionItem = item as ActionItem;
