@@ -21,6 +21,7 @@ namespace RPG.Control
         [SerializeField] private ActionStore _actionStore;
         
         private Health _attackerHealth;
+        private bool _isDraggingUI;
 
         private List<KeyCode> _specialAbilityKeys = new List<KeyCode>
         {
@@ -48,9 +49,10 @@ namespace RPG.Control
         private void Update()
         {
             CheckSpecialAbilityKeys();
-
-            if (InteractWithUI())return;
-
+            
+            if (InteractWithUI()) return;
+            if (_isDraggingUI) return;
+            
             if (_attackerHealth.IsDead)
             {
                 SetCursor(CursorType.None);
@@ -65,6 +67,8 @@ namespace RPG.Control
 
         private void CheckSpecialAbilityKeys()
         {
+            if (_isDraggingUI) return;
+
             foreach (var keyCode in _specialAbilityKeys)
             {
                 if (Input.GetKeyDown(keyCode))
@@ -110,10 +114,22 @@ namespace RPG.Control
 
         private bool InteractWithUI()
         {
-            if (!EventSystem.current.IsPointerOverGameObject()) return false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                _isDraggingUI = false;
+            }
+
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _isDraggingUI = true;
+                }
+                SetCursor(CursorType.UI);
+                return true;
+            }
             
-            SetCursor(CursorType.UI);
-            return true;
+            return false;
         }
 
         public void StartTrackingTargetHealth(Health targetHealth)
