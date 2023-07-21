@@ -11,10 +11,7 @@ namespace RPG.Inventory
         [Tooltip("How far can the pickups be scattered from the dropper."), SerializeField]
         private float _distance = 1f;
 
-        //[SerializeField] private InventoryItem[] _dropLibrary;
         [SerializeField] private DropLibrary _dropLibrary;
-        [SerializeField] private int _dropItemsQuantity = 3;
-        [SerializeField] private int _stackableItemRange = 10;
         [SerializeField] private Health _health;
 
         private const int ATTEMPTS = 30;
@@ -38,7 +35,7 @@ namespace RPG.Inventory
         private void DropRandom()
         {
             var baseStats = GetComponent<BaseStats>();
-            int dropperLevel = (int)baseStats.CurrentLevel.value;
+            int dropperLevel = baseStats.CurrentLevel.value;
             var drops = _dropLibrary.GetRandomDrops(dropperLevel);
 
             foreach (var drop in drops)
@@ -46,24 +43,6 @@ namespace RPG.Inventory
                 DropItem(drop.Item, drop.Quantity);
             }
         }
-
-        // private void DropRandom()
-        // {
-        //     int dropQuantity = Random.Range(1, _dropItemsQuantity);
-        //     int stackQuantity = 1;
-        //     
-        //     for (int i = 0; i < dropQuantity; i++)
-        //     {
-        //         int itemIndex = Random.Range(0, _dropLibrary.Length);
-        //
-        //         if (_dropLibrary[itemIndex].IsStackable)
-        //         {
-        //             stackQuantity = Random.Range(1, _stackableItemRange);
-        //         }
-        //         
-        //         DropItem(_dropLibrary[itemIndex], stackQuantity);
-        //     }
-        // }
 
         protected override Vector3 GetDropLocation()
         {
