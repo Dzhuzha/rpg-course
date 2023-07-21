@@ -55,8 +55,6 @@ namespace RPG.Inventory
                 slot.Item = item as ActionItem;
                 slot.Number = number;
                 _dockedItems[index] = slot;
-                // _dockedItems[index].Item = (ActionItem) item;
-                // _dockedItems[index].Number = number;
             }
 
             StoreUpdated?.Invoke();
