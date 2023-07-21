@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821304f6de3adb44c861a304c7480db0, type: 3}
+  m_Name: DefaultEnemyDrops
+  m_EditorClassIdentifier: 
+  _dropChance: 3200000046000000
+  _minDrops: 0200000004000000
+  _maxDrops: 0100000004000000
+  _potentialDrops:
+  - Item: {fileID: 11400000, guid: 4a30b07e52715294fa17705395e0dd56, type: 2}
+    RelativeChance: 0300000005000000
+    MinQuantity: 01000000
+    MaxQuantity: 01000000
+  - Item: {fileID: 11400000, guid: 415ef48d9d8d02645adc77c4c722b8c0, type: 2}
+    RelativeChance: 05000000
+    MinQuantity: 01000000
+    MaxQuantity: 01000000
+  - Item: {fileID: 11400000, guid: 743687fd570301c419b669d87db6d7ad, type: 2}
+    RelativeChance: 0100000005000000
+    MinQuantity: 01000000
+    MaxQuantity: 01000000
+  - Item: {fileID: 11400000, guid: 8b6e171561c215e4491e6d5ee52c7153, type: 2}
+    RelativeChance: 28000000
+    MinQuantity: 0100000002000000
+    MaxQuantity: 0200000002000000
