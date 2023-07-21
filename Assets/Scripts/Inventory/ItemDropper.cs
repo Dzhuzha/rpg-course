@@ -46,16 +46,6 @@ namespace RPG.Inventory
         private void RemoveDestroyedDrops()
         {
             _droppedItems.RemoveAll(pickup => pickup == null);
-
-          // List<Pickup> newPickups = new List<Pickup>();
-          // foreach (Pickup pickup in _droppedItems)
-          // {
-          //     if (pickup != null)
-          //     {
-          //         newPickups.Add(pickup);
-          //     }
-          // }
-          // _droppedItems = newPickups;
         }
 
         object ISaveable.CaptureState()

@@ -17,5 +17,5 @@ MonoBehaviour:
   _description: Chest armor picked up from defeated evil knight
   _icon: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
   _pickup: {fileID: 6832080362447836891, guid: ec23663e89ab1504aa5ccef0edfc3580, type: 3}
-  _stackable: 1
+  _stackable: 0
   _allowedEquipLocation: 1

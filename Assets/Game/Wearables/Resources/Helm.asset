@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Helm
   m_EditorClassIdentifier: 
   _itemID: 2e7c400e-908b-43b0-8810-40de543e0216
-  _displayName: 
-  _description: 
-  _icon: {fileID: 0}
-  _pickup: {fileID: 0}
+  _displayName: Healers hat
+  _description: Hat from undead captain
+  _icon: {fileID: 21300000, guid: c1b61b3a91732a747a8496fc75a13fe2, type: 3}
+  _pickup: {fileID: 6832080362447836891, guid: ec23663e89ab1504aa5ccef0edfc3580, type: 3}
   _stackable: 0
-  _allowedEquipLocation: 6
-  _additiveModifiers: []
+  _allowedEquipLocation: 0
+  _additiveModifiers:
+  - Stat: 0
+    Value: 20
   _percentageModifiers: []

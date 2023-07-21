@@ -282,9 +282,9 @@ MonoBehaviour:
   _mover: {fileID: 6011471322046631701}
   _fighter: {fileID: 3871736999637922484}
   _maxNavMeshProjectionDistance: 1
-  _maxNavMeshPathLength: 5
   _enemyHealthDisplay: {fileID: 0}
   _cursorMappings: []
+  _actionStore: {fileID: 0}
 --- !u!114 &2516790000157086044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +314,7 @@ MonoBehaviour:
   _agent: {fileID: 6011471322046631702}
   _animator: {fileID: 6011471322046631707}
   _scheduler: {fileID: 2516790000157086044}
+  _maxNavMeshPathLength: 15
 --- !u!114 &3871736999637922484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +335,7 @@ MonoBehaviour:
   _leftHandTransform: {fileID: 0}
   _defaultWeapon: {fileID: 0}
   _baseStats: {fileID: 7592258656992457516}
+  _equipment: {fileID: 0}
 --- !u!114 &5643659386455622357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 6011471322046631707}
   _damageTextSpawner: {fileID: 8476104788044099039}
+  _equipment: {fileID: 0}
 --- !u!114 &7592258656992457516
 MonoBehaviour:
   m_ObjectHideFlags: 0
