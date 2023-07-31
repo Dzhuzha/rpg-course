@@ -34,7 +34,7 @@ namespace RPG.UI.Inventory
                 iconImage.enabled = true;
 
                 if (_quantityTextContainer == null) return; 
-                if (item.IsStackable)
+                if (item.IsStackable && count > 1)//if (item.IsStackable)
                 {
                     _quantityTextContainer.SetActive(true);
                     _quantity.text = count.ToString();
