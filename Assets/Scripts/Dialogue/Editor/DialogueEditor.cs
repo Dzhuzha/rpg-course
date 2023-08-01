@@ -8,10 +8,12 @@ namespace RPG.Dialogue.Editor
 {
     public class DialogueEditor : EditorWindow
     {
+        [NonSerialized] private GUIStyle _nodeStyle;
+        [NonSerialized] private DialogueNode _draggingNode;
+        [NonSerialized] private Vector2 _draggingOffset;
+        [NonSerialized] private DialogueNode _creatingNode;
+
         private Dialogue _dialogue;
-        private GUIStyle _nodeStyle;
-        private DialogueNode _draggingNode;
-        private Vector2 _draggingOffset;
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -76,6 +78,13 @@ namespace RPG.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
+
+                if (_creatingNode != null)
+                {
+                    Undo.RecordObject(_dialogue, "Added Dialogue Node");
+                    _dialogue.CreateNewNode(_creatingNode);
+                    _creatingNode = null;
+                }
             }
             else
             {
@@ -85,11 +94,11 @@ namespace RPG.Dialogue.Editor
 
         private void DrawConnections(DialogueNode node)
         {
-            Vector2 startPosition = new Vector2(node.Position.xMax, node.Position.center.y);
+            Vector2 startPosition = new Vector2(node.Rect.xMax, node.Rect.center.y);
 
             foreach (DialogueNode childNode in _dialogue.GetAllChildren(node))
             {
-                Vector2 endPosition = new Vector2(childNode.Position.xMin, childNode.Position.center.y);
+                Vector2 endPosition = new Vector2(childNode.Rect.xMin, childNode.Rect.center.y);
                 Vector2 controlPointOffset = endPosition - startPosition;
                 controlPointOffset.y = 0;
                 controlPointOffset.x *= 0.8f;
@@ -107,7 +116,7 @@ namespace RPG.Dialogue.Editor
 
                 if (_draggingNode != null)
                 {
-                    _draggingOffset = _draggingNode.Position.position - Event.current.mousePosition;
+                    _draggingOffset = _draggingNode.Rect.position - Event.current.mousePosition;
                 }
             }
             else if (Event.current.type == EventType.MouseDrag && _draggingNode != null)
@@ -128,7 +137,7 @@ namespace RPG.Dialogue.Editor
 
             foreach (var node in _dialogue.GetAllNodes())
             {
-                if (node.Position.Contains(point))
+                if (node.Rect.Contains(point))
                 {
                     chosenNode = node;
                 }
@@ -139,19 +148,21 @@ namespace RPG.Dialogue.Editor
 
         private void DrawNode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.Position, _nodeStyle);
+            GUILayout.BeginArea(node.Rect, _nodeStyle);
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.LabelField("Node:");
-            string nodeNewId = EditorGUILayout.TextField(node.Id);
             string nodeNewText = EditorGUILayout.TextField(node.Text);
 
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(_dialogue, "Update Node Data");
 
-                node.SetId(nodeNewId);
                 node.SetText(nodeNewText);
+            }
+
+            if (GUILayout.Button("+"))
+            {
+                _creatingNode = node;
             }
 
             GUILayout.EndArea();

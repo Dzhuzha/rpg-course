@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -31,13 +32,27 @@ namespace RPG.Dialogue
             }
         }
 
-
+        public void CreateNewNode(DialogueNode parent)
+        {
+            DialogueNode newNode = new DialogueNode();
+            newNode.SetId(Guid.NewGuid().ToString());
+            parent.SetChild(newNode.Id);
+            newNode.SetPosition(new Vector2(parent.Rect.x + 200,parent.Rect.y));
+            newNode.SetSize(new Vector2(150,100));
+            _nodes.Add(newNode);
+            OnValidate();
+        }
+        
         private void Awake()
         {
 #if UNITY_EDITOR
             if (_nodes.Count < 1)
             {
-                _nodes.Add(new DialogueNode());
+                DialogueNode rootNode = new DialogueNode();
+                rootNode.SetId(Guid.NewGuid().ToString());
+                rootNode.SetPosition(new Vector2(100,100));
+                rootNode.SetSize(new Vector2(150,100));
+                _nodes.Add(rootNode);
             }
 #endif
             OnValidate();
@@ -45,18 +60,21 @@ namespace RPG.Dialogue
 
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
         {
-            foreach (var childId in parentNode.Children)
-            {
-                if (_nodeLookup.ContainsKey(childId))
-                {
-                    yield return _nodeLookup[childId];
-                }
-            }
-            
-            // foreach (var node in parentNode.Children)
+            // if (parentNode.Children != null)
             // {
-            //     yield return _nodes.First(n => n.Id == node);
+            //     foreach (var childId in parentNode.Children)
+            //     {
+            //         if (_nodeLookup.ContainsKey(childId))
+            //         {
+            //             yield return _nodeLookup[childId];
+            //         }
+            //     }
             // }
+
+            foreach (var node in parentNode.Children)
+            {
+                yield return _nodes.First(n => n.Id == node);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Dialogue
@@ -8,13 +9,13 @@ namespace RPG.Dialogue
     {
         [SerializeField] private string _id;
         [SerializeField] private string _text;
-        [SerializeField] private string[] _children;
-        [SerializeField] private Rect _position;
+        [SerializeField] private List<string> _children = new List<string>();
+        [SerializeField] private Rect _rect;
         
         public string Id => _id;
         public string Text => _text;
-        public string[] Children => _children;
-        public Rect Position => _position;
+        public List<string> Children => _children;
+        public Rect Rect => _rect;
 
         public void SetText(string textToSet)
         {
@@ -28,7 +29,18 @@ namespace RPG.Dialogue
 
         public void SetPosition(Vector2 newPosition)
         {
-            _position.position = newPosition;
+            _rect.position = newPosition;
+        }
+
+        public void SetChild(string childId)
+        {
+            _children.Add(childId);
+        }
+
+        public void SetSize(Vector2 size)
+        {
+            _rect.width = size.x;
+            _rect.height = size.y;
         }
     }
 }
