@@ -12,3 +12,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abf745cbad99ed48a24a4bbf8e716a5, type: 3}
   m_Name: Dialogue
   m_EditorClassIdentifier: 
+  _nodes:
+  - _id: a
+    _text: Hello!
+    _children:
+    - b
+    - c
+    _position:
+      serializedVersion: 2
+      x: 7
+      y: 64
+      width: 200
+      height: 100
+  - _id: b
+    _text: 'Hi there! '
+    _children: []
+    _position:
+      serializedVersion: 2
+      x: 211
+      y: 63
+      width: 200
+      height: 100
+  - _id: c
+    _text: Go away!
+    _children: []
+    _position:
+      serializedVersion: 2
+      x: 414
+      y: 63
+      width: 200
+      height: 100
+  - _id: d
+    _text: How could I help you?
+    _children: []
+    _position:
+      serializedVersion: 2
+      x: 619
+      y: 65
+      width: 200
+      height: 100
+  - _id: e
+    _text: hmmm.. I don't know...
+    _children: []
+    _position:
+      serializedVersion: 2
+      x: 829
+      y: 65
+      width: 200
+      height: 100

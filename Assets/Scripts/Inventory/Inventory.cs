@@ -10,17 +10,9 @@ namespace RPG.Inventory
     /// </summary>
     public class Inventory : MonoBehaviour, ISaveable
     {
-        // CONFIG DATA
         [Tooltip("Allowed size"), SerializeField] private int _inventorySize = 16;
-
-        // STATE
         private InventorySlot[] _slots;
 
-        // PUBLIC
-
-        /// <summary>
-        /// Broadcasts when the items in the slots are added/removed.
-        /// </summary>
         public event Action InventoryUpdated;
 
         /// <summary>
@@ -42,11 +34,7 @@ namespace RPG.Inventory
         {
             return FindSlot(item) >= 0;
         }
-
-        /// <summary>
-        /// How many slots are in the inventory?
-        /// </summary>
-        /// <returns></returns>
+        
         public int GetSize()
         {
             return _slots.Length;
@@ -84,22 +72,12 @@ namespace RPG.Inventory
 
             return false;
         }
-
-        /// <summary>
-        /// Return the item in the given slot.
-        /// </summary>
-        /// <param name="slot"></param>
-        /// <returns></returns>
+        
         public InventoryItem GetItemInSlot(int slot)
         {
             return _slots[slot].Item;
         }
-
-        /// <summary>
-        /// Get the number of items in given slot.
-        /// </summary>
-        /// <param name="slot"></param>
-        /// <returns></returns>
+        
         public int GetItemCountInSlot(int slot)
         {
             return _slots[slot].Quantity;
