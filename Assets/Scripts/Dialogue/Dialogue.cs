@@ -71,9 +71,24 @@ namespace RPG.Dialogue
             //     }
             // }
 
-            foreach (var node in parentNode.Children)
+            foreach (string node in parentNode.Children)
             {
                 yield return _nodes.First(n => n.Id == node);
+            }
+        }
+
+        public void DeleteNode(DialogueNode nodeToDelete)
+        {
+            _nodes.Remove(nodeToDelete);
+            OnValidate();
+            CleanDanglingChildren(nodeToDelete);
+        }
+
+        private void CleanDanglingChildren(DialogueNode nodeToDelete)
+        {
+            foreach (DialogueNode node in _nodes)
+            {
+                node.Children.Remove(nodeToDelete.Id);
             }
         }
     }
