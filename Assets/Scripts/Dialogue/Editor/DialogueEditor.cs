@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -38,7 +40,7 @@ namespace RPG.Dialogue.Editor
             _nodeStyle = new GUIStyle();
             _nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
             _nodeStyle.padding = new RectOffset(20, 20, 15, 15);
-            _nodeStyle.border = new RectOffset(12,12,12,12);
+            _nodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         private void OnDisable()
@@ -67,7 +69,12 @@ namespace RPG.Dialogue.Editor
 
                 foreach (DialogueNode node in _dialogue.GetAllNodes())
                 {
-                    OnGUINode(node);
+                    DrawConnections(node);
+                }
+
+                foreach (DialogueNode node in _dialogue.GetAllNodes())
+                {
+                    DrawNode(node);
                 }
             }
             else
@@ -76,12 +83,28 @@ namespace RPG.Dialogue.Editor
             }
         }
 
+        private void DrawConnections(DialogueNode node)
+        {
+            Vector2 startPosition = new Vector2(node.Position.xMax, node.Position.center.y);
+
+            foreach (DialogueNode childNode in _dialogue.GetAllChildren(node))
+            {
+                Vector2 endPosition = new Vector2(childNode.Position.xMin, childNode.Position.center.y);
+                Vector2 controlPointOffset = endPosition - startPosition;
+                controlPointOffset.y = 0;
+                controlPointOffset.x *= 0.8f;
+
+                Handles.DrawBezier(startPosition, endPosition, startPosition + controlPointOffset,
+                    endPosition - controlPointOffset, Color.white, null, 4f);
+            }
+        }
+
         private void ProcessEvents()
         {
             if (Event.current.type == EventType.MouseDown && _draggingNode == null)
             {
                 _draggingNode = GetNodeAtPoint(Event.current.mousePosition);
-             
+
                 if (_draggingNode != null)
                 {
                     _draggingOffset = _draggingNode.Position.position - Event.current.mousePosition;
@@ -98,11 +121,11 @@ namespace RPG.Dialogue.Editor
                 _draggingNode = null;
             }
         }
-        
+
         private DialogueNode GetNodeAtPoint(Vector2 point)
         {
             DialogueNode chosenNode = null;
-            
+
             foreach (var node in _dialogue.GetAllNodes())
             {
                 if (node.Position.Contains(point))
@@ -110,11 +133,11 @@ namespace RPG.Dialogue.Editor
                     chosenNode = node;
                 }
             }
-            
+
             return chosenNode;
         }
 
-        private void OnGUINode(DialogueNode node)
+        private void DrawNode(DialogueNode node)
         {
             GUILayout.BeginArea(node.Position, _nodeStyle);
             EditorGUI.BeginChangeCheck();

@@ -20,26 +20,28 @@ MonoBehaviour:
     - c
     _position:
       serializedVersion: 2
-      x: 7
-      y: 64
+      x: 25
+      y: 167
       width: 200
       height: 100
   - _id: b
     _text: 'Hi there! '
-    _children: []
+    _children:
+    - d
     _position:
       serializedVersion: 2
-      x: 211
-      y: 63
+      x: 286
+      y: 318
       width: 200
       height: 100
   - _id: c
     _text: Go away!
-    _children: []
+    _children:
+    - e
     _position:
       serializedVersion: 2
-      x: 414
-      y: 63
+      x: 268
+      y: 73
       width: 200
       height: 100
   - _id: d
@@ -47,8 +49,8 @@ MonoBehaviour:
     _children: []
     _position:
       serializedVersion: 2
-      x: 619
-      y: 65
+      x: 576
+      y: 284
       width: 200
       height: 100
   - _id: e
@@ -56,7 +58,7 @@ MonoBehaviour:
     _children: []
     _position:
       serializedVersion: 2
-      x: 829
-      y: 65
+      x: 548
+      y: 145
       width: 200
       height: 100
