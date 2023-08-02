@@ -16,6 +16,7 @@ namespace RPG.Dialogue.Editor
         [NonSerialized] private DialogueNode _linkingParentNode;
 
         private Dialogue _dialogue;
+        private Vector2 _scrollPosition;// = new Vector2(1920, 1080);
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -71,6 +72,9 @@ namespace RPG.Dialogue.Editor
             {
                 ProcessEvents();
 
+                _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
+                GUILayoutUtility.GetRect(4000, 4000);
+
                 foreach (DialogueNode node in _dialogue.GetAllNodes())
                 {
                     DrawConnections(node);
@@ -80,6 +84,8 @@ namespace RPG.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
+                
+                EditorGUILayout.EndScrollView();
 
                 if (_creatingNode != null)
                 {
@@ -93,13 +99,6 @@ namespace RPG.Dialogue.Editor
                     Undo.RecordObject(_dialogue, "Deleted Dialogue Node");
                     _dialogue.DeleteNode(_deletingNode);
                     _deletingNode = null;
-                }
-
-                if (_linkingParentNode != null)
-                {
-                    Undo.RecordObject(_dialogue, "Linked Dialogue Node");
-                   // _linkingNode.SetChild(_deletingNode);
-                 //  _linkingNode = null;
                 }
             }
             else
@@ -128,7 +127,7 @@ namespace RPG.Dialogue.Editor
         {
             if (Event.current.type == EventType.MouseDown && _draggingNode == null)
             {
-                _draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+                _draggingNode = GetNodeAtPoint(Event.current.mousePosition + _scrollPosition);
 
                 if (_draggingNode != null)
                 {
@@ -189,11 +188,12 @@ namespace RPG.Dialogue.Editor
             }
 
             DrawLinkButtons(node);
-            
+
             if (GUILayout.Button("+"))
             {
                 _creatingNode = node;
             }
+
             GUILayout.EndHorizontal();
         }
 
@@ -219,7 +219,7 @@ namespace RPG.Dialogue.Editor
                 {
                     Undo.RecordObject(_dialogue, "Removed Dialogue Link");
                     _linkingParentNode.Children.Remove(node.Id);
-                    _linkingParentNode = null; 
+                    _linkingParentNode = null;
                 }
             }
             else

@@ -13,53 +13,12 @@ MonoBehaviour:
   m_Name: Dialogue 1
   m_EditorClassIdentifier: 
   _nodes:
-  - _id: f22ee8c6-95fb-4eb4-86ce-8a55bfb0c044
-    _text: 
-    _children:
-    - 1edf9712-0487-481f-b995-f9ffc1d061f8
-    - 5abf41d4-6159-4156-ad39-2bbcd97b8516
-    _rect:
-      serializedVersion: 2
-      x: 56
-      y: 110
-      width: 150
-      height: 100
-  - _id: 1edf9712-0487-481f-b995-f9ffc1d061f8
-    _text: 
-    _children:
-    - ad01ae11-52f4-4289-8f9e-e28bf8ba949e
-    _rect:
-      serializedVersion: 2
-      x: 251
-      y: 63
-      width: 150
-      height: 100
-  - _id: ad01ae11-52f4-4289-8f9e-e28bf8ba949e
-    _text: 
-    _children:
-    - d32d00db-00af-4990-bd81-a83928465ffb
-    _rect:
-      serializedVersion: 2
-      x: 437
-      y: 86
-      width: 150
-      height: 100
-  - _id: d32d00db-00af-4990-bd81-a83928465ffb
+  - _id: 18b8c746-2549-4eef-bbf3-4708c190aa06
     _text: 
     _children: []
     _rect:
       serializedVersion: 2
-      x: 664
-      y: 167
-      width: 150
-      height: 100
-  - _id: 5abf41d4-6159-4156-ad39-2bbcd97b8516
-    _text: 
-    _children:
-    - d32d00db-00af-4990-bd81-a83928465ffb
-    _rect:
-      serializedVersion: 2
-      x: 251
-      y: 229
+      x: 100
+      y: 100
       width: 150
       height: 100
