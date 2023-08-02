@@ -1,17 +1,35 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UnityEditor;
 
 namespace RPG.Dialogue
 {
     [CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue/New Dialogue", order = 53)]
-    public class Dialogue : ScriptableObject
+    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField, NonReorderable] private List<DialogueNode> _nodes = new List<DialogueNode>();
 
+        private const float NEW_NODE_OFFSET_X = 200f;
+        private const float DEAFAULT_NODE_SIZE_X = 150f;
+        private const float DEAFAULT_NODE_SIZE_Y = 100f;
         private Dictionary<string, DialogueNode> _nodeLookup = new Dictionary<string, DialogueNode>();
-        
+
+        private void Awake()
+        {
+            OnValidate();
+        }
+
+        private void OnValidate()
+        {
+            _nodeLookup.Clear();
+            // if (_nodes == null) return;
+            foreach (DialogueNode node in GetAllNodes())
+            {
+                _nodeLookup[node.name] = node;
+            }
+        }
+
         public IEnumerable<DialogueNode> GetAllNodes()
         {
             return _nodes;
@@ -22,74 +40,100 @@ namespace RPG.Dialogue
             return _nodes[0];
         }
 
-        private void OnValidate()
-        {
-            _nodeLookup.Clear();
-
-            foreach (DialogueNode node in _nodes)
-            {
-                _nodeLookup[node.Id] = node;
-            }
-        }
-
-        public void CreateNewNode(DialogueNode parent)
-        {
-            DialogueNode newNode = new DialogueNode();
-            newNode.SetId(Guid.NewGuid().ToString());
-            parent.SetChild(newNode.Id);
-            newNode.SetPosition(new Vector2(parent.Rect.x + 200,parent.Rect.y));
-            newNode.SetSize(new Vector2(150,100));
-            _nodes.Add(newNode);
-            OnValidate();
-        }
-        
-        private void Awake()
-        {
-#if UNITY_EDITOR
-            if (_nodes.Count < 1)
-            {
-                DialogueNode rootNode = new DialogueNode();
-                rootNode.SetId(Guid.NewGuid().ToString());
-                rootNode.SetPosition(new Vector2(100,100));
-                rootNode.SetSize(new Vector2(150,100));
-                _nodes.Add(rootNode);
-            }
-#endif
-            OnValidate();
-        }
-
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
         {
-            // if (parentNode.Children != null)
-            // {
-            //     foreach (var childId in parentNode.Children)
-            //     {
-            //         if (_nodeLookup.ContainsKey(childId))
-            //         {
-            //             yield return _nodeLookup[childId];
-            //         }
-            //     }
-            // }
-
-            foreach (string node in parentNode.Children)
+            //if (parentNode.Children == null) return;
+            foreach (var childId in parentNode.Children) 
             {
-                yield return _nodes.First(n => n.Id == node);
+                if (_nodeLookup.ContainsKey(childId))
+                {
+                    yield return _nodeLookup[childId];
+                }
             }
+        }
+
+#if UNITY_EDITOR
+        public void CreateNewNode(DialogueNode parent)
+        {
+            DialogueNode newNode = MakeNode(parent);
+            Undo.RegisterCreatedObjectUndo(newNode, "Created New Node");
+            
+            if (AssetDatabase.GetAssetPath(this) != String.Empty)
+            {
+                Undo.RecordObject(this, "Added Dialogue Node");
+            }
+
+            AddNode(newNode);
         }
 
         public void DeleteNode(DialogueNode nodeToDelete)
         {
+            Undo.RecordObject(this, "Deleted Dialogue Node");
             _nodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
+        }
+
+        private static DialogueNode MakeNode(DialogueNode parent)
+        {
+            Vector2 appearancePosition = Vector2.zero;
+            DialogueNode newNode = CreateInstance<DialogueNode>();
+            newNode.name = Guid.NewGuid().ToString();
+
+            if (parent != null)
+            {
+                parent.SetChild(newNode.name);
+                appearancePosition.x = parent.Rect.x + NEW_NODE_OFFSET_X;
+                appearancePosition.y = parent.Rect.y;
+            }
+
+            newNode.SetPosition(new Vector2(appearancePosition.x, appearancePosition.y));
+            newNode.SetSize(new Vector2(DEAFAULT_NODE_SIZE_X, DEAFAULT_NODE_SIZE_Y));
+
+            return newNode;
+        }
+
+        private void AddNode(DialogueNode newNode)
+        {
+            _nodes.Add(newNode);
+            OnValidate();
         }
 
         private void CleanDanglingChildren(DialogueNode nodeToDelete)
         {
-            foreach (DialogueNode node in _nodes)
+            foreach (DialogueNode node in GetAllNodes())
             {
-                node.Children.Remove(nodeToDelete.Id);
+                node.RemoveChild(nodeToDelete.name);
             }
+        }
+#endif
+
+        void ISerializationCallbackReceiver.OnBeforeSerialize()
+        {
+#if UNITY_EDITOR
+            if (_nodes.Count == 0)
+            {
+              //  CreateNewNode(null);
+              DialogueNode newNode = MakeNode(null);
+              AddNode(newNode);
+            }
+
+            if (AssetDatabase.GetAssetPath(this) != String.Empty)
+            {
+                foreach (DialogueNode node in GetAllNodes())
+                {
+                    if (AssetDatabase.GetAssetPath(node) == String.Empty)
+                    {
+                        AssetDatabase.AddObjectToAsset(node, this);
+                    }
+                }
+            }
+#endif
+        }
+
+        void ISerializationCallbackReceiver.OnAfterDeserialize()
+        {
         }
     }
 }
