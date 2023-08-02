@@ -75,7 +75,7 @@ namespace RPG.Dialogue
             Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
-        private static DialogueNode MakeNode(DialogueNode parent)
+        private DialogueNode MakeNode(DialogueNode parent)
         {
             Vector2 appearancePosition = Vector2.zero;
             DialogueNode newNode = CreateInstance<DialogueNode>();
@@ -88,7 +88,8 @@ namespace RPG.Dialogue
                 appearancePosition.y = parent.Rect.y;
             }
 
-            newNode.SetPosition(new Vector2(appearancePosition.x, appearancePosition.y));
+            newNode.SetSpeaker(!parent.IsPlayerSpeaking);
+            newNode.SetPosition(appearancePosition);
             newNode.SetSize(new Vector2(DEAFAULT_NODE_SIZE_X, DEAFAULT_NODE_SIZE_Y));
 
             return newNode;

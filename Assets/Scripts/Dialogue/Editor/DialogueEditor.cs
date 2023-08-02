@@ -8,6 +8,7 @@ namespace RPG.Dialogue.Editor
     public class DialogueEditor : EditorWindow
     {
         [NonSerialized] private GUIStyle _nodeStyle;
+        [NonSerialized] private GUIStyle _playerNodeStyle;
         [NonSerialized] private DialogueNode _draggingNode;
         [NonSerialized] private Vector2 _draggingOffset;
         [NonSerialized] private DialogueNode _creatingNode;
@@ -50,6 +51,11 @@ namespace RPG.Dialogue.Editor
             _nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
             _nodeStyle.padding = new RectOffset(20, 20, 15, 15);
             _nodeStyle.border = new RectOffset(12, 12, 12, 12);
+            
+            _playerNodeStyle = new GUIStyle();
+            _playerNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
+            _playerNodeStyle.padding = new RectOffset(20, 20, 15, 15);
+            _playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         private void OnDisable()
@@ -181,7 +187,14 @@ namespace RPG.Dialogue.Editor
 
         private void DrawNode(DialogueNode node)
         {
-            GUILayout.BeginArea(node.Rect, _nodeStyle);
+            GUIStyle style = _nodeStyle;
+
+            if (node.IsPlayerSpeaking)
+            {
+                style = _playerNodeStyle;
+            }
+            
+            GUILayout.BeginArea(node.Rect, style);
             
             node.SetText(EditorGUILayout.TextField(node.Text));
 
