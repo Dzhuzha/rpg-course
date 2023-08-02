@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9176940598336592130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 71573c9d-8bee-4aac-9598-6f5edfb273f2
+  m_EditorClassIdentifier: 
+  _text: What can I do for ya?
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 439
+    y: 114
+    width: 150
+    height: 100
+--- !u!114 &-8530124644980591957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 3c8ba561-8a42-42cf-a3b9-66ef1e7a9594
+  m_EditorClassIdentifier: 
+  _text: Hello sir!
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 185
+    y: 44
+    width: 150
+    height: 100
+--- !u!114 &-2940546770814003273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 7b92f3e9-798e-4e05-8d0d-d20239075d04
+  m_EditorClassIdentifier: 
+  _text: U a very rude person!
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 433
+    y: 308
+    width: 150
+    height: 100
+--- !u!114 &-1102178691105928802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 0282a46b-b5e7-47b4-b315-315e4bca6d04
+  m_EditorClassIdentifier: 
+  _text: Good morning!
+  _children:
+  - 71573c9d-8bee-4aac-9598-6f5edfb273f2
+  _rect:
+    serializedVersion: 2
+    x: 221
+    y: 177
+    width: 150
+    height: 100
+--- !u!114 &-419173708901180687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: f8fa1fdc-2bd9-477a-a808-ba53a5ac18f3
+  m_EditorClassIdentifier: 
+  _text: Take away from me!
+  _children:
+  - 7b92f3e9-798e-4e05-8d0d-d20239075d04
+  _rect:
+    serializedVersion: 2
+    x: 200
+    y: 311
+    width: 150
+    height: 100
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abf745cbad99ed48a24a4bbf8e716a5, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  _nodes:
+  - {fileID: 6183542534589333641}
+  - {fileID: -8530124644980591957}
+  - {fileID: -419173708901180687}
+  - {fileID: -1102178691105928802}
+  - {fileID: -9176940598336592130}
+  - {fileID: -2940546770814003273}
+--- !u!114 &6183542534589333641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 457c8be0-133e-4a75-a2af-e9ff120c583e
+  m_EditorClassIdentifier: 
+  _text: Hi!
+  _children:
+  - 3c8ba561-8a42-42cf-a3b9-66ef1e7a9594
+  - f8fa1fdc-2bd9-477a-a808-ba53a5ac18f3
+  - 0282a46b-b5e7-47b4-b315-315e4bca6d04
+  _rect:
+    serializedVersion: 2
+    x: 21
+    y: 147
+    width: 150
+    height: 100
