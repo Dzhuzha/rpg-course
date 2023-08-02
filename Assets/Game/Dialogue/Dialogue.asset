@@ -18,47 +18,47 @@ MonoBehaviour:
     _children:
     - b
     - c
-    _position:
+    _rect:
       serializedVersion: 2
-      x: 25
-      y: 167
-      width: 200
-      height: 100
+      x: 23
+      y: 110
+      width: 150
+      height: 150
   - _id: b
     _text: 'Hi there! '
     _children:
     - d
-    _position:
+    _rect:
       serializedVersion: 2
-      x: 286
-      y: 318
-      width: 200
-      height: 100
+      x: 254
+      y: 23
+      width: 150
+      height: 150
   - _id: c
     _text: Go away!
     _children:
     - e
-    _position:
+    _rect:
       serializedVersion: 2
-      x: 268
-      y: 73
-      width: 200
-      height: 100
+      x: 262
+      y: 228
+      width: 150
+      height: 150
   - _id: d
     _text: How could I help you?
     _children: []
-    _position:
+    _rect:
       serializedVersion: 2
-      x: 576
-      y: 284
-      width: 200
-      height: 100
+      x: 545
+      y: 28
+      width: 150
+      height: 150
   - _id: e
     _text: hmmm.. I don't know...
     _children: []
-    _position:
+    _rect:
       serializedVersion: 2
-      x: 548
-      y: 145
-      width: 200
-      height: 100
+      x: 546
+      y: 204
+      width: 150
+      height: 150

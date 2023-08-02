@@ -13,6 +13,7 @@ namespace RPG.Dialogue.Editor
         [NonSerialized] private Vector2 _draggingOffset;
         [NonSerialized] private DialogueNode _creatingNode;
         [NonSerialized] private DialogueNode _deletingNode;
+        [NonSerialized] private DialogueNode _linkingParentNode;
 
         private Dialogue _dialogue;
 
@@ -92,6 +93,13 @@ namespace RPG.Dialogue.Editor
                     Undo.RecordObject(_dialogue, "Deleted Dialogue Node");
                     _dialogue.DeleteNode(_deletingNode);
                     _deletingNode = null;
+                }
+
+                if (_linkingParentNode != null)
+                {
+                    Undo.RecordObject(_dialogue, "Linked Dialogue Node");
+                   // _linkingNode.SetChild(_deletingNode);
+                 //  _linkingNode = null;
                 }
             }
             else
@@ -179,12 +187,50 @@ namespace RPG.Dialogue.Editor
             {
                 _deletingNode = node;
             }
+
+            DrawLinkButtons(node);
             
             if (GUILayout.Button("+"))
             {
                 _creatingNode = node;
             }
             GUILayout.EndHorizontal();
+        }
+
+        private void DrawLinkButtons(DialogueNode node)
+        {
+            if (_linkingParentNode == null)
+            {
+                if (GUILayout.Button("link"))
+                {
+                    _linkingParentNode = node;
+                }
+            }
+            else if (ReferenceEquals(_linkingParentNode, node))
+            {
+                if (GUILayout.Button("cancel"))
+                {
+                    _linkingParentNode = null;
+                }
+            }
+            else if (_linkingParentNode.Children.Contains(node.Id))
+            {
+                if (GUILayout.Button("unlink"))
+                {
+                    Undo.RecordObject(_dialogue, "Removed Dialogue Link");
+                    _linkingParentNode.Children.Remove(node.Id);
+                    _linkingParentNode = null; 
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("child"))
+                {
+                    Undo.RecordObject(_dialogue, "Added Dialogue Link");
+                    _linkingParentNode.SetChild(node.Id);
+                    _linkingParentNode = null;
+                }
+            }
         }
     }
 }
