@@ -16,9 +16,12 @@ namespace RPG.Dialogue.Editor
         [NonSerialized] private DialogueNode _linkingParentNode;
         [NonSerialized] private Vector2 _draggingCanvasOffset;
         [NonSerialized] private bool _draggingCanvas;
-
+        
         private Dialogue _dialogue;
         private Vector2 _scrollPosition; // = new Vector2(1920, 1080);
+
+        private const float CANVAS_SIZE = 4000f;
+        private const float BACKGROUND_SIZE = 50f;
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -75,8 +78,11 @@ namespace RPG.Dialogue.Editor
                 ProcessEvents();
 
                 _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
-                GUILayoutUtility.GetRect(4000, 4000);
-
+                Rect canvas = GUILayoutUtility.GetRect(CANVAS_SIZE, CANVAS_SIZE);
+                Texture2D backgroundTexture = Resources.Load("background") as Texture2D;
+                Rect textCoords = new Rect(0,0, CANVAS_SIZE/BACKGROUND_SIZE, CANVAS_SIZE/BACKGROUND_SIZE);
+                GUI.DrawTextureWithTexCoords(canvas, backgroundTexture, textCoords);
+                
                 foreach (DialogueNode node in _dialogue.GetAllNodes())
                 {
                     DrawConnections(node);
