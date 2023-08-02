@@ -14,9 +14,11 @@ namespace RPG.Dialogue.Editor
         [NonSerialized] private DialogueNode _creatingNode;
         [NonSerialized] private DialogueNode _deletingNode;
         [NonSerialized] private DialogueNode _linkingParentNode;
+        [NonSerialized] private Vector2 _draggingCanvasOffset;
+        [NonSerialized] private bool _draggingCanvas;
 
         private Dialogue _dialogue;
-        private Vector2 _scrollPosition;// = new Vector2(1920, 1080);
+        private Vector2 _scrollPosition; // = new Vector2(1920, 1080);
 
         [MenuItem("Window/Dialogue Editor")]
         public static void ShowEditorWindow()
@@ -84,7 +86,7 @@ namespace RPG.Dialogue.Editor
                 {
                     DrawNode(node);
                 }
-                
+
                 EditorGUILayout.EndScrollView();
 
                 if (_creatingNode != null)
@@ -133,6 +135,11 @@ namespace RPG.Dialogue.Editor
                 {
                     _draggingOffset = _draggingNode.Rect.position - Event.current.mousePosition;
                 }
+                else
+                {
+                    _draggingCanvas = true;
+                    _draggingCanvasOffset = Event.current.mousePosition + _scrollPosition;
+                }
             }
             else if (Event.current.type == EventType.MouseDrag && _draggingNode != null)
             {
@@ -140,9 +147,19 @@ namespace RPG.Dialogue.Editor
                 _draggingNode.SetPosition(Event.current.mousePosition + _draggingOffset);
                 GUI.changed = true;
             }
+            else if (Event.current.type == EventType.MouseDrag && _draggingCanvas)
+            {
+                _scrollPosition = _draggingCanvasOffset - Event.current.mousePosition;
+                
+                GUI.changed = true;
+            }
             else if (Event.current.type == EventType.MouseUp && _draggingNode != null)
             {
                 _draggingNode = null;
+            }
+            else if (Event.current.type == EventType.MouseUp && _draggingCanvas)
+            {
+                _draggingCanvas = false;
             }
         }
 
