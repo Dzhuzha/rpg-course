@@ -86,9 +86,9 @@ namespace RPG.Dialogue
                 parent.SetChild(newNode.name);
                 appearancePosition.x = parent.Rect.x + NEW_NODE_OFFSET_X;
                 appearancePosition.y = parent.Rect.y;
+                newNode.SetSpeaker(!parent.IsPlayerSpeaking);
             }
-
-            newNode.SetSpeaker(!parent.IsPlayerSpeaking);
+            
             newNode.SetPosition(appearancePosition);
             newNode.SetSize(new Vector2(DEAFAULT_NODE_SIZE_X, DEAFAULT_NODE_SIZE_Y));
 
@@ -115,7 +115,7 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
             if (_nodes.Count == 0)
             {
-              //  CreateNewNode(null);
+               // CreateNewNode(null);
               DialogueNode newNode = MakeNode(null);
               AddNode(newNode);
             }
