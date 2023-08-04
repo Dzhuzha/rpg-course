@@ -503,6 +503,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _continueButton: {fileID: 7303021722077207309}
   _closeButton: {fileID: 7082060381512409438}
+  _choiceButton: {fileID: 8517310445073650552, guid: 9cb77f31865744e4f908372c515aec11,
+    type: 3}
+  _npcTextRoot: {fileID: 5323347611680589847}
+  _choiceRoot: {fileID: 8800556145291298060}
   _speakersName: {fileID: 5974716691615031968}
   _text: {fileID: 4386891379857052502}
 --- !u!1 &5649014710574980677

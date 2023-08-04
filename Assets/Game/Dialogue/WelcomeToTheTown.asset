@@ -70,6 +70,28 @@ MonoBehaviour:
     y: 24
     width: 150
     height: 100
+--- !u!114 &-2432408696268075918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 17198a8e-5296-4f04-babe-9947b27a9fe2
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Angry Guard
+  _text: How dare you! I'll will teach you f**cking invader to respect law and borders!
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 1098
+    y: 66
+    width: 150
+    height: 100
 --- !u!114 &-1102178691105928802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,13 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
   _speakerName: Player
-  _text: Yes, I'm just traveling. I'm came from Lviv/
+  _text: Yes, I'm just traveling. I'm came from Lviv
   _children:
   - 51a982b7-afac-4a1d-9841-1c3f9e133207
   _rect:
     serializedVersion: 2
-    x: 208
-    y: 190
+    x: 209
+    y: 189
     width: 150
     height: 100
 --- !u!114 &11400000
@@ -116,6 +138,7 @@ MonoBehaviour:
   - {fileID: -8839639702657559992}
   - {fileID: 8517030379748849817}
   - {fileID: 6256446312895402766}
+  - {fileID: -2432408696268075918}
 --- !u!114 &256921655394881146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +178,8 @@ MonoBehaviour:
   _isPlayerSpeaking: 1
   _speakerName: Player
   _text: Yes, of course. On the Lenin street it placed. Pulyanitza.
-  _children: []
+  _children:
+  - 17198a8e-5296-4f04-babe-9947b27a9fe2
   _rect:
     serializedVersion: 2
     x: 897
