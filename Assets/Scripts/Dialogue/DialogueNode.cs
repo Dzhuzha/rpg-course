@@ -7,11 +7,13 @@ namespace RPG.Dialogue
     public class DialogueNode : ScriptableObject
     {
         [SerializeField] private bool _isPlayerSpeaking;
+        [SerializeField] private string _speakerName;
         [SerializeField] private string _text;
         [SerializeField] private List<string> _children = new List<string>();
         [SerializeField] private Rect _rect;
         
         public string Text => _text;
+        public string SpeakerName => _speakerName;
         public List<string> Children => _children;
         public Rect Rect => _rect;
         public bool IsPlayerSpeaking => _isPlayerSpeaking;
@@ -59,6 +61,13 @@ namespace RPG.Dialogue
         {
             Undo.RecordObject(this, "Change Dialogue Speaker");
             _isPlayerSpeaking = isPlayerSpeaker;
+            EditorUtility.SetDirty(this);
+        }
+        
+        public void SetSpeakerName(string speakersName)
+        {
+            Undo.RecordObject(this, "Change Speaker Name");
+            _speakerName = speakersName; 
             EditorUtility.SetDirty(this);
         }
 #endif

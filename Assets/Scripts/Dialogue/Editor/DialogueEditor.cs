@@ -195,7 +195,8 @@ namespace RPG.Dialogue.Editor
             }
             
             GUILayout.BeginArea(node.Rect, style);
-            
+
+            node.SetSpeakerName(EditorGUILayout.TextField(node.SpeakerName));
             node.SetText(EditorGUILayout.TextField(node.Text));
 
             DrawNodeButtons(node);

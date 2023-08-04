@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: fbc90e35-26f4-4795-b800-d0aba48f8463
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
+  _speakerName: Player
   _text: Did I say Lviv? I'm actually mean Kyiv.
   _children:
   - 7b92f3e9-798e-4e05-8d0d-d20239075d04
@@ -35,6 +36,7 @@ MonoBehaviour:
   m_Name: 3c8ba561-8a42-42cf-a3b9-66ef1e7a9594
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
+  _speakerName: Player
   _text: No, u're mistake. I've lived here for all my life!
   _children:
   - 7b92f3e9-798e-4e05-8d0d-d20239075d04
@@ -57,14 +59,15 @@ MonoBehaviour:
   m_Name: 7b92f3e9-798e-4e05-8d0d-d20239075d04
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _speakerName: Angry Guard
   _text: Really?! So you must know where is Monobank customer office placed?!
   _children:
   - 766b6f79-ada8-4360-ab0f-8af186f28d3d
   - c229aa30-6e50-4fc2-bef0-9e565fa58dee
   _rect:
     serializedVersion: 2
-    x: 702
-    y: 26
+    x: 701
+    y: 24
     width: 150
     height: 100
 --- !u!114 &-1102178691105928802
@@ -80,6 +83,7 @@ MonoBehaviour:
   m_Name: 0282a46b-b5e7-47b4-b315-315e4bca6d04
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
+  _speakerName: Player
   _text: Yes, I'm just traveling. I'm came from Lviv/
   _children:
   - 51a982b7-afac-4a1d-9841-1c3f9e133207
@@ -125,6 +129,7 @@ MonoBehaviour:
   m_Name: 51a982b7-afac-4a1d-9841-1c3f9e133207
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _speakerName: Angry Guard
   _text: Lviv, heh? And you know the password to Cryivka?
   _children:
   - fbc90e35-26f4-4795-b800-d0aba48f8463
@@ -148,6 +153,7 @@ MonoBehaviour:
   m_Name: c229aa30-6e50-4fc2-bef0-9e565fa58dee
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
+  _speakerName: Player
   _text: Yes, of course. On the Lenin street it placed. Pulyanitza.
   _children: []
   _rect:
@@ -169,6 +175,7 @@ MonoBehaviour:
   m_Name: 457c8be0-133e-4a75-a2af-e9ff120c583e
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _speakerName: Angry Guard
   _text: 'Stop where you are! I don''t remember you as an citizen of our town. '
   _children:
   - 3c8ba561-8a42-42cf-a3b9-66ef1e7a9594
@@ -192,6 +199,7 @@ MonoBehaviour:
   m_Name: 32512daa-8cca-48a4-8642-8db303c952fe
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
+  _speakerName: Angry Guard
   _text: Don't mind. It was a check. Actually we have a some deal to you.
   _children: []
   _rect:
@@ -213,6 +221,7 @@ MonoBehaviour:
   m_Name: 766b6f79-ada8-4360-ab0f-8af186f28d3d
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
+  _speakerName: Player
   _text: WTF?! There is no Monobank customer offices at all...
   _children:
   - 32512daa-8cca-48a4-8642-8db303c952fe
@@ -235,7 +244,8 @@ MonoBehaviour:
   m_Name: caaa4214-09ed-4463-b2f0-11273891e1cb
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 1
-  _text: Yes, "Smertj Moskalyam!"
+  _speakerName: Player
+  _text: Yes, "Slava ukraini!"
   _children:
   - 32512daa-8cca-48a4-8642-8db303c952fe
   _rect:

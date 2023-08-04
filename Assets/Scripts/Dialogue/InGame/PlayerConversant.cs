@@ -26,6 +26,17 @@ namespace RPG.Dialogue
             return _currentNode.Text;
         }
 
+        public string GetSpeakersName()
+        {
+            if (_currentNode == null)
+            {
+                return String.Empty;
+            }
+
+
+            return _currentNode.SpeakerName;
+        }
+
         public bool TryGetNext()
         {
             return _currentNode.Children.Count > 0;
@@ -36,7 +47,7 @@ namespace RPG.Dialogue
             DialogueNode[] children = _currentDialogue.GetAllChildren(_currentNode).ToArray();
             int npcAnswerOption = 0;
             
-            if (!_currentNode.IsPlayerSpeaking)
+            if (_currentNode.IsPlayerSpeaking)
             {
                 npcAnswerOption = Random.Range(0, children.Length - 1);
             }

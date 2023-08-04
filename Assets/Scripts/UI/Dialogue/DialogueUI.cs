@@ -9,6 +9,7 @@ namespace RPG.UI
     {
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _closeButton;
+        [SerializeField] private TMP_Text _speakersName;
         [SerializeField] private TMP_Text _text;
         private PlayerConversant _playerConversant;
 
@@ -44,6 +45,7 @@ namespace RPG.UI
         {
             _continueButton.gameObject.SetActive(_playerConversant.TryGetNext());
             _text.text = _playerConversant.GetText();
+            _speakersName.text = _playerConversant.GetSpeakersName();
         }
 
         private void Close()
