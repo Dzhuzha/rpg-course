@@ -14,24 +14,13 @@ namespace RPG.UI
         [SerializeField] private Transform _choiceRoot;
         [SerializeField] private TMP_Text _speakersName;
         [SerializeField] private TMP_Text _text;
-      
+
         private PlayerConversant _playerConversant;
 
         private void Awake()
         {
             _playerConversant = FindObjectOfType<PlayerConversant>();
-        }
-
-        private void OnEnable()
-        {
-            _closeButton.onClick.AddListener(Close);
-            _continueButton.onClick.AddListener(Next);
-        }
-
-        private void OnDisable()
-        {
-            _closeButton.onClick.AddListener(Close);
-            _continueButton.onClick.RemoveListener(Next);
+            Subscribe();
         }
 
         private void Start()
@@ -39,14 +28,30 @@ namespace RPG.UI
             UpdateUI();
         }
 
-        private void Next()
+        private void OnDestroy()
         {
-            _playerConversant.ChooseNextNode();
-            UpdateUI();
+            Unsubscribe();
+        }
+
+        private void Subscribe()
+        {
+            _closeButton.onClick.AddListener(() => _playerConversant.ResetDialogue());
+            _continueButton.onClick.AddListener(() => _playerConversant.ChooseNextNode());
+            _playerConversant.DialogueUpdated += UpdateUI;
+        }
+
+        private void Unsubscribe()
+        {
+            _closeButton.onClick.RemoveListener(() => _playerConversant.ResetDialogue());
+            _continueButton.onClick.RemoveListener(() => _playerConversant.ChooseNextNode());
+            _playerConversant.DialogueUpdated -= UpdateUI;
         }
 
         private void UpdateUI()
         {
+            gameObject.SetActive(_playerConversant.IsActive);
+            if (_playerConversant.IsActive == false) return;
+
             _npcTextRoot.gameObject.SetActive(!_playerConversant.IsChoosing);
             _choiceRoot.gameObject.SetActive(_playerConversant.IsChoosing);
 
@@ -86,14 +91,8 @@ namespace RPG.UI
                 newChoiceButton.onClick.AddListener(() =>
                 {
                     _playerConversant.SelectAnswerNode(newChoiceButton, chosenNode);
-                    UpdateUI();
                 });
             }
-        }
-
-        private void Close()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

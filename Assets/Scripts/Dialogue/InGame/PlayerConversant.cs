@@ -1,22 +1,35 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace RPG.Dialogue
 {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] private Dialogue _currentDialogue;
+        public event Action DialogueUpdated;
+        
+        [SerializeField] private Dialogue _testDialogue;
 
+        private Dialogue _currentDialogue;
         private DialogueNode _currentNode;
 
         public bool IsChoosing { get; private set; }
+        public bool IsActive => _currentDialogue != null;
 
-        private void Awake()
+        private IEnumerator Start()
         {
+            yield return new WaitForSeconds(3f);
+            
+            BeginDialogue(_testDialogue);
+        }
+        
+        private void BeginDialogue(Dialogue dialogueToStart)
+        {
+            _currentDialogue = dialogueToStart;
             _currentNode = _currentDialogue.GetRootNode();
+            DialogueUpdated?.Invoke();
         }
 
         public string GetText()
@@ -41,12 +54,14 @@ namespace RPG.Dialogue
             if (answerVariantsCount > 0)
             {
                 IsChoosing = true;
+                DialogueUpdated?.Invoke();
                 return;
             }
 
             DialogueNode[] children = _currentDialogue.GetNPCResponseChildren(_currentNode).ToArray();
-            int npcAnswerOption = Random.Range(0, children.Length);
+            int npcAnswerOption = UnityEngine.Random.Range(0, children.Length);
             _currentNode = children[npcAnswerOption];
+            DialogueUpdated?.Invoke();
         }
 
         public IEnumerable<DialogueNode> GetAnswerChoices()
@@ -60,6 +75,14 @@ namespace RPG.Dialogue
             IsChoosing = false;
             buttonToUnsubscribe.onClick.RemoveListener(() => SelectAnswerNode(buttonToUnsubscribe, chosenNode));
             ChooseNextNode(); // We could delete this line if we want to duplicate player chose in the text 
+        }
+
+        public void ResetDialogue()
+        {
+            _currentDialogue = null;
+            _currentNode = null;
+            IsChoosing = false;
+            DialogueUpdated?.Invoke();
         }
     }
 }

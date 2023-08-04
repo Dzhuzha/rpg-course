@@ -5746,6 +5746,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12939817366269882, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: _testDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e4c29d8eadf8e864aae6919199ef5c93,
+        type: 2}
     - target: {fileID: 87569030499349226, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6429,7 +6435,7 @@ PrefabInstance:
     - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158.99985
+      value: -158.99957
       objectReference: {fileID: 0}
     - target: {fileID: 1690696047786473715, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
@@ -7230,6 +7236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088868139365755681, guid: 905fe7ebf0b854146b668cfbe2dbae13,
+        type: 3}
+      propertyPath: m_text
+      value: Here will be you Dialogue text :)
       objectReference: {fileID: 0}
     - target: {fileID: 4135505464583901125, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
