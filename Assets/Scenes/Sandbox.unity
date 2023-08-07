@@ -683,13 +683,13 @@ PrefabInstance:
     - target: {fileID: 2466367800568994533, guid: 0bcb28d499d74c442bb273bfc19cf900,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2466367800568994533, guid: 0bcb28d499d74c442bb273bfc19cf900,
         type: 3}
       propertyPath: _patrolPath
       value: 
-      objectReference: {fileID: 74967784}
+      objectReference: {fileID: 0}
     - target: {fileID: 2466367800568994533, guid: 0bcb28d499d74c442bb273bfc19cf900,
         type: 3}
       propertyPath: _suspiciousTimer
@@ -803,9 +803,7 @@ PrefabInstance:
       propertyPath: _defaultWeaponName
       value: Sword
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 945305742, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
-    - {fileID: 2466367800568994533, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bcb28d499d74c442bb273bfc19cf900, type: 3}
 --- !u!1 &202340987
 GameObject:
@@ -2054,6 +2052,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 11400000, guid: e4c29d8eadf8e864aae6919199ef5c93, type: 2}
+--- !u!114 &598554634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5922040377580213955, guid: 0bcb28d499d74c442bb273bfc19cf900,
+    type: 3}
+  m_PrefabInstance: {fileID: 170929040}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598554613}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e57f716ccc4cb4ae5a2365c857433f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &598554642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598554613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2dd0a02db9a7584ab542dd037f8f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: Attacking
+  _triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 598554634}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1001 &698665677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6463,7 +6501,7 @@ PrefabInstance:
     - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158.98953
+      value: -158.99983
       objectReference: {fileID: 0}
     - target: {fileID: 1690696047786473715, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}

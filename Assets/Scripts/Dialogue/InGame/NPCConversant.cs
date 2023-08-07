@@ -13,7 +13,7 @@ namespace RPG.Dialogue
 
             if (Input.GetMouseButton(0) && _dialogue != null)
             {
-                playerConversant.BeginDialogue(_dialogue);
+                playerConversant.BeginDialogue(this, _dialogue);
             }
 
             return true;

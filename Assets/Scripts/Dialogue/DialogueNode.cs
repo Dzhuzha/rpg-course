@@ -11,8 +11,12 @@ namespace RPG.Dialogue
         [SerializeField] private string _text;
         [SerializeField] private List<string> _children = new List<string>();
         [SerializeField] private Rect _rect;
+        [SerializeField] private string _onEnterAction;
+        [SerializeField] private string _onExitAction;
         
         public string Text => _text;
+        public string OnEnterAction => _onEnterAction;
+        public string OnExitAction => _onExitAction;
         public string SpeakerName => _speakerName;
         public List<string> Children => _children;
         public Rect Rect => _rect;
