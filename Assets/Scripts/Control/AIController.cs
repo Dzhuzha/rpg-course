@@ -28,6 +28,7 @@ namespace RPG.Control
             _attackerHealth = GetComponent<Health>();
             _mover = GetComponent<Mover>();
             _startPosition = new LazyValue<Vector3>(GetStartPosition);
+            
             _chaseDistance = _fighter.GetAttackDistance() > _chaseDistance ? _fighter.GetAttackDistance() : _chaseDistance;
         }
 
@@ -38,7 +39,7 @@ namespace RPG.Control
 
         private void Update()
         {
-            if (_attackerHealth.IsDead) return;
+            if (_attackerHealth.IsDead || _fighter == null) return;
 
             ExecuteAttackLogic();
         }

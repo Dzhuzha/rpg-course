@@ -18,14 +18,7 @@ namespace RPG.Dialogue
         public bool IsChoosing { get; private set; }
         public bool IsActive => _currentDialogue != null;
 
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(3f);
-            
-            BeginDialogue(_testDialogue);
-        }
-        
-        private void BeginDialogue(Dialogue dialogueToStart)
+        public void BeginDialogue(Dialogue dialogueToStart)
         {
             _currentDialogue = dialogueToStart;
             _currentNode = _currentDialogue.GetRootNode();
