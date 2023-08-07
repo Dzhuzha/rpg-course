@@ -6,7 +6,6 @@ namespace RPG.UI
     {
         [SerializeField] private KeyCode _toggleKey = KeyCode.Escape;
         [SerializeField] private GameObject _uiContainer;
-        [SerializeField] private GameObject _hudContainer;
 
         private void Start()
         {
@@ -18,8 +17,12 @@ namespace RPG.UI
             if (Input.GetKeyDown(_toggleKey))
             {
                 _uiContainer.SetActive(!_uiContainer.activeSelf);
-                _hudContainer.SetActive(!_uiContainer.activeSelf);
             }
+        }
+
+        public void Toggle()
+        {
+            _uiContainer.SetActive(!_uiContainer.activeSelf);
         }
     }
 }
