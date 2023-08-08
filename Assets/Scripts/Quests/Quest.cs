@@ -21,5 +21,18 @@ namespace RPG.Quests
         {
             return _objectives.Contains(objective);
         }
+
+        public static Quest GetByName(string questName)
+        {
+            foreach (Quest quest in Resources.LoadAll<Quest>(""))
+            {
+                if (quest.Name == questName)
+                {
+                    return quest;
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -2119,6 +2119,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &598554655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598554613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86bcc97206b20e44a25c7f3e333eae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quest: {fileID: 11400000, guid: 7e10c988a1a575449af2f21d563c3cda, type: 2}
+  _objective: Find portal to next level
+--- !u!114 &598554656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598554613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2dd0a02db9a7584ab542dd037f8f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: TestObjective
+  _triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 598554655}
+        m_TargetAssemblyTypeName: RPG.Quests.QuestCompletion, Assembly-CSharp
+        m_MethodName: CompleteObjective
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &698665677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3857,7 +3899,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307539556}
-  m_LocalRotation: {x: 0.24002434, y: -0.578781, z: 0.18340136, w: 0.75747263}
+  m_LocalRotation: {x: 0.24002433, y: -0.578781, z: 0.18340136, w: 0.75747263}
   m_LocalPosition: {x: -24.141094, y: -10.674379, z: -37.1495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4644,6 +4686,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e57f716ccc4cb4ae5a2365c857433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1603254926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 945305742, guid: 0bcb28d499d74c442bb273bfc19cf900,
+    type: 3}
+  m_PrefabInstance: {fileID: 1715758901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067104913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09b0979d09b7444c9027d166e40e3dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1603254934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4698,6 +4752,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue: {fileID: 11400000, guid: 40ad75c14e01a0e408d2af233fab9021, type: 2}
+--- !u!114 &1603254937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067104913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2dd0a02db9a7584ab542dd037f8f932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: Attacking
+  _triggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1603254921}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1603254926}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1623009997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7323256398427957670, guid: 905fe7ebf0b854146b668cfbe2dbae13,
@@ -7109,7 +7203,7 @@ PrefabInstance:
     - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158.99986
+      value: -158.99973
       objectReference: {fileID: 0}
     - target: {fileID: 1634784809596109660, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}

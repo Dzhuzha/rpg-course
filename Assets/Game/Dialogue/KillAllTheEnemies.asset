@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _speakerName: Betrayer
-  _text: Always angry, dirty, lying... they don't deserve to live!
+  _text: Always angry, dirty, greedy liars... they don't deserve to live!
   _children:
   - c048f5ac-c0e4-4cc2-9653-90c5695637c0
   _rect:
@@ -162,12 +162,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _speakerName: Betrayer
-  _text: Do you those barbarians?
+  _text: Do you see all those barbarians?
   _children:
   - 7af8e816-6181-4868-8cc0-5fa50508dbe0
   _rect:
     serializedVersion: 2
-    x: 23
+    x: 22
     y: 114
     width: 150
     height: 100
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _speakerName: Betrayer
-  _text: I thought another about you. But now, I could not left you alive!
+  _text: I thought another about you. But now, I can not left you alive!
   _children: []
   _rect:
     serializedVersion: 2
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isPlayerSpeaking: 0
   _speakerName: Betrayer
-  _text: nice. return when the job will be done
+  _text: good boy. return when the job will be done
   _children: []
   _rect:
     serializedVersion: 2
