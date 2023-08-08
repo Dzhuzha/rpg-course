@@ -1,18 +1,19 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace RPG.Quests
 {
-    [Serializable]
     public class QuestStatus
     {
-        [SerializeField] private Quest _quest;
-        [SerializeField, NonReorderable] private List<string> _completedObjectives;
+        private List<string> _completedObjectives = new List<string>();
 
-        public Quest Quest => _quest;
+        public Quest Quest { get; private set; } 
         public int CompletedObjectivesCount => _completedObjectives.Count;
 
+        public QuestStatus(Quest questToSetup)
+        {
+            Quest = questToSetup;
+        }
+        
         public bool IsObjectiveComplete(string objective)
         {
             return _completedObjectives.Contains(objective);

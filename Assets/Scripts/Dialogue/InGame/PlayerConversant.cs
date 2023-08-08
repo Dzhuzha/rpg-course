@@ -55,6 +55,9 @@ namespace RPG.Dialogue
             DialogueNode[] children = _currentDialogue.GetNPCResponseChildren(_currentNode).ToArray();
             int npcAnswerOption = UnityEngine.Random.Range(0, children.Length);
             TriggerExitAction();
+            
+            if (children.Length < 1) { ResetDialogue(); return;}
+            
             _currentNode = children[npcAnswerOption];
             TriggerEnterAction();
             DialogueUpdated?.Invoke();

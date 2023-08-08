@@ -1,0 +1,248 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5927452790847043032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: e5da8dbc-98d2-410f-9d23-5ebabd8a7e50
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: Are you in?
+  _children:
+  - 167af619-6216-420a-a38b-ad600c6606a9
+  - f1e91178-d702-473a-abd5-e8bd66b9cdfc
+  _rect:
+    serializedVersion: 2
+    x: 751
+    y: 114
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &-2494264518554021157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 8c0b6723-0d04-4c23-818a-b2c32f53e534
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: You must kill them. Fast and completely. I will reward you.
+  _children:
+  - e5da8dbc-98d2-410f-9d23-5ebabd8a7e50
+  _rect:
+    serializedVersion: 2
+    x: 555
+    y: 41
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &-1343689866963809668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 7af8e816-6181-4868-8cc0-5fa50508dbe0
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: Always angry, dirty, lying... they don't deserve to live!
+  _children:
+  - c048f5ac-c0e4-4cc2-9653-90c5695637c0
+  _rect:
+    serializedVersion: 2
+    x: 193
+    y: 49
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &-638926381597567045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: f1e91178-d702-473a-abd5-e8bd66b9cdfc
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 1
+  _speakerName: Player
+  _text: No, I think it's not right
+  _children:
+  - 7968b00b-eeb1-4fab-b376-eb20696199f7
+  _rect:
+    serializedVersion: 2
+    x: 980
+    y: 179
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abf745cbad99ed48a24a4bbf8e716a5, type: 3}
+  m_Name: KillAllTheEnemies
+  m_EditorClassIdentifier: 
+  _nodes:
+  - {fileID: 1300137481849231158}
+  - {fileID: -1343689866963809668}
+  - {fileID: 2498725039929015038}
+  - {fileID: -2494264518554021157}
+  - {fileID: -5927452790847043032}
+  - {fileID: 1195818970955356234}
+  - {fileID: -638926381597567045}
+  - {fileID: 1620020604186944861}
+  - {fileID: 2822372514152685661}
+--- !u!114 &1195818970955356234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 167af619-6216-420a-a38b-ad600c6606a9
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 1
+  _speakerName: Player
+  _text: Yes. Let's finish with it
+  _children:
+  - 37d2d3d0-abd8-4394-a55e-ddea9a319495
+  _rect:
+    serializedVersion: 2
+    x: 974
+    y: 28
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &1300137481849231158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 19e4b741-2a79-4403-a6ac-d587fd9d9b42
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: Do you those barbarians?
+  _children:
+  - 7af8e816-6181-4868-8cc0-5fa50508dbe0
+  _rect:
+    serializedVersion: 2
+    x: 23
+    y: 114
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &1620020604186944861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 7968b00b-eeb1-4fab-b376-eb20696199f7
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: I thought another about you. But now, I could not left you alive!
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 1179
+    y: 165
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: Attacking
+--- !u!114 &2498725039929015038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: c048f5ac-c0e4-4cc2-9653-90c5695637c0
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 1
+  _speakerName: Player
+  _text: What do you mean?
+  _children:
+  - 8c0b6723-0d04-4c23-818a-b2c32f53e534
+  _rect:
+    serializedVersion: 2
+    x: 378
+    y: 130
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+--- !u!114 &2822372514152685661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 37d2d3d0-abd8-4394-a55e-ddea9a319495
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: nice. return when the job will be done
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 1193
+    y: 36
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: GiveQuest
