@@ -7,14 +7,19 @@ namespace RPG.Quests
     public class Quest : ScriptableObject
     {
         [SerializeField] private string _name;
-        [SerializeField] private string[] _objectives;
+        [SerializeField] private List<string> _objectives = new List<string>();
 
         public string Name => _name;
-        public int ObjectivesCount => _objectives.Length;
+        public int ObjectivesCount => _objectives.Count;
 
         public IEnumerable<string> GetObjectives()
         {
             return _objectives;
+        }
+
+        public bool IsContainObjective(string objective)
+        {
+            return _objectives.Contains(objective);
         }
     }
 }

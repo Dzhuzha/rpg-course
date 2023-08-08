@@ -34,6 +34,12 @@ namespace RPG.UI.Quests
 
         private void UpdateQuestUI()
         {
+            QuestItemUI[] existingQuestList = GetComponentsInChildren<QuestItemUI>();
+            foreach (var item in existingQuestList)
+            {
+                Destroy(item.gameObject);
+            }
+            
             if (_playerQuests.QuestCount < 1) return;
 
             foreach (QuestStatus status in _playerQuests.GetQuests())
