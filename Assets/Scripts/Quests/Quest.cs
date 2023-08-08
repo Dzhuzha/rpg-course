@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -9,6 +10,11 @@ namespace RPG.Quests
         [SerializeField] private string[] _objectives;
 
         public string Name => _name;
-        public string[] Objectives => _objectives;
+        public int ObjectivesCount => _objectives.Length;
+
+        public IEnumerable<string> GetObjectives()
+        {
+            return _objectives;
+        }
     }
 }

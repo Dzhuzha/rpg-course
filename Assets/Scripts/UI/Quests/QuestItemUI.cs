@@ -1,3 +1,4 @@
+using System;
 using RPG.Quests;
 using TMPro;
 using UnityEngine;
@@ -9,10 +10,13 @@ namespace RPG.UI.Quests
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _progress;
 
-        public void Setup(Quest quest)
+        public QuestStatus QuestStatus { get; private set; }
+
+        public void Setup(QuestStatus questStatus)
         {
-            _title.text = quest.Name;
-            _progress.text = quest.Objectives.Length.ToString();
+            QuestStatus = questStatus;
+            _title.text = QuestStatus.Quest.Name;
+            _progress.text = String.Concat(QuestStatus.CompletedObjectivesCount, "/", QuestStatus.Quest.ObjectivesCount);
         }
     }
 }

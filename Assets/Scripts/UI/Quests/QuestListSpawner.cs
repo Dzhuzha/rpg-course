@@ -5,17 +5,18 @@ namespace RPG.UI.Quests
 {
     public class QuestListSpawner : MonoBehaviour
     {
-        [SerializeField] private Quest[] _tempQuest;
         [SerializeField] private QuestItemUI _questItem;
 
         private void Start()
         {
-            if (_tempQuest.Length < 1) return;
+            QuestList playerQuests = FindObjectOfType<QuestList>();
+            
+            if (playerQuests.QuestCount < 1) return;
 
-            for (int i = 0; i < _tempQuest.Length; i++)
+            foreach (QuestStatus status in playerQuests.GetQuests())
             {
-               QuestItemUI questUI = Instantiate(_questItem, transform);
-               questUI.Setup(_tempQuest[i]);
+                QuestItemUI questUI = Instantiate(_questItem, transform);
+                questUI.Setup(status);   
             }
         }
     }
