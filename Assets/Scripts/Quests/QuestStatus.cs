@@ -7,25 +7,38 @@ namespace RPG.Quests
     {
         private List<string> _completedObjectives = new List<string>();
 
-        public Quest Quest { get; private set; } 
+        public Quest Quest { get; private set; }
         public int CompletedObjectivesCount => _completedObjectives.Count;
 
         public QuestStatus(Quest questToSetup)
         {
             Quest = questToSetup;
         }
-        
+
+        public bool IsQuestComplete()
+        {
+            foreach (var objective in Quest.GetObjectives())
+            {
+                if (!_completedObjectives.Contains(objective.Reference))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public QuestStatus(object objectState)
         {
             QuestStatusRecord questRecord = objectState as QuestStatusRecord;
-           
+
             if (questRecord != null)
             {
                 Quest = Quest.GetByName(questRecord.QuestName);
                 _completedObjectives = questRecord.CompletedObjectives;
             }
         }
-        
+
         public bool IsObjectiveComplete(string objective)
         {
             return _completedObjectives.Contains(objective);
@@ -47,11 +60,11 @@ namespace RPG.Quests
 
         public object CaptureState()
         {
-           QuestStatusRecord state = new QuestStatusRecord();
-           state.QuestName = Quest.Name;
-           state.CompletedObjectives = _completedObjectives;
+            QuestStatusRecord state = new QuestStatusRecord();
+            state.QuestName = Quest.Name;
+            state.CompletedObjectives = _completedObjectives;
 
-           return state;
+            return state;
         }
     }
 }

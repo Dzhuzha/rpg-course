@@ -14,5 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Kill them all
   _objectives:
-  - Kill all enemies on the level
-  - Find portal to next level
+  - Reference: 1
+    Description: Find portal to next level
+  - Reference: 2
+    Description: Kill all enemies on the level
+  _rewards:
+  - Number: 1
+    Item: {fileID: 11400000, guid: 743687fd570301c419b669d87db6d7ad, type: 2}
+  - Number: 1
+    Item: {fileID: 11400000, guid: 1cadd2ff258c85a4b9e4ee8c6c3b7768, type: 2}
+  - Number: 5
+    Item: {fileID: 11400000, guid: 3a55d83a8fe7e7240bddfdfaca85df89, type: 2}

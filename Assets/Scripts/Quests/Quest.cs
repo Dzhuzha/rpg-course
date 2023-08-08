@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using RPG.Inventory;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -7,19 +9,47 @@ namespace RPG.Quests
     public class Quest : ScriptableObject
     {
         [SerializeField] private string _name;
-        [SerializeField] private List<string> _objectives = new List<string>();
+        [SerializeField, NonReorderable] private List<Objective> _objectives = new List<Objective>();
+        [SerializeField, NonReorderable] private List<Reward> _rewards = new List<Reward>();
 
         public string Name => _name;
         public int ObjectivesCount => _objectives.Count;
 
-        public IEnumerable<string> GetObjectives()
+        [Serializable]
+        public class Reward
+        {
+            [Min(1)] public int Number;
+            public InventoryItem Item;
+        }
+        
+        [Serializable]
+        public class Objective
+        {
+            public string Reference;
+            public string Description;
+        }
+        
+        public IEnumerable<Objective> GetObjectives()
         {
             return _objectives;
         }
 
-        public bool IsContainObjective(string objective)
+        public IEnumerable<Reward> GetReward()
         {
-            return _objectives.Contains(objective);
+            return _rewards;
+        }
+
+        public bool IsContainObjective(string objectiveReference)
+        {
+            foreach (Objective objectiveItem in _objectives)
+            {
+                if (objectiveItem.Reference == objectiveReference)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         public static Quest GetByName(string questName)

@@ -31,10 +31,7 @@ namespace RPG.Inventory
         public string Description => _description;
         public bool IsStackable => _stackable;
         
-        // STATE
         static Dictionary<string, InventoryItem> _itemLookupCache;
-        
-        // PUBLIC
 
         public static InventoryItem GetFromID(string itemID)
         {

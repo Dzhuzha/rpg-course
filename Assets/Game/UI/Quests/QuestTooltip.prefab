@@ -608,6 +608,7 @@ MonoBehaviour:
   _container: {fileID: 569472028460937178}
   _objectivePrefab: {fileID: 2191742527122333091, guid: 8e3be53ed6d2e6c45b022bb25e9e7d3d,
     type: 3}
+  _rewardText: {fileID: 4408587224923897032}
 --- !u!1 &6260565788376202463
 GameObject:
   m_ObjectHideFlags: 0

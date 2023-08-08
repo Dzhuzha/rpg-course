@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RPG.Inventory;
 using RPG.Saving;
 using UnityEngine;
 
@@ -35,7 +36,26 @@ namespace RPG.Quests
             if (questToComplete == null) return;
 
             questToComplete.CompletedObjective(objective);
+
+            if (questToComplete.IsQuestComplete())
+            {
+                GiveReward(quest);
+            }
+            
             QuestListUpdated?.Invoke();
+        }
+
+        private void GiveReward(Quest quest)
+        {
+            foreach (Quest.Reward reward in quest.GetReward())
+            {
+               bool itemAdded = GetComponent<RPG.Inventory.Inventory>().AddToFirstEmptySlot(reward.Item, reward.Number);
+
+               if (!itemAdded)
+               {
+                   GetComponent<ItemDropper>().DropItem(reward.Item, reward.Number);
+               }
+            }
         }
 
         private QuestStatus GetQuestStatus(Quest quest)
