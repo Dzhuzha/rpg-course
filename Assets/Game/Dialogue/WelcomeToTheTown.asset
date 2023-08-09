@@ -25,6 +25,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-8530124644980591957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +53,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: Test selection
   _onExitAction: Test player exit
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-2940546770814003273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +82,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: Test NPC exit
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-2432408696268075918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +109,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: Attacking
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-1102178691105928802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +137,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +190,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &3115174998017569456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +218,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &6183542534589333641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +247,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: Test root enter
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &6256446312895402766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +274,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: TestObjective
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &7123532727210990016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +302,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &8517030379748849817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,3 +330,6 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []

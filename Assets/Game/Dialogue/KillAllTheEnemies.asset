@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7780687958949180979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: 5582e166-86a0-429e-9f33-395df4324b0b
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 1
+  _speakerName: Player
+  _text: I'm in progress
+  _children: []
+  _rect:
+    serializedVersion: 2
+    x: 383
+    y: 234
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-5927452790847043032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,6 +53,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-2494264518554021157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,6 +81,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &-1343689866963809668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +109,10 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: HasNoQuest
+    _parameters:
+    - Kill them all
 --- !u!114 &-638926381597567045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +138,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +163,37 @@ MonoBehaviour:
   - {fileID: -638926381597567045}
   - {fileID: 1620020604186944861}
   - {fileID: 2822372514152685661}
+  - {fileID: 380297588213613849}
+  - {fileID: -7780687958949180979}
+--- !u!114 &380297588213613849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1e9c361c079740a1d16bccedba665, type: 3}
+  m_Name: d88fbcaa-a2db-4163-854f-0202494d81ef
+  m_EditorClassIdentifier: 
+  _isPlayerSpeaking: 0
+  _speakerName: Betrayer
+  _text: How it's going?
+  _children:
+  - 5582e166-86a0-429e-9f33-395df4324b0b
+  _rect:
+    serializedVersion: 2
+    x: 206
+    y: 192
+    width: 150
+    height: 100
+  _onEnterAction: 
+  _onExitAction: 
+  _condition:
+    _predicate: HasQuest
+    _parameters:
+    - Kill them all
 --- !u!114 &1195818970955356234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +219,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &1300137481849231158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +239,7 @@ MonoBehaviour:
   _text: Do you see all those barbarians?
   _children:
   - 7af8e816-6181-4868-8cc0-5fa50508dbe0
+  - d88fbcaa-a2db-4163-854f-0202494d81ef
   _rect:
     serializedVersion: 2
     x: 22
@@ -173,6 +248,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &1620020604186944861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +275,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: Attacking
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &2498725039929015038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +303,9 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: 
+  _condition:
+    _predicate: 
+    _parameters: []
 --- !u!114 &2822372514152685661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +330,6 @@ MonoBehaviour:
     height: 100
   _onEnterAction: 
   _onExitAction: GiveQuest
+  _condition:
+    _predicate: 
+    _parameters: []
