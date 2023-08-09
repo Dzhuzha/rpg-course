@@ -1,4 +1,5 @@
 using System;
+using RPG.Core;
 using RPG.Saving;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace RPG.Inventory
     /// Provides storage for the player inventory. A configurable number of slots are available.
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    public class Inventory : MonoBehaviour, ISaveable
+    public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluator
     {
         [Tooltip("Allowed size"), SerializeField] private int _inventorySize = 16;
         private InventorySlot[] _slots;
@@ -241,6 +242,19 @@ namespace RPG.Inventory
         {
             public InventoryItem Item;
             public int Quantity;
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            switch (predicate)
+            {
+                case "HasInventoryItem":
+                    return HasItem(InventoryItem.GetFromID(parameters[0]));
+                case "HasNoItem":
+                    return !HasItem(InventoryItem.GetFromID(parameters[0]));
+                default:
+                    return null;
+            }
         }
     }
 }

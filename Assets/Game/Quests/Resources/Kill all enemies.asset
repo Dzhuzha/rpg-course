@@ -16,7 +16,7 @@ MonoBehaviour:
   _objectives:
   - Reference: 1
     Description: Find portal to next level
-  - Reference: 2
+  - Reference: 1
     Description: Kill all enemies on the level
   _rewards:
   - Number: 1

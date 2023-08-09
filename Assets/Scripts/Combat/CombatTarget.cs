@@ -7,6 +7,13 @@ namespace RPG.Combat
     [RequireComponent(typeof(Atributes.Health))]
     public class CombatTarget : MonoBehaviour, IRaycastable
     {
+        [SerializeField] private bool _enabledOnStart;
+
+        private void Start()
+        {
+            enabled = _enabledOnStart;
+        }
+
         public bool HandleRaycast(PlayerController callingController)
         {
             if (!callingController.transform.TryGetComponent(out Fighter fighter)) return false;

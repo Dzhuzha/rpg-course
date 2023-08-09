@@ -17,10 +17,8 @@ namespace RPG.Quests
 
         public void AddQuest(Quest questToAdd)
         {
-            QuestStatus newQuestStatus = new QuestStatus(questToAdd);
-
             if (HasQuest(questToAdd)) return;
-
+            QuestStatus newQuestStatus = new QuestStatus(questToAdd);
             _statuses.Add(newQuestStatus);
             QuestListUpdated?.Invoke();
         }
@@ -42,35 +40,20 @@ namespace RPG.Quests
             {
                 GiveReward(quest);
             }
-            
-            QuestListUpdated?.Invoke();
-        }
 
-        public bool? Evaluate(string predicate, string[] parameters)
-        {
-            switch (predicate)
-            {
-                case "HasQuest":
-                    return HasQuest(Quest.GetByName(parameters[0]));
-                case "CompletedQuest":
-                    return GetQuestStatus(Quest.GetByName(parameters[0])).IsQuestComplete();
-                case "HasNoQuest":
-                    return !HasQuest(Quest.GetByName(parameters[0]));
-                default:
-                    return null;
-            }
+            QuestListUpdated?.Invoke();
         }
 
         private void GiveReward(Quest quest)
         {
             foreach (Quest.Reward reward in quest.GetReward())
             {
-               bool itemAdded = GetComponent<RPG.Inventory.Inventory>().AddToFirstEmptySlot(reward.Item, reward.Number);
+                bool itemAdded = GetComponent<RPG.Inventory.Inventory>().AddToFirstEmptySlot(reward.Item, reward.Number);
 
-               if (!itemAdded)
-               {
-                   GetComponent<ItemDropper>().DropItem(reward.Item, reward.Number);
-               }
+                if (!itemAdded)
+                {
+                    GetComponent<ItemDropper>().DropItem(reward.Item, reward.Number);
+                }
             }
         }
 
@@ -115,6 +98,19 @@ namespace RPG.Quests
             {
                 _statuses.Add(new QuestStatus(objectState));
             }
+        }
+
+        public bool? Evaluate(string predicate, string[] parameters)
+        {
+            switch (predicate)
+            {
+                case "HasQuest":
+                    return HasQuest(Quest.GetByName(parameters[0]));
+                case "CompletedQuest":
+                    return GetQuestStatus(Quest.GetByName(parameters[0])).IsQuestComplete();
+            }
+
+            return null;
         }
     }
 }
