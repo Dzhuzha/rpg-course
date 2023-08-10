@@ -100,13 +100,13 @@ namespace RPG.Quests
             }
         }
 
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(PredicateType predicate, string[] parameters)
         {
             switch (predicate)
             {
-                case "HasQuest":
+                case PredicateType.HasQuest:
                     return HasQuest(Quest.GetByName(parameters[0]));
-                case "CompletedQuest":
+                case PredicateType.CompletedQuest:
                     return GetQuestStatus(Quest.GetByName(parameters[0])).IsQuestComplete();
             }
 

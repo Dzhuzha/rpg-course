@@ -244,17 +244,25 @@ namespace RPG.Inventory
             public int Quantity;
         }
 
-        public bool? Evaluate(string predicate, string[] parameters)
+        public bool? Evaluate(PredicateType predicate, string[] parameters)
         {
             switch (predicate)
             {
-                case "HasInventoryItem":
+                case PredicateType.HasItem:
                     return HasItem(InventoryItem.GetFromID(parameters[0]));
-                case "HasNoItem":
-                    return !HasItem(InventoryItem.GetFromID(parameters[0]));
-                default:
-                    return null;
+                case PredicateType.HasItems:    // Works only for stackable items
+                    InventoryItem item = InventoryItem.GetFromID(parameters[0]);
+                    int stack = FindStack(item);
+                    if (stack == -1) return false;
+                    if (int.TryParse(parameters[1], out int result))
+                    {
+                        return _slots[stack].Quantity >= result;
+                    }
+
+                    return false;
             }
+            
+            return null;
         }
     }
 }

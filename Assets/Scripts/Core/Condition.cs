@@ -41,7 +41,7 @@ namespace RPG.Core
         [Serializable]
         class Predicate
         {
-            [SerializeField] private string _predicate;
+            [SerializeField] private PredicateType _predicate;
             [SerializeField, NonReorderable] private string[] _parameters;
             [SerializeField] private bool _negate = false;
 

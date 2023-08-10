@@ -1,10 +1,11 @@
 using System;
 using GameDevTV.Utils;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Stats
 {
-    public class BaseStats : MonoBehaviour
+    public class BaseStats : MonoBehaviour, IPredicateEvaluator
     {
         [Range(1, 99), SerializeField] private int _startingLevel = 1;
         [SerializeField] private CharacterClass _characterClass;
@@ -128,6 +129,19 @@ namespace RPG.Stats
             }
             
             return (int)penultimateLevel + 1;
+        }
+
+        public bool? Evaluate(PredicateType predicate, string[] parameters)
+        {
+            if (predicate == PredicateType.HasLevel)
+            {
+                if (int.TryParse(parameters[0], out int testLevel))
+                {
+                    return CurrentLevel.value >= testLevel;
+                }
+            }
+
+            return null;
         }
     }
 }
