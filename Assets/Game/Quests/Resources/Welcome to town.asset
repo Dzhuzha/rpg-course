@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Welcome to town newcomer
   _objectives:
-  - Kill all enemies
-  - Loot them all
-  - Stay a live for 2 minutes
+  - Reference: 1
+    Description: Welcome
+  - Reference: 2
+    Description: Bye
+  - Reference: 
+    Description: 
+  _rewards: []

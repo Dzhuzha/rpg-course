@@ -18,14 +18,20 @@ MonoBehaviour:
   _children: []
   _rect:
     serializedVersion: 2
-    x: 383
+    x: 384
     y: 234
     width: 150
     height: 100
   _onEnterAction: 
   _onExitAction: 
   _condition:
-    _and: []
+    _and:
+    - _or:
+      - _predicate: 2
+        _parameters:
+        - Kill them all
+        - 1
+        _negate: 0
 --- !u!114 &-5927452790847043032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,8 +79,8 @@ MonoBehaviour:
   _children: []
   _rect:
     serializedVersion: 2
-    x: 193
-    y: 350
+    x: 194
+    y: 349
     width: 150
     height: 100
   _onEnterAction: 
@@ -85,10 +91,12 @@ MonoBehaviour:
       - _predicate: 1
         _parameters:
         - Kill them all
+        - Kill them all
         _negate: 0
     - _or:
       - _predicate: 3
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 0
 --- !u!114 &-2494264518554021157
@@ -148,6 +156,7 @@ MonoBehaviour:
     - _or:
       - _predicate: 1
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 1
 --- !u!114 &-638926381597567045
@@ -261,10 +270,12 @@ MonoBehaviour:
       - _predicate: 1
         _parameters:
         - Kill them all
+        - Kill them all
         _negate: 0
     - _or:
       - _predicate: 3
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 1
 --- !u!114 &1195818970955356234

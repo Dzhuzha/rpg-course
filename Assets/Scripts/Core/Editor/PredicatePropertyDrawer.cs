@@ -39,6 +39,12 @@ namespace RPG.Core.Editor
             {
                 position.y += propertyHeight;
                 DrawQuest(position, parameterZero);
+                
+                if (selectedPredicate == PredicateType.CompletedObjective)
+                {
+                    position.y += propertyHeight;
+                    DrawObjective(position, parameterOne, parameterZero);
+                }
             }
 
             position.y += propertyHeight;
@@ -94,6 +100,36 @@ namespace RPG.Core.Editor
                 element.stringValue = names[newIndex];
             }
 
+            EditorGUI.EndProperty();
+        }
+
+        private void DrawObjective(Rect position, SerializedProperty element, SerializedProperty selectedQuest)
+        {
+            string questName = selectedQuest.stringValue;
+            if (!_quests.ContainsKey(questName))
+            {
+                EditorGUI.HelpBox(position, "Please Select A Quest", MessageType.Error);
+                return;
+            }
+            
+            List<string> references = new List<string>();
+            List<string> descriptions = new List<string>();
+
+            foreach (Quest.Objective objective in _quests[questName].GetObjectives())
+            {
+                references.Add(objective.Reference);
+                descriptions.Add(objective.Description);
+            }
+
+            int index = references.IndexOf(element.stringValue);
+            EditorGUI.BeginProperty(position, new GUIContent("objective"), element);
+            int newIndex = EditorGUI.Popup(position, "Objective", index, descriptions.ToArray());
+           
+            if (newIndex != index)
+            {
+                element.stringValue = references[newIndex];
+            }
+            
             EditorGUI.EndProperty();
         }
     }
