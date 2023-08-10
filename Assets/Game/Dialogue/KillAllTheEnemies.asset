@@ -25,13 +25,7 @@ MonoBehaviour:
   _onEnterAction: 
   _onExitAction: 
   _condition:
-    _and:
-    - _or:
-      - _predicate: 2
-        _parameters:
-        - Kill them all
-        - 1
-        _negate: 0
+    _and: []
 --- !u!114 &-5927452790847043032
 MonoBehaviour:
   m_ObjectHideFlags: 0

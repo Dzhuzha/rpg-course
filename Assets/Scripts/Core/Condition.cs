@@ -23,7 +23,7 @@ namespace RPG.Core
         }
 
         [Serializable]
-        class Disjunction
+        public class Disjunction
         {
             [SerializeField, NonReorderable] private Predicate[] _or;
 
