@@ -39,7 +39,7 @@ namespace RPG.Core
         }
 
         [Serializable]
-        class Predicate
+        public class Predicate
         {
             [SerializeField] private PredicateType _predicate;
             [SerializeField, NonReorderable] private string[] _parameters;
