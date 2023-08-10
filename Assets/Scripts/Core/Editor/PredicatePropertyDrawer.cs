@@ -47,10 +47,28 @@ namespace RPG.Core.Editor
                 }
             }
 
+            if (selectedPredicate == PredicateType.HasItem || selectedPredicate == PredicateType.HasItems || selectedPredicate == PredicateType.HasItemEquipped)
+            {
+                position.y += propertyHeight;
+                DrawInventoryItemList(position, parameterZero, selectedPredicate == PredicateType.HasItems, selectedPredicate == PredicateType.HasItemEquipped);
+
+                if (selectedPredicate == PredicateType.HasItems)
+                {
+                    position.y += propertyHeight;
+                    DrawIntSlider(position, "Qty Needed", parameterOne, 1, 100);
+                }
+            }
+
+            if (selectedPredicate == PredicateType.HasLevel)
+            {
+                position.y += propertyHeight;
+                DrawIntSlider(position, "LevelRequired", parameterZero, 1, 100);
+            }
+            
             position.y += propertyHeight;
             EditorGUI.PropertyField(position, negate);
         }
-
+        
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             SerializedProperty predicate = property.FindPropertyRelative("_predicate");
@@ -128,6 +146,60 @@ namespace RPG.Core.Editor
             if (newIndex != index)
             {
                 element.stringValue = references[newIndex];
+            }
+            
+            EditorGUI.EndProperty();
+        }
+
+        private void BuildInventoryItemList()
+        {
+            if (_items != null) return;
+            _items = new Dictionary<string, InventoryItem>();
+
+            foreach (InventoryItem inventoryItem in Resources.LoadAll<InventoryItem>(""))
+            {
+                _items[inventoryItem.ItemID] = inventoryItem;
+            }
+        }
+
+        private void DrawInventoryItemList(Rect position, SerializedProperty element, bool stackable = false, bool equipment = false)
+        {
+            BuildInventoryItemList();
+            List<string> ids = _items.Keys.ToList();
+            if (stackable) ids = ids.Where(s => _items[s].IsStackable).ToList();
+            if (equipment) ids = ids.Where(s => _items[s] is EquipableItem e).ToList();
+            List<string> displayNames = new List<string>();
+
+            foreach (string id in ids)
+            {
+                displayNames.Add(_items[id].DisplayName);
+            }
+
+            int index = ids.IndexOf(element.stringValue);
+            EditorGUI.BeginProperty(position, new GUIContent("items"), element);
+            int newIndex = EditorGUI.Popup(position, "Item", index, displayNames.ToArray());
+            if (newIndex != index)
+            {
+                element.stringValue = ids[newIndex];
+            }
+            EditorGUI.EndProperty();
+        }
+
+        private void DrawIntSlider(Rect position, string caption, SerializedProperty intParameter, int minLevel, int maxLevel)
+        {
+            EditorGUI.BeginProperty(position, new GUIContent(caption), intParameter);
+            
+            if (!int.TryParse(intParameter.stringValue, out int value))
+            {
+                value = 1;
+            }
+            
+            EditorGUI.BeginChangeCheck();
+            int result = EditorGUI.IntSlider(position, caption, value, minLevel, maxLevel);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                intParameter.stringValue = $"{result}";
             }
             
             EditorGUI.EndProperty();
