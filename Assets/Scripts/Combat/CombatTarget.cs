@@ -7,11 +7,11 @@ namespace RPG.Combat
     [RequireComponent(typeof(Atributes.Health))]
     public class CombatTarget : MonoBehaviour, IRaycastable
     {
-        [SerializeField] private bool _enabledOnStart;
+        [SerializeField] private bool _enabledOnAwake;
 
-        private void Start()
+        private void Awake()
         {
-            enabled = _enabledOnStart;
+            enabled = _enabledOnAwake;
         }
 
         public bool HandleRaycast(PlayerController callingController)

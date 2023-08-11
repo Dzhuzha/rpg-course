@@ -38,8 +38,8 @@ namespace RPG.Dialogue
 
         public bool TryGetNext()
         {
-            return _currentNode.Children.Count > 0;
-            return  _currentDialogue.GetAllChildren(_currentNode).Count() > 0; //FilterOnCondition()
+           // return _currentNode.Children.Count > 0;
+            return  FilterOnCondition(_currentDialogue.GetAllChildren(_currentNode)).Count() > 0; //FilterOnCondition()
         }
 
         public void ChooseNextNode()

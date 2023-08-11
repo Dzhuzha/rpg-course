@@ -9,23 +9,25 @@ namespace RPG.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
+        private Dictionary<string, object> _state;
+        
         public IEnumerator LoadLastScene(string saveFile)
         {
-            Dictionary<string, object> state = LoadFile(saveFile);
+            _state ??= LoadFile(saveFile);
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
-            if (state.ContainsKey("lastSceneBuildIndex"))
+            if (_state.ContainsKey("lastSceneBuildIndex"))
             {
-                buildIndex = (int)state["lastSceneBuildIndex"];
+                buildIndex = (int)_state["lastSceneBuildIndex"];
             }
             yield return SceneManager.LoadSceneAsync(buildIndex);
-            RestoreState(state);
+            RestoreState(_state);
         }
 
         public void Save(string saveFile)
         {
-            Dictionary<string, object> state = LoadFile(saveFile);
-            CaptureState(state);
-            SaveFile(saveFile, state);
+            //Dictionary<string, object> state = LoadFile(saveFile);
+            CaptureState(_state);
+            SaveFile(saveFile, _state);
         }
 
         public void Load(string saveFile)
@@ -55,7 +57,7 @@ namespace RPG.Saving
         private void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile);
-            print("Saving to " + path);
+            Debug.Log("Saving to " + path);
             using (FileStream stream = File.Open(path, FileMode.Create))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
