@@ -18,7 +18,7 @@ MonoBehaviour:
   _children: []
   _rect:
     serializedVersion: 2
-    x: 383
+    x: 384
     y: 234
     width: 150
     height: 100
@@ -73,8 +73,8 @@ MonoBehaviour:
   _children: []
   _rect:
     serializedVersion: 2
-    x: 193
-    y: 350
+    x: 194
+    y: 349
     width: 150
     height: 100
   _onEnterAction: 
@@ -82,13 +82,15 @@ MonoBehaviour:
   _condition:
     _and:
     - _or:
-      - _predicate: HasQuest
+      - _predicate: 
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 0
     - _or:
-      - _predicate: CompletedQuest
+      - _predicate: 
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 0
 --- !u!114 &-2494264518554021157
@@ -146,8 +148,9 @@ MonoBehaviour:
   _condition:
     _and:
     - _or:
-      - _predicate: HasQuest
+      - _predicate: 
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 1
 --- !u!114 &-638926381597567045
@@ -258,13 +261,15 @@ MonoBehaviour:
   _condition:
     _and:
     - _or:
-      - _predicate: HasQuest
+      - _predicate: 
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 0
     - _or:
-      - _predicate: CompletedQuest
+      - _predicate: 
         _parameters:
+        - Kill them all
         - Kill them all
         _negate: 1
 --- !u!114 &1195818970955356234
@@ -394,8 +399,8 @@ MonoBehaviour:
   _children: []
   _rect:
     serializedVersion: 2
-    x: 1193
-    y: 36
+    x: 1168
+    y: 28
     width: 150
     height: 100
   _onEnterAction: 
