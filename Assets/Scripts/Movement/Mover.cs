@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Atributes;
 using UnityEngine;
@@ -7,7 +8,7 @@ using RPG.Saving;
 
 namespace RPG.Movement
 {
-    public class Mover : ActionScheduler, IAction, ISaveable
+    public class Mover : ActionScheduler, IAction, IJsonSaveable
     {
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private Animator _animator;
@@ -89,33 +90,16 @@ namespace RPG.Movement
             _agent.speed = speed;
         }
 
-        public object CaptureState()
+        public JToken CaptureAsJToken()
         {
-            MoverSaveData moverSaveData = new MoverSaveData(new SerializableVector3(transform.position),
-                new SerializableVector3(transform.eulerAngles));
-            return moverSaveData as object;
+            return transform.position.ToToken();
         }
 
-        public void RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            MoverSaveData data = (MoverSaveData) state;
             _agent.enabled = false;
-            transform.position = data.Position.ToVector();
-            transform.eulerAngles = data.Rotation.ToVector();
+            transform.position = state.ToVector3();
             _agent.enabled = true;
-        }
-
-        [Serializable]
-        struct MoverSaveData
-        {
-            public SerializableVector3 Position { get; private set; }
-            public SerializableVector3 Rotation { get; private set; }
-
-            public MoverSaveData(SerializableVector3 position, SerializableVector3 rotation)
-            {
-                Position = position;
-                Rotation = rotation;
-            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using GameDevTV.Utils;
+using Newtonsoft.Json.Linq;
 using RPG.Stats;
 using RPG.Saving;
 using UnityEngine;
@@ -9,7 +10,7 @@ using RPG.UI.DamageText;
 
 namespace RPG.Atributes
 {
-    public class Health : MonoBehaviour, ISaveable
+    public class Health : MonoBehaviour, IJsonSaveable
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private DamageTextSpawner _damageTextSpawner;
@@ -128,23 +129,23 @@ namespace RPG.Atributes
             _animator.SetTrigger("Dead");
         }
 
-        public object CaptureState()
-        {
-            return _health.value;
-        }
-
-        public void RestoreState(object state)
-        {
-            _health.value = (float)state;
-            UpdateHealthPercentage();
-            if (!IsDead) return;
-            ForceDead();
-        }
-
         public void Heal(float healthToRestore)
         {
            _health.value = Mathf.Min(_health.value + healthToRestore, _baseStats.GetStat(Stat.Health));
            UpdateHealthPercentage();
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            return JToken.FromObject(_health.value);
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            _health.value = state.ToObject<float>();
+            UpdateHealthPercentage();
+            if (!IsDead) return;
+            ForceDead();
         }
     }
 }

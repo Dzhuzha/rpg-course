@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3136675446690060721, guid: 4edd1fc0a32aa074e8508804620dfe69,
+        type: 3}
+      propertyPath: _uniqueIdentifier
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 3871736999637922484, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: _equipment
@@ -334,6 +339,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5143f4982541b1a408e883bc9b9971a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5115570761654102741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195349643527405059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bfa0ffd4abb19488453218ee0379a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5209412030023773230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,26 +416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventorySize: 24
---- !u!114 &5115570761654102741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195349643527405059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34bfa0ffd4abb19488453218ee0379a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _statuses:
-  - _quest: {fileID: 11400000, guid: 7e10c988a1a575449af2f21d563c3cda, type: 2}
-    _completedObjectives:
-    - Find portal to next level
-  - _quest: {fileID: 11400000, guid: a5d1f1f64a8179042b9e8f221be18c63, type: 2}
-    _completedObjectives:
-    - Stay a live for 2 minutes
-    - Loot them all
 --- !u!114 &195349644342650064 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6011471322046631701, guid: 4edd1fc0a32aa074e8508804620dfe69,

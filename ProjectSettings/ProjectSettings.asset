@@ -862,11 +862,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 1c8ad02c-6744-4b04-b58f-5d1faa5c27d8
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Villager
+  organizationId: unity_ep7b5jpvypbxbw
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

@@ -9,7 +9,7 @@ namespace RPG.SceneManagement
         [SerializeField] private float _fadeInTime = 2f;
 
         private const string DEFAULT_SAVE_FILE_NAME = "data";
-        private SavingSystem _savingSystem;
+        private JsonSavingSystem _savingSystem;
         private Fader _fader;
 
         private void Awake()
@@ -19,7 +19,7 @@ namespace RPG.SceneManagement
 
         private IEnumerator LoadLastScene()
         {
-            _savingSystem = _savingSystem == null ? GetComponent<SavingSystem>() : _savingSystem;
+            _savingSystem = _savingSystem == null ? GetComponent<JsonSavingSystem>() : _savingSystem;
             yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE_NAME);
             _fader = _fader == null ? FindObjectOfType<Fader>() : _fader;
             _fader.FadeOutImmediate();
