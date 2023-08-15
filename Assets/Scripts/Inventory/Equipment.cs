@@ -1,17 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using RPG.Saving;
 using UnityEngine;
 
 namespace RPG.Inventory
 {
-    /// <summary>
-    /// Provides a store for the equipment that the player is wearing.
-    /// Items are stored in the same order as the EquipLocation enum.
-    ///
-    /// Should be placed on the GameObject tagged "Player".
-    /// </summary>
-    public class Equipment : MonoBehaviour, ISaveable
+    public class Equipment : MonoBehaviour, IJsonSaveable
     {
         private Dictionary<EquipLocation, EquipableItem> _equippedItems = new Dictionary<EquipLocation, EquipableItem>();
 
@@ -24,7 +19,6 @@ namespace RPG.Inventory
 
         public void AddItem(EquipLocation slot, EquipableItem item)
         {
-            //Debug.Assert(item.AllowedEquipLocation == slot);
             _equippedItems[slot] = item;
             EquipmentUpdated?.Invoke();
         }
@@ -40,30 +34,38 @@ namespace RPG.Inventory
             return _equippedItems.Keys;
         }
 
-        object ISaveable.CaptureState()
+        public JToken CaptureAsJToken()
         {
-            Dictionary<EquipLocation, string> equippedItemsForSerialization = new Dictionary<EquipLocation, string>();
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDictionary = state;
+
             foreach (var pair in _equippedItems)
             {
-                equippedItemsForSerialization[pair.Key] = pair.Value.ItemID;
+                stateDictionary[pair.Key.ToString()] = JToken.FromObject(pair.Value.ItemID);
             }
 
-            return equippedItemsForSerialization;
+            return state;
         }
 
-        void ISaveable.RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            _equippedItems = new Dictionary<EquipLocation, EquipableItem>();
-            
-            Dictionary<EquipLocation, string> equippedItemsForSerialization = (Dictionary<EquipLocation, string>) state;
-
-            foreach (var pair in equippedItemsForSerialization)
+            if (state is JObject stateObject)
             {
-                EquipableItem item = (EquipableItem)InventoryItem.GetFromID(pair.Value);
-                if (item != null)
+                _equippedItems.Clear();
+                IDictionary<string, JToken> stateDictionary = stateObject;
+
+                foreach (var pair in stateObject)
                 {
-                    _equippedItems[pair.Key] = item;
+                    if (Enum.TryParse(pair.Key, out EquipLocation key))
+                    {
+                        if (InventoryItem.GetFromID(pair.Value.ToObject<string>()) is EquipableItem item)
+                        {
+                            _equippedItems[key] = item;
+                        }
+                    }
                 }
+                
+                EquipmentUpdated?.Invoke();
             }
         }
     }

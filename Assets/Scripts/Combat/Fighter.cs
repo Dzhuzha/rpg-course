@@ -1,4 +1,5 @@
 ﻿using GameDevTV.Utils;
+using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Atributes;
 using RPG.Inventory;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : ActionScheduler, IAction, ISaveable
+    public class Fighter : ActionScheduler, IAction, IJsonSaveable
     {
         [SerializeField] private Mover _mover;
         [SerializeField] private ActionScheduler _scheduler;
@@ -19,7 +20,7 @@ namespace RPG.Combat
         [SerializeField] private WeaponConfig _defaultWeapon = null;
         [SerializeField] private BaseStats _baseStats;
         [SerializeField] private Equipment _equipment;
-        
+
         //[SerializeField] private ProjectTile _arrowPrefab;
         private const string ATTACK_TRIGGER = "Attack";
         private const string STOP_ATTACKING = "StopAttack";
@@ -73,9 +74,9 @@ namespace RPG.Combat
 
         private void UpdateWeapon()
         {
-            EquipableItem weaponToEquip = _equipment.GetItemInSlot(EquipLocation.MainHand); 
+            EquipableItem weaponToEquip = _equipment.GetItemInSlot(EquipLocation.MainHand);
             var weaponConfig = weaponToEquip as WeaponConfig;
-           
+
             if (weaponConfig == null)
             {
                 EquipWeapon(_defaultWeapon);
@@ -92,18 +93,17 @@ namespace RPG.Combat
 
         public void EquipWeapon(WeaponConfig weaponConfig)
         {
-             _currentWeapon.value = SpawnWeapon(weaponConfig);
+            _currentWeapon.value = SpawnWeapon(weaponConfig);
             _currentWeaponConfig = weaponConfig;
         }
 
         private Weapon SpawnWeapon(WeaponConfig weaponToSpawn)
         {
             Weapon spawnedWeapon = null;
-            
+
             if (weaponToSpawn == null)
             {
                 _currentWeaponConfig = _defaultWeapon;
-             
             }
 
             if (_leftHandTransform.GetComponentInChildren<Weapon>() != null)
@@ -123,7 +123,9 @@ namespace RPG.Combat
                 _currentWeaponConfig = weaponToSpawn;
             }
 
-            _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride == null ? _defaultAnimatorController : weaponToSpawn.AnimatorOverride;
+            _animator.runtimeAnimatorController = weaponToSpawn.AnimatorOverride == null
+                ? _defaultAnimatorController
+                : weaponToSpawn.AnimatorOverride;
             return spawnedWeapon;
         }
 
@@ -197,7 +199,8 @@ namespace RPG.Combat
             ProjectTile projectTile = Instantiate(_currentWeaponConfig.ProjectTile, _leftHandTransform);
             projectTile.transform.SetParent(transform.root);
             // projectTile.InitArrow(_targetHealth, gameObject, _currentWeapon.Damage);
-            projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage(), _currentWeaponConfig.CreationAudioClip, _currentWeaponConfig.UsageAudioClip);
+            projectTile.InitArrow(_targetHealth, gameObject, CalculateDamage(), _currentWeaponConfig.CreationAudioClip,
+                _currentWeaponConfig.UsageAudioClip);
         }
 
         private void Hit() //Animation event
@@ -217,7 +220,7 @@ namespace RPG.Combat
                 CreateProjectTile();
                 return;
             }
-            
+
             _targetHealth.TakeDamage(gameObject, CalculateDamage());
         }
 
@@ -226,14 +229,14 @@ namespace RPG.Combat
             return _baseStats.GetStat(Stat.Damage);
         }
 
-        public object CaptureState()
+        public JToken CaptureAsJToken()
         {
-            return _currentWeaponConfig.name;
+            return JToken.FromObject(_currentWeaponConfig.name);
         }
 
-        public void RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            string weaponName = (string)state;
+            string weaponName = state.ToObject<string>();
             WeaponConfig weaponConfig = Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weaponConfig);
         }

@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using RPG.Control;
 using RPG.Saving;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Playables;
 
 namespace RPG.Cinematics
 {
-    public class CinematicTrigger : MonoBehaviour, ISaveable
+    public class CinematicTrigger : MonoBehaviour, IJsonSaveable
     {
         private PlayableDirector _playableDirector;
         private bool _isAlreadyPlayed;
@@ -24,14 +25,14 @@ namespace RPG.Cinematics
             }
         }
 
-        public object CaptureState()
+        public JToken CaptureAsJToken()
         {
-            return _isAlreadyPlayed;
+            return JToken.FromObject(_isAlreadyPlayed);
         }
 
-        public void RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            _isAlreadyPlayed = (bool)state;
+            _isAlreadyPlayed = state.ToObject<bool>();
         }
     }
 }

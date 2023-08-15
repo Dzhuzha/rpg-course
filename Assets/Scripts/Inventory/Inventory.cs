@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Saving;
 using UnityEngine;
@@ -9,9 +11,11 @@ namespace RPG.Inventory
     /// Provides storage for the player inventory. A configurable number of slots are available.
     /// This component should be placed on the GameObject tagged "Player".
     /// </summary>
-    public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluator
+    public class Inventory : MonoBehaviour, IJsonSaveable, IPredicateEvaluator
     {
-        [Tooltip("Allowed size"), SerializeField] private int _inventorySize = 16;
+        [Tooltip("Allowed size"), SerializeField]
+        private int _inventorySize = 16;
+
         private InventorySlot[] _slots;
 
         public event Action InventoryUpdated;
@@ -35,7 +39,7 @@ namespace RPG.Inventory
         {
             return FindSlot(item) >= 0;
         }
-        
+
         public int GetSize()
         {
             return _slots.Length;
@@ -49,7 +53,7 @@ namespace RPG.Inventory
             {
                 return false;
             }
-            
+
             _slots[i].Item = item;
             _slots[i].Quantity += itemCount;
             InventoryUpdated?.Invoke();
@@ -73,12 +77,12 @@ namespace RPG.Inventory
 
             return false;
         }
-        
+
         public InventoryItem GetItemInSlot(int slot)
         {
             return _slots[slot].Item;
         }
-        
+
         public int GetItemCountInSlot(int slot)
         {
             return _slots[slot].Quantity;
@@ -97,7 +101,7 @@ namespace RPG.Inventory
                 _slots[slot].Quantity = 0;
                 _slots[slot].Item = null;
             }
-            
+
             InventoryUpdated?.Invoke();
         }
 
@@ -117,7 +121,7 @@ namespace RPG.Inventory
                 return AddToFirstEmptySlot(item, count);
             }
 
-            int index = FindStack(item); 
+            int index = FindStack(item);
             if (index >= 0)
             {
                 slot = index;
@@ -149,11 +153,11 @@ namespace RPG.Inventory
             {
                 index = FindEmptySlot();
             }
-            
+
             return index;
         }
 
-        
+
         /// <summary>
         /// Searching for a stack of items with the same type and id.
         /// </summary>
@@ -197,39 +201,6 @@ namespace RPG.Inventory
 
             return -1;
         }
-        
-        object ISaveable.CaptureState()
-        {
-            InventorySlotRecord[] slotsStrings = new InventorySlotRecord[_inventorySize];
-            for (int i = 0; i < _inventorySize; i++)
-            {
-                if (_slots[i].Item != null)
-                {
-                    slotsStrings[i].ItemId = _slots[i].Item.ItemID;
-                    slotsStrings[i].Quantity = _slots[i].Quantity;
-                }
-            }
-
-            return slotsStrings;
-        }
-
-        void ISaveable.RestoreState(object state)
-        {
-            InventorySlotRecord[] slotsStrings = (InventorySlotRecord[])state;
-            for (int i = 0; i < _inventorySize; i++)
-            {
-                if (i >= _inventorySize)
-                {
-                    Debug.LogWarning("Saved inventory state does not match inventory size.");
-                    break;
-                }
-                
-                _slots[i].Item = InventoryItem.GetFromID(slotsStrings[i].ItemId);
-                _slots[i].Quantity = slotsStrings[i].Quantity;
-            }
-
-            InventoryUpdated?.Invoke();
-        }
 
         [Serializable]
         private struct InventorySlotRecord
@@ -254,6 +225,47 @@ namespace RPG.Inventory
                     return !HasItem(InventoryItem.GetFromID(parameters[0]));
                 default:
                     return null;
+            }
+        }
+
+        public JToken CaptureAsJToken()
+        {
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDictionary = state;
+
+            for (int i = 0; i < _inventorySize; i++)
+            {
+                if (_slots[i].Item != null)
+                {
+                    JObject itemState = new JObject();
+                    IDictionary<string, JToken> itemStateDictionary = itemState;
+                    itemState["item"] = JToken.FromObject(_slots[i].Item.ItemID); //itemStateDictionary
+                    itemState["number"] = JToken.FromObject(_slots[i].Quantity);  //itemStateDictionary
+                    stateDictionary[i.ToString()] = itemState;
+                }
+            }
+
+            return state;
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            if (state is JObject stateObject)
+            {
+                _slots = new InventorySlot[_inventorySize];
+                IDictionary<string, JToken> stateDictionary = stateObject;
+
+                for (int i = 0; i < _inventorySize; i++)
+                {
+                    if (stateDictionary.ContainsKey(i.ToString()) && stateDictionary[i.ToString()] is JObject itemState)
+                    {
+                        IDictionary<string, JToken> itemStateDictionary = itemState;
+                        _slots[i].Item = InventoryItem.GetFromID(itemStateDictionary["item"].ToObject<string>());
+                        _slots[i].Quantity = itemStateDictionary["number"].ToObject<int>();
+                    }
+                }
+                
+                InventoryUpdated?.Invoke();
             }
         }
     }

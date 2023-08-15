@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using RPG.Saving;
 using UnityEngine;
 
 namespace RPG.Inventory
 {
-    public class ActionStore : MonoBehaviour, ISaveable
+    public class ActionStore : MonoBehaviour, IJsonSaveable
     {
         private Dictionary<int, DockedItemSlot> _dockedItems = new Dictionary<int, DockedItemSlot>();
 
@@ -104,29 +105,41 @@ namespace RPG.Inventory
 
             return 1;
         }
-
-        object ISaveable.CaptureState()
+        
+        public JToken CaptureAsJToken()
         {
-           var state = new Dictionary<int, DockedItemRecord>();
-         
-           foreach (var pair in _dockedItems)
-           {
-               var record = new DockedItemRecord();
-               record.ItemID = pair.Value.Item.ItemID;
-               record.Number = pair.Value.Number;
-               state[pair.Key] = record;
-           }
-           
-           return state;
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDictionary = state;
+
+            foreach (var pair in _dockedItems)
+            {
+                JObject dockedState = new JObject();
+                IDictionary<string, JToken> dockedStateDictionary = dockedState;
+                dockedStateDictionary["item"] = JToken.FromObject(pair.Value.Item.ItemID);
+                dockedStateDictionary["number"] = JToken.FromObject(pair.Value.Number);
+                stateDictionary[pair.Key.ToString()] = dockedState;
+            }
+
+            return state;
         }
 
-        void ISaveable.RestoreState(object state)
+        public void RestoreFromJToken(JToken state)
         {
-            var deserializedState = (Dictionary<int, DockedItemRecord>) state;
-
-            foreach (var pair in deserializedState)
+            if (state is JObject stateObject)
             {
-                AddAction(InventoryItem.GetFromID(pair.Value.ItemID), pair.Key, pair.Value.Number);
+                IDictionary<string, JToken> stateDictionary = stateObject;
+
+                foreach (var pair in stateDictionary)
+                {
+                    if (pair.Value is JObject dockedState)
+                    {
+                        int key = Int32.Parse(pair.Key);
+                        IDictionary<string, JToken> dockedStateDictionary = dockedState;
+                        var item = InventoryItem.GetFromID(dockedStateDictionary["item"].ToObject<string>());
+                        int number = dockedStateDictionary["number"].ToObject<int>();
+                        AddAction(item, key, number);
+                    }
+                }
             }
         }
     }
