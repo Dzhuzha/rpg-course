@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using RPG.Core;
 using RPG.Inventory;
 using RPG.Saving;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace RPG.Quests
 {
-    public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
+    public class QuestList : MonoBehaviour, IPredicateEvaluator, IJsonSaveable
     {
         public event Action QuestListUpdated;
 
@@ -75,31 +76,6 @@ namespace RPG.Quests
             return GetQuestStatus(quest) != null;
         }
 
-        object ISaveable.CaptureState()
-        {
-            List<object> state = new List<object>();
-
-            foreach (QuestStatus status in _statuses)
-            {
-                state.Add(status.CaptureState());
-            }
-
-            return state;
-        }
-
-        void ISaveable.RestoreState(object state)
-        {
-            List<object> stateList = state as List<object>;
-
-            if (stateList == null) return;
-
-            _statuses.Clear();
-            foreach (object objectState in stateList)
-            {
-                _statuses.Add(new QuestStatus(objectState));
-            }
-        }
-
         public bool? Evaluate(string predicate, string[] parameters)
         {
             switch (predicate)
@@ -111,6 +87,33 @@ namespace RPG.Quests
             }
 
             return null;
+        }
+
+        public JToken CaptureAsJToken()
+        {
+           JArray state = new JArray();
+           IList<JToken> stateList = state;
+
+           foreach (QuestStatus status in _statuses)
+           {
+               stateList.Add(status.CaptureAsJToken());
+           }
+
+           return state;
+        }
+
+        public void RestoreFromJToken(JToken state)
+        {
+            if (state is JArray stateArray)
+            {
+                _statuses.Clear();
+                IList<JToken> stateList = stateArray;
+
+                foreach (JToken token in stateList)
+                {
+                    _statuses.Add(new QuestStatus(token));
+                }
+            }
         }
     }
 }

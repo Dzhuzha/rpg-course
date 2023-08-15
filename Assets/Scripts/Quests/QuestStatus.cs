@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace RPG.Quests
 {
@@ -28,14 +28,23 @@ namespace RPG.Quests
             return true;
         }
 
-        public QuestStatus(object objectState)
+        public QuestStatus(JToken objectState)
         {
-            QuestStatusRecord questRecord = objectState as QuestStatusRecord;
-
-            if (questRecord != null)
+            if (objectState is JObject state)
             {
-                Quest = Quest.GetByName(questRecord.QuestName);
-                _completedObjectives = questRecord.CompletedObjectives;
+                IDictionary<string, JToken> stateDictionary = state;
+                Quest = Quest.GetByName(stateDictionary["questName"].ToObject<string>());
+                _completedObjectives.Clear();
+
+                if (stateDictionary["completedObjectives"] is JArray completedState)
+                {
+                    IList<JToken> completedStateArray = completedState;
+
+                    foreach (JToken objective in completedStateArray)
+                    {
+                        _completedObjectives.Add(objective.ToObject<string>());
+                    }
+                }
             }
         }
 
@@ -51,18 +60,18 @@ namespace RPG.Quests
             _completedObjectives.Add(objective);
         }
 
-        [Serializable]
-        private class QuestStatusRecord
+        public JToken CaptureAsJToken()
         {
-            public string QuestName;
-            public List<string> CompletedObjectives;
-        }
+            JObject state = new JObject();
+            IDictionary<string, JToken> stateDictionary = state;
+            stateDictionary["questName"] = Quest.Name;
+            JArray completedState = new JArray();
+            IList<JToken> completedStateArray = completedState;
 
-        public object CaptureState()
-        {
-            QuestStatusRecord state = new QuestStatusRecord();
-            state.QuestName = Quest.Name;
-            state.CompletedObjectives = _completedObjectives;
+            foreach (string objective in _completedObjectives)
+            {
+                completedStateArray.Add(JToken.FromObject(objective));
+            }
 
             return state;
         }
