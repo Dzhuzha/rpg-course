@@ -238,6 +238,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1893142078175073014}
     m_Modifications:
+    - target: {fileID: 2084203737136334381, guid: 81a026304d1dd3945b60ddc366b5cc58,
+        type: 3}
+      propertyPath: _cloudSaveManager
+      value: 
+      objectReference: {fileID: 5784379757499769815}
     - target: {fileID: 3909340465200245172, guid: 81a026304d1dd3945b60ddc366b5cc58,
         type: 3}
       propertyPath: m_Name
@@ -306,3 +311,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2237650824652515386}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5784379757499769815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5713806992741370861, guid: 81a026304d1dd3945b60ddc366b5cc58,
+    type: 3}
+  m_PrefabInstance: {fileID: 2237650824652515386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d0034f504db564b99bb710e6aad466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

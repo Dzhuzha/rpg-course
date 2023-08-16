@@ -14,7 +14,8 @@ namespace RPG.SceneManagement
 
         private void Awake()
         {
-            StartCoroutine(LoadLastScene());
+            _savingSystem = _savingSystem == null ? GetComponent<JsonSavingSystem>() : _savingSystem;
+           // StartCoroutine(LoadLastScene());
         }
 
         private IEnumerator LoadLastScene()
@@ -51,7 +52,14 @@ namespace RPG.SceneManagement
 
         public void Load()
         {
-            _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
+            if (_savingSystem == null)
+            {
+                StartCoroutine(LoadLastScene());
+            }
+            else
+            {
+                _savingSystem.Load(DEFAULT_SAVE_FILE_NAME);
+            }
         }
 
         public void Delete()
