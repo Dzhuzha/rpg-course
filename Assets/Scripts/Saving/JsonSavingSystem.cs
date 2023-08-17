@@ -14,13 +14,23 @@ namespace RPG.Saving
         [SerializeField] private CloudSaveManager _cloudSaveManager;
 
         private JObject _state;
+        private bool _isLoading;
 
         private const string SAVE_FILE_EXTENSION = ".json";
         private const string BUILD_INDEX_LABEL = "lastSceneBuildIndex";
 
         public IEnumerator LoadLastScene(string saveFile)
         {
-            _state ??= LoadJsonFromFile(saveFile);
+            while (_cloudSaveManager.CloudServiceInitialized == false)
+            {
+                yield return null;
+            }
+
+            LoadFromCloud(saveFile);
+            while (_isLoading)
+            {
+                yield return null;
+            }
 
             IDictionary<string, JToken> stateDict = _state;
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
@@ -48,9 +58,9 @@ namespace RPG.Saving
 
         public void Load(string saveFile)
         {
-            RestoreFromToken();
-            LoadJsonFromFile(saveFile);
             LoadFromCloud(saveFile);
+            LoadJsonFromFile(saveFile);
+            RestoreFromToken();
         }
 
         public IEnumerable<string> ListSaves()
@@ -77,6 +87,8 @@ namespace RPG.Saving
                     writer.Formatting = Formatting.Indented;
                     _state.WriteTo(writer);
                 }
+
+                textWriter.Close();
             }
         }
 
@@ -96,15 +108,18 @@ namespace RPG.Saving
 
         private async void LoadFromCloud(string saveFile)
         {
+            _isLoading = true;
             string path = GetPathFromSaveFile(saveFile);
-            string json = await _cloudSaveManager.Load();;
+            string json = await _cloudSaveManager.Load();
 
-            if (!File.Exists(path))
+            using (StreamWriter textWriter = File.CreateText(path))
             {
-                File.Create(path);
+                await textWriter.WriteAsync(json);
+                textWriter.Close();
             }
-            
-            await File.WriteAllTextAsync(path, json);
+
+            _state = LoadJsonFromFile(saveFile);
+            _isLoading = false;
         }
 
         private JObject LoadJsonFromFile(string saveFile)

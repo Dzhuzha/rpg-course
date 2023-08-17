@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RPG.Saving;
 using UnityEngine;
@@ -15,6 +16,10 @@ namespace RPG.SceneManagement
         private void Awake()
         {
             _savingSystem = _savingSystem == null ? GetComponent<JsonSavingSystem>() : _savingSystem;
+        }
+
+        private void Start()
+        {
             StartCoroutine(LoadLastScene());
         }
 

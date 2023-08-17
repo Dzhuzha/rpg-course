@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RPG.CloudServices;
-using RPG.SceneManagement;
 using Unity.Services.CloudSave;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ namespace RPG.Saving
         [SerializeField] private UnityAuthenticator _authenticator;
 
         private string _playerId = String.Empty;
+        public bool CloudServiceInitialized { get; private set; }
 
         private void Awake()
         {
@@ -27,6 +27,7 @@ namespace RPG.Saving
         private void Init(string playerId)
         {
             _playerId = playerId;
+            CloudServiceInitialized = true;
         }
 
         public async Task<string> Load()
