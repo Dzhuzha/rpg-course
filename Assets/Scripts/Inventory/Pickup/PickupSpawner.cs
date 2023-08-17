@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 using RPG.Saving;
 using UnityEngine;
@@ -13,10 +14,15 @@ namespace RPG.Inventory
         [SerializeField] InventoryItem _item;
         [SerializeField] private int _itemCount = 1;
 
+        private event Action _restored;
+        
         private void Awake()
         {
             SpawnPickup();
+            _restored += DestroyPickup;
         }
+        
+        
 
         public Pickup GetPickup()
         {
@@ -39,6 +45,7 @@ namespace RPG.Inventory
             if (GetPickup())
             {
                 Destroy(GetPickup().gameObject);
+                _restored -= DestroyPickup;
             }
         }
 
@@ -54,13 +61,14 @@ namespace RPG.Inventory
 
             if (shouldBeCollected && !isCollected)
             {
-                DestroyPickup();
+                _restored?.Invoke();
             }
 
             if (!shouldBeCollected && isCollected)
             {
                 SpawnPickup();
             }
+
         }
     }
 }

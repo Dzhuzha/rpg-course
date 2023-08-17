@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886ade7219d6a0e42bf09f4e4382c4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cloudSaveManager: {fileID: 5713806992741370861}
 --- !u!114 &7422149542073353944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,4 +86,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _authenticator: {fileID: 7422149542073353944}
-  _saving: {fileID: 6480434135702227859}

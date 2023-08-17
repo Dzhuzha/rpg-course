@@ -2331,7 +2331,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &727689587 stripped
 Transform:
@@ -2428,7 +2429,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &740218483 stripped
 Transform:
@@ -2931,7 +2933,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (14)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &992487776 stripped
 Transform:
@@ -3310,7 +3313,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (13)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &1152311690 stripped
 Transform:
@@ -3514,7 +3518,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &1184008187 stripped
 Transform:
@@ -3963,7 +3968,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307539556}
-  m_LocalRotation: {x: 0.24002434, y: -0.578781, z: 0.18340139, w: 0.75747263}
+  m_LocalRotation: {x: 0.24002433, y: -0.578781, z: 0.18340136, w: 0.75747263}
   m_LocalPosition: {x: -24.141094, y: -10.674379, z: -37.1495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5712,7 +5717,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupSpawner (10)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1333165171936903173, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1f72708ce9191774bb378e0329f8ed32, type: 3}
 --- !u!4 &1905755786 stripped
 Transform:
@@ -7391,7 +7397,7 @@ PrefabInstance:
     - target: {fileID: 1623764807740816752, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158.99963
+      value: -158.99959
       objectReference: {fileID: 0}
     - target: {fileID: 1634784809596109660, guid: 905fe7ebf0b854146b668cfbe2dbae13,
         type: 3}
