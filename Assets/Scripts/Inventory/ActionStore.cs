@@ -18,13 +18,6 @@ namespace RPG.Inventory
             public int Number;
         }
 
-        [Serializable]
-        private struct DockedItemRecord
-        {
-            public string ItemID;
-            public int Number;
-        }
-
         public ActionItem GetAction(int index)
         {
             return _dockedItems.ContainsKey(index) ? _dockedItems[index].Item : null;
@@ -92,20 +85,21 @@ namespace RPG.Inventory
 
             return false;
         }
-        
+
 
         public int MaxAcceptable(InventoryItem item, int index)
         {
             var actionItem = item as ActionItem;
-            
+
             if (actionItem == null) return 0;
-            if (_dockedItems.ContainsKey(index) && !ReferenceEquals(item, _dockedItems[index].Item)) return 0; //actionItem
+            if (_dockedItems.ContainsKey(index) && !ReferenceEquals(item, _dockedItems[index].Item))
+                return 0; //actionItem
             if (actionItem.IsConsumable) return int.MaxValue;
             if (_dockedItems.ContainsKey(index)) return 0;
 
             return 1;
         }
-        
+
         public JToken CaptureAsJToken()
         {
             JObject state = new JObject();
@@ -128,7 +122,8 @@ namespace RPG.Inventory
             if (state is JObject stateObject)
             {
                 IDictionary<string, JToken> stateDictionary = stateObject;
-
+                _dockedItems.Clear();
+                
                 foreach (var pair in stateDictionary)
                 {
                     if (pair.Value is JObject dockedState)

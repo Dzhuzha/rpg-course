@@ -27,9 +27,7 @@ namespace RPG.Saving
             {
                 JToken token = jsonSaveable.CaptureAsJToken();
                 string component = jsonSaveable.GetType().ToString();
-
-                Debug.Log($"{name} Capture {component} = {token}");
-                stateDictionary[jsonSaveable.GetType().ToString()] = token;
+                stateDictionary[component] = token;
             }
 
             return state;
@@ -44,9 +42,8 @@ namespace RPG.Saving
             {
                 string component = jsonSaveable.GetType().ToString();
 
-                if (stateDictionary.ContainsKey(component))
+                if (stateDictionary != null && stateDictionary.ContainsKey(component))
                 {
-                    Debug.Log($"{name} Restore {component} = {stateDictionary[component]}");
                     jsonSaveable.RestoreFromJToken(stateDictionary[component]);
                 }
             }

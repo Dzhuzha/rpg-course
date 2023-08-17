@@ -15,12 +15,11 @@ namespace RPG.SceneManagement
         private void Awake()
         {
             _savingSystem = _savingSystem == null ? GetComponent<JsonSavingSystem>() : _savingSystem;
-           // StartCoroutine(LoadLastScene());
+            StartCoroutine(LoadLastScene());
         }
 
         private IEnumerator LoadLastScene()
         {
-            _savingSystem = _savingSystem == null ? GetComponent<JsonSavingSystem>() : _savingSystem;
             yield return _savingSystem.LoadLastScene(DEFAULT_SAVE_FILE_NAME);
             _fader = _fader == null ? FindObjectOfType<Fader>() : _fader;
             _fader.FadeOutImmediate();

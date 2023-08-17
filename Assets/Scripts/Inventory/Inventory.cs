@@ -169,13 +169,6 @@ namespace RPG.Inventory
 
             for (int i = 0; i < _slots.Length; i++)
             {
-                // if (_slots[i].Item == null) continue;
-                //
-                // if (_slots[i].Item.ItemID == item.ItemID)
-                // {
-                //     return i;
-                // }
-
                 if (ReferenceEquals(_slots[i].Item, item))
                 {
                     return i;
@@ -252,6 +245,7 @@ namespace RPG.Inventory
         {
             if (state is JObject stateObject)
             {
+                _slots = null;
                 _slots = new InventorySlot[_inventorySize];
                 IDictionary<string, JToken> stateDictionary = stateObject;
 

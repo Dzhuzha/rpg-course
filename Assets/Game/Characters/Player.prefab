@@ -86,16 +86,6 @@ PrefabInstance:
       propertyPath: _equipment
       value: 
       objectReference: {fileID: 8054737163074256769}
-    - target: {fileID: 5643659386455622357, guid: 4edd1fc0a32aa074e8508804620dfe69,
-        type: 3}
-      propertyPath: uniqueIdentifier
-      value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5643659386455622357, guid: 4edd1fc0a32aa074e8508804620dfe69,
-        type: 3}
-      propertyPath: _uniqueIdentifier
-      value: player
-      objectReference: {fileID: 0}
     - target: {fileID: 5795299573918177679, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: _mover
@@ -115,7 +105,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _actionStore
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3656156571024389489}
     - target: {fileID: 5795299573918177679, guid: 4edd1fc0a32aa074e8508804620dfe69,
         type: 3}
       propertyPath: _enemyHealthDisplay

@@ -13,32 +13,31 @@ namespace RPG.Saving
     {
         [SerializeField] private CloudSaveManager _cloudSaveManager;
 
+        private JObject _state;
+
         private const string SAVE_FILE_EXTENSION = ".json";
         private const string BUILD_INDEX_LABEL = "lastSceneBuildIndex";
 
-        // private IDictionary<string, JToken> _state;
-
         public IEnumerator LoadLastScene(string saveFile)
         {
-            //  _state ??= LoadJsonFromFile(saveFile);
-            JObject state = LoadJsonFromFile(saveFile);
-            IDictionary<string, JToken> stateDict = state;
+            _state ??= LoadJsonFromFile(saveFile);
+
+            IDictionary<string, JToken> stateDict = _state;
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
-            if (state.ContainsKey(BUILD_INDEX_LABEL))
+            if (_state.ContainsKey(BUILD_INDEX_LABEL))
             {
-                buildIndex = (int) state[BUILD_INDEX_LABEL];
+                buildIndex = (int) _state[BUILD_INDEX_LABEL];
             }
 
             yield return SceneManager.LoadSceneAsync(buildIndex);
-            RestoreFromToken(state);
+            RestoreFromToken();
         }
 
         public void Save(string saveFile)
         {
-            JObject state = LoadJsonFromFile(saveFile);
-            CaptureAsToken(state);
-            SaveFileAsJson(saveFile, state);
+            CaptureAsToken();
+            SaveFileAsJson(saveFile);
             SaveToCloud(saveFile);
         }
 
@@ -49,6 +48,8 @@ namespace RPG.Saving
 
         public void Load(string saveFile)
         {
+            RestoreFromToken();
+            LoadJsonFromFile(saveFile);
             LoadFromCloud(saveFile);
         }
 
@@ -63,7 +64,7 @@ namespace RPG.Saving
             }
         }
 
-        private void SaveFileAsJson(string saveFile, JObject state)
+        private void SaveFileAsJson(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
 
@@ -74,7 +75,7 @@ namespace RPG.Saving
                 using (JsonTextWriter writer = new JsonTextWriter(textWriter))
                 {
                     writer.Formatting = Formatting.Indented;
-                    state.WriteTo(writer);
+                    _state.WriteTo(writer);
                 }
             }
         }
@@ -96,24 +97,21 @@ namespace RPG.Saving
         private async void LoadFromCloud(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
-            string json = await _cloudSaveManager.Load();
+            string json = await _cloudSaveManager.Load();;
 
             if (!File.Exists(path))
             {
                 File.Create(path);
-                return;
             }
-
+            
             await File.WriteAllTextAsync(path, json);
-            RestoreFromToken(LoadJsonFromFile(saveFile));
-            ;
         }
 
         private JObject LoadJsonFromFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
 
-            if (!File.Exists(path))
+            if (!File.Exists(path) || string.IsNullOrEmpty(File.ReadAllText(path)))
             {
                 return new JObject();
             }
@@ -128,9 +126,9 @@ namespace RPG.Saving
             }
         }
 
-        private void CaptureAsToken(JObject state)
+        private void CaptureAsToken()
         {
-            IDictionary<string, JToken> stateDictionary = state;
+            IDictionary<string, JToken> stateDictionary = _state;
 
             foreach (JsonSaveableEntity saveableEntity in FindObjectsOfType<JsonSaveableEntity>())
             {
@@ -140,9 +138,9 @@ namespace RPG.Saving
             stateDictionary[BUILD_INDEX_LABEL] = SceneManager.GetActiveScene().buildIndex;
         }
 
-        private void RestoreFromToken(JObject state)
+        private void RestoreFromToken()
         {
-            IDictionary<string, JToken> stateDictionary = state;
+            IDictionary<string, JToken> stateDictionary = _state;
 
             foreach (JsonSaveableEntity saveableEntity in FindObjectsOfType<JsonSaveableEntity>())
             {
